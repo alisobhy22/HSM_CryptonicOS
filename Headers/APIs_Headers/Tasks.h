@@ -8,10 +8,10 @@
 #define WAITING 3
 #define SUSPENDED 4
 
-typdef uint8_t TaskType;
-typdef uint8_t TaskRefType;
-typdef uint8_t TaskStateType;
-typdef uint8_t TaskStateRefType;
+typedef uint8_t TaskType;
+typedef uint8_t TaskRefType;
+typedef uint8_t TaskStateType;
+typedef uint8_t TaskStateRefType;
 
 struct Task
 {
