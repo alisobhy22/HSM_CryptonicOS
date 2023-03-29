@@ -4,7 +4,43 @@
 
 StatusType ActivateTask(TaskType TaskID)
 {
+	StatusType StatusMsg = E_OK;
+	if (TaskID > MAX_TASKS)
+	{
+		StatusMsg = E_OS_LIMIT;
+		return StatusMsg;
+	}
 
+	int found = 0;
+	for (int i = 0; i < MAX_TASKS;i++)
+	{
+		if (OsTasksPCB[i].TaskID == TaskID)
+		{
+			found = 1;
+			break;
+		}
+	}
+	if(found == 0)
+		{
+			StatusMsg = E_OS_ID;
+			return StatusMsg;
+		}
+
+
+	
+	if (OsTasksPCB[TaskID-1].State == SUSPENDED)
+	{
+		//context switch
+		OsTasksPCB[TaskID - 1].State = READY;
+		OsTasksPCB[TaskID - 1].Activation_Record = 1;
+		StatusMsg = E_OK;
+		return StatusMsg;
+	}
+		// else Increase activation record by 1
+		// if (OsTasksPCB[TaskID - 1].State == READY)
+		// {
+		// 	OsTasksPCB[TaskID - 1].Activation_Record++;
+		// }
 }
 
 StatusType TerminateTask(void)
