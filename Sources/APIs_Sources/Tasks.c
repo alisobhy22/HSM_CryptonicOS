@@ -37,6 +37,10 @@ StatusType ActivateTask(TaskType TaskID)
 		StatusMsg = E_OK;
 		return StatusMsg;
 	}
+	else
+	{
+		// to be implemented
+	}
 	return StatusMsg;	
 }
 
