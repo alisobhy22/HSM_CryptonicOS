@@ -102,7 +102,7 @@ StatusType GetTaskID(TaskRefType TaskID)
 	}
 	else
 	{
-		*TaskID = OsTasksPCB[TaskID - 1].TaskID;
+		*TaskID = OsTasksPCB[RunningTaskID - 1].TaskID;
 	}
 	return StatusMsg;
 	
