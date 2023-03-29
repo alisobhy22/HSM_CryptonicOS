@@ -22,10 +22,10 @@ StatusType ActivateTask(TaskType TaskID)
 		}
 	}
 	if(found == 0) // task not found
-		{
-			StatusMsg = E_OS_ID;
-			return StatusMsg;
-		}
+	{
+		StatusMsg = E_OS_ID;
+		return StatusMsg;
+	}
 
 
 	
@@ -33,17 +33,11 @@ StatusType ActivateTask(TaskType TaskID)
 	{
 		//context switch
 		OsTasksPCB[TaskID - 1].State = READY;
-		OsTasksPCB[TaskID - 1].Activation_Record = 1;
+		OsTasksPCB[TaskID - 1].Activation_Record-- ;
 		StatusMsg = E_OK;
 		return StatusMsg;
 	}
-	//Increase activation record by 1
-		// if (OsTasksPCB[TaskID - 1].State == READY)
-		// {
-		// 	OsTasksPCB[TaskID - 1].Activation_Record++;
-		// StatusMsg = E_OK;
-		// return StatusMsg;
-		// }
+	return StatusMsg;	
 }
 
 StatusType TerminateTask(void)
@@ -81,7 +75,16 @@ StatusType TerminateTask(void)
 
 StatusType ChainTask(TaskType TaskID)
 {
-
+	StatusType StatusMsg = TerminateTask();
+	if(E_OK == StatusMsg)
+	{
+		StatusMsg = ActivateTaskID(TaskID);
+		if(E_OK == StatusMsg)
+		{
+			return StatusMsg;
+		}
+	}
+	return StatusMsg;
 }
 
 StatusType Schedule(void)
