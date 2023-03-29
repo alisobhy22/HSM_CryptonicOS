@@ -1,3 +1,7 @@
+#include<Libraries.h>
+
+#include "../../Configurations/TaskConfig.h"
+
 #ifndef Headers_APIs_Headers_Tasks_H
 #define Headers_APIs_Headers_Tasks_H
 
@@ -23,6 +27,7 @@ struct Task
 	uint8_t Reasourses_Occupied;
 };
 
+extern struct Task OsTasksPCB[MAX_TASKS]; // array of tasks
 
 StatusType ActivateTask(TaskType TaskID); // 1
 StatusType TerminateTask(void); //2 

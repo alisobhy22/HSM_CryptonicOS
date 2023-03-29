@@ -1,26 +1,26 @@
 #include "..\..\Headers\APIs_Headers\Headers.h"
 
-//this is the task control block
+struct Task OsTasksPCB[MAX_TASKS];
 
 StatusType ActivateTask(TaskType TaskID)
 {
 	StatusType StatusMsg = E_OK;
-	if (TaskID > MAX_TASKS)
+	if (TaskID > MAX_TASKS) //max number of active tasks
 	{
 		StatusMsg = E_OS_LIMIT;
 		return StatusMsg;
 	}
 
-	int found = 0;
-	for (int i = 0; i < MAX_TASKS;i++)
+	uint8_t found = 0;
+	for (int i = 0; i < MAX_TASKS;i++) 
 	{
-		if (OsTasksPCB[i].TaskID == TaskID)
+		if (OsTasksPCB[i].ID == TaskID)
 		{
 			found = 1;
 			break;
 		}
 	}
-	if(found == 0)
+	if(found == 0) // task not found
 		{
 			StatusMsg = E_OS_ID;
 			return StatusMsg;
@@ -28,7 +28,7 @@ StatusType ActivateTask(TaskType TaskID)
 
 
 	
-	if (OsTasksPCB[TaskID-1].State == SUSPENDED)
+	if (OsTasksPCB[TaskID-1].State == SUSPENDED) // if task is suspended
 	{
 		//context switch
 		OsTasksPCB[TaskID - 1].State = READY;
@@ -36,10 +36,12 @@ StatusType ActivateTask(TaskType TaskID)
 		StatusMsg = E_OK;
 		return StatusMsg;
 	}
-		// else Increase activation record by 1
+	//Increase activation record by 1
 		// if (OsTasksPCB[TaskID - 1].State == READY)
 		// {
 		// 	OsTasksPCB[TaskID - 1].Activation_Record++;
+		// StatusMsg = E_OK;
+		// return StatusMsg;
 		// }
 }
 
