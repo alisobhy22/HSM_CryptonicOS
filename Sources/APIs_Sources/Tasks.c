@@ -1,6 +1,7 @@
 #include "..\..\Headers\APIs_Headers\Headers.h"
 
 struct Task OsTasksPCB[MAX_TASKS];
+TaskType RunningTaskID;
 
 StatusType ActivateTask(TaskType TaskID)
 {
