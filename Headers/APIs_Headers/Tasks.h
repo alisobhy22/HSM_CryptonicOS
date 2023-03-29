@@ -9,9 +9,9 @@
 #define SUSPENDED 4
 
 typedef uint8_t TaskType;
-typedef uint8_t TaskRefType;
+typedef uint8_t* TaskRefType;
 typedef uint8_t TaskStateType;
-typedef uint8_t TaskStateRefType;
+typedef uint8_t* TaskStateRefType;
 
 struct Task
 {
@@ -20,6 +20,7 @@ struct Task
 	uint8_t Priority;
 	uint8_t F_Preem; // flag of preemetivety 0 or 1
 	uint8_t Activation_Record;
+	uint8_t Reasourses_Occupied;
 };
 
 
