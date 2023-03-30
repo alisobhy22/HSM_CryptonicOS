@@ -5,7 +5,7 @@
 #ifndef Headers_APIs_Headers_Tasks_H
 #define Headers_APIs_Headers_Tasks_H
 
-#define INVALID_TASK 0
+#define INVALID_TASK 255
 
 #define RUNNING 1
 #define READY 2
@@ -22,7 +22,7 @@ struct Task
 	TaskType ID;
 	TaskStateType State;
 	uint8_t Priority;
-	uint8_t F_Preem; // flag of preemetivety 0 or 1
+	const uint8_t F_Preem; // flag of preemetivety 0 or 1
 	uint8_t Activation_Record;
 	uint8_t Reasourses_Occupied;
 };
