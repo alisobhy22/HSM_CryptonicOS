@@ -2,7 +2,8 @@
 
 struct Task OsTasksPCB[MAX_TASKS];
 TaskType RunningTaskID;
-
+uint8_t Queue_Size = 0;
+struct Task* Ready_Queue[MAX_TASKS];
 StatusType ActivateTask(TaskType TaskID)
 {
 	StatusType StatusMsg = E_OK;
@@ -11,29 +12,16 @@ StatusType ActivateTask(TaskType TaskID)
 		StatusMsg = E_OS_LIMIT;
 		return StatusMsg;
 	}
-
-	uint8_t found = 0;
-	for (int i = 0; i < MAX_TASKS;i++) 
+	if (OsTasksPCB[TaskID].ID == INVALID_TASK)
 	{
-		if (OsTasksPCB[i].ID == TaskID)
-		{
-			found = 1;
-			break;
-		}
-	}
-	if(found == 0) // task not found
-	{
+		// error msg
 		StatusMsg = E_OS_ID;
 		return StatusMsg;
 	}
-
-
-	
-	if (OsTasksPCB[TaskID-1].State == SUSPENDED) // if task is suspended
+	if ((OsTasksPCB[TaskID].State == SUSPENDED) && (OsTasksPCB[TaskID].Activation_Record != 0)) // if task is suspended and activationrecord not zero
 	{
 		//context switch
-		OsTasksPCB[TaskID - 1].State = READY;
-		OsTasksPCB[TaskID - 1].Activation_Record-- ;
+		OS_ActivateTask(TaskID);
 		StatusMsg = E_OK;
 		return StatusMsg;
 	}
@@ -54,22 +42,14 @@ StatusType TerminateTask(void)
 	}
 	else
 	{
-		if (OsTasksPCB[RunningTaskID - 1].Activation_Record > 0)
-		{
-			//Context_Switch();
-			OsTasksPCB[RunningTaskID - 1].State = READY;
-			// error msg?
-		}
-		else
-		if (OsTasksPCB[RunningTaskID - 1].Reasourses_Occupied != 0)
+		if (OsTasksPCB[RunningTaskID].Reasourses_Occupied != 0)
 		{
 			StatusMsg = E_OS_RESOURCE;
 		}
 		else
 		{
 			//Context_Switch();
-			OsTasksPCB[RunningTaskID - 1].State = SUSPENDED;
-			RunningTaskID = INVALID_TASK;
+			OS_TerminateTask();
 		}
 		// return calllevel error msg when called from ISR...
 
@@ -79,21 +59,44 @@ StatusType TerminateTask(void)
 
 StatusType ChainTask(TaskType TaskID)
 {
-	StatusType StatusMsg = TerminateTask();
-	if(E_OK == StatusMsg)
+	StatusType StatusMsg = E_OK;
+
+	//E_OS_CALLEVEL
+
+	if (RunningTaskID == INVALID_TASK) //  implement RunningTaskID later
 	{
-		StatusMsg = ActivateTaskID(TaskID);
-		if(E_OK == StatusMsg)
-		{
-			return StatusMsg;
-		}
+		StatusMsg = E_OS_ID;
+		return StatusMsg;
+	}
+	if (OsTasksPCB[RunningTaskID].Reasourses_Occupied != 0)
+	{
+		StatusMsg = E_OS_RESOURCE;
+		return StatusMsg;
+	}
+	OS_TerminateTask();
+	if (TaskID > MAX_TASKS) //max number of active tasks
+	{
+		StatusMsg = E_OS_LIMIT;
+		return StatusMsg;
+	}
+	if (OsTasksPCB[TaskID].ID == INVALID_TASK)
+	{
+		// error msg
+		StatusMsg = E_OS_ID;
+		return StatusMsg;
+	}
+	if (OsTasksPCB[TaskID].State == SUSPENDED) // if task is suspended
+	{
+		OS_ActivateTask(TaskID);
+		StatusMsg = E_OK;
+		return StatusMsg;
 	}
 	return StatusMsg;
 }
 
 StatusType Schedule(void)
 {
-
+	
 }
 
 StatusType GetTaskID(TaskRefType TaskID)
@@ -106,7 +109,7 @@ StatusType GetTaskID(TaskRefType TaskID)
 	}
 	else
 	{
-		*TaskID = OsTasksPCB[RunningTaskID - 1].TaskID;
+		*TaskID = OsTasksPCB[RunningTaskID].ID;
 	}
 	return StatusMsg;
 	
@@ -116,18 +119,92 @@ StatusType GetTaskState(TaskType TaskID, TaskStateRefType State)
 {
 	StatusType StatusMsg = E_OK;
 
-	if (TaskID > MAX_TASKS || TaskID < 1)
+	if (TaskID > MAX_TASKS)
 	{
 		StatusMsg = E_OS_STATE;
 	}
 	else
 	{
-		*State = OsTasksPCB[TaskID - 1].State; // Note: implement PCB later
+		*State = OsTasksPCB[TaskID].State; // Note: implement PCB later
 	}
 	return StatusMsg;
 }
 
-void DeclareTask(int x)
+
+
+void OS_ActivateTask(TaskType TaskID)
+{
+		OsTasksPCB[TaskID].State = READY;
+		OsTasksPCB[TaskID].Activation_Record-- ;
+		OS_Insert(OsTasksPCB[TaskID]);
+		return;
+}
+
+void OS_TerminateTask(void)
 {
 
+	//Context_Switch();
+	OsTasksPCB[RunningTaskID].State = SUSPENDED;
+	RunningTaskID = INVALID_TASK;
+	OS_Delete(RunningTaskID);
+
+	// return calllevel error msg when called from ISR...
+	return;
+}
+
+
+void OS_Heapify(uint8_t i)
+{
+	int l = 2 * i + 1;
+	int r = 2 * i + 2;
+	uint8_t largest = i;
+	if (l < Queue_Size && &Ready_Queue[l]->Priority > &Ready_Queue[largest]->Priority)
+		largest = l;
+	if (r < Queue_Size && &Ready_Queue[r]->Priority > &Ready_Queue[largest]->Priority)
+		largest = r;
+	if (largest != i)
+	{
+		struct Task* temp = Ready_Queue[i];
+		Ready_Queue[i] = Ready_Queue[largest];
+		Ready_Queue[largest] = temp;
+		OS_heapify(largest);
+		temp = NULL;
+	}
+	
+}
+
+void OS_Insert(struct Task newTask)
+{
+	if(Queue_Size ==0)
+	{
+		Ready_Queue[0] = &newTask;
+		Queue_Size++;
+	}
+	else
+	{
+		Ready_Queue[Queue_Size] = &newTask;
+		Queue_Size++;
+		for (int i = Queue_Size / 2 - 1; i >= 0; i--)
+		{
+			OS_heapify(i);
+		}
+	}
+}
+
+void OS_Delete(uint8_t id)
+{
+	uint8_t j;
+	for(j = 0; j < Queue_Size; j++)
+		if(id == Ready_Queue[j]->ID)
+			break;
+	
+	struct Task* temp = Ready_Queue[j];
+	Ready_Queue[j] = Ready_Queue[Queue_Size-1];
+	Ready_Queue[Queue_Size-1] = temp;
+	Queue_Size--;
+	temp = NULL;
+	for(uint8_t i = Queue_Size / 2 - 1; i >= 0; i--)
+	{
+		OS_heapify(i);
+	}
 }
