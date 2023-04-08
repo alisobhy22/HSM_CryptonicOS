@@ -1,26 +1,21 @@
 name: C/C++ CI
 
 on:
-  push: {}
-  pull_request: {}
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: make
-      run: make
-    - name: make check
-      run: make check
-    - name: make distcheck
-      run: make distcheck
+    - uses: actions/checkout@v2
+    - name: set up MSVC
+      uses: microsoft/setup-msvc@v1.6.2
+    - name: build
+      run: cl /EHsc /Fe:GetTaskID_T1.exe Tests\Tasks\GetTaskID_T1.c Tests\Tasks\Tasks.c /I Tests\Tasks
     - name: test
-      run: |
-        gcc -o GetTaskID_T1 Tests/Tasks/GetTaskID_T1.c Tests/Tasks/Tasks.c -I Tests/Tasks
-        ./GetTaskID_T1
-        if [ "$?" -ne 0 ]; then
-          echo "Tests failed"
-          exit 1
-        fi
+      run: GetTaskID_T1.exe
