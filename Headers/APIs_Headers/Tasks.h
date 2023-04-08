@@ -16,17 +16,6 @@
 #define TASK_FULL 1
 
 
-typedef uint8_t StatusType;
-#define E_OK 0
-#define E_OS_ACCESS 1
-#define E_OS_CALLEVEL 2
-#define E_OS_ID 3
-#define E_OS_LIMIT 4
-#define E_OS_NOFUNC 5
-#define E_OS_RESOURCE 6
-#define E_OS_STATE 7
-#define E_OS_VALUE 8
-
 
 
 typedef uint8_t TaskType;
