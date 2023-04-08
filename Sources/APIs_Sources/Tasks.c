@@ -94,10 +94,10 @@ StatusType ChainTask(TaskType TaskID)
 	return StatusMsg;
 }
 
-//StatusType Schedule(void)
-//{
-//	
-//}
+StatusType Schedule(void)
+{
+	
+}
 
 StatusType GetTaskID(TaskRefType TaskID)
 {
@@ -138,7 +138,7 @@ void OS_ActivateTask(TaskType TaskID)
 {
 		OsTasksPCB[TaskID]->State = READY;
 		OsTasksPCB[TaskID]->Activation_Record-- ;
-		/*OS_Insert(*OsTasksPCB[TaskID]);*/
+		OS_Insert(*OsTasksPCB[TaskID]);
 		return;
 }
 
@@ -148,7 +148,7 @@ void OS_TerminateTask(void)
 	//Context_Switch();
 	OsTasksPCB[RunningTaskID]->State = SUSPENDED;
 	RunningTaskID = INVALID_TASK;
-	/*OS_Delete(RunningTaskID);*/
+	OS_Delete(RunningTaskID);
 
 	// return calllevel error msg when called from ISR...
 	return;
