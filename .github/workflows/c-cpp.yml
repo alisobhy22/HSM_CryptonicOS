@@ -15,7 +15,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: compile
       run: |
-        gcc -o GetTaskID_T1 Tests/Tasks/GetTaskID_T1.c Sources/APIs_Sources/Tasks.c -I Headers/APIs_Headers/
+        gcc -o GetTaskID_T1 GetTaskID_T1.c Sources/APIs_Sources/Tasks.c -I Headers/APIs_Headers/Tasks.h
     - name: test
       run: |
         ./GetTaskID_T1
