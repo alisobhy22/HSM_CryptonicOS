@@ -1,6 +1,6 @@
-#include "..\..\Headers\APIs_Headers\Headers.h"
+#include "Headers.h"
 
-struct Task OsTasksPCB[MAX_TASKS];
+struct Task *OsTasksPCB[MAX_TASKS];
 TaskType RunningTaskID;
 uint8_t Queue_Size = 0;
 struct Task* Ready_Queue[MAX_TASKS];
@@ -12,13 +12,13 @@ StatusType ActivateTask(TaskType TaskID)
 		StatusMsg = E_OS_LIMIT;
 		return StatusMsg;
 	}
-	if (OsTasksPCB[TaskID].ID == INVALID_TASK)
+	if (OsTasksPCB[TaskID]->ID == INVALID_TASK)
 	{
 		// error msg
 		StatusMsg = E_OS_ID;
 		return StatusMsg;
 	}
-	if ((OsTasksPCB[TaskID].State == SUSPENDED) && (OsTasksPCB[TaskID].Activation_Record != 0)) // if task is suspended and activationrecord not zero
+	if ((OsTasksPCB[TaskID]->State == SUSPENDED) && (OsTasksPCB[TaskID]->Activation_Record != 0)) // if task is suspended and activationrecord not zero
 	{
 		//context switch
 		OS_ActivateTask(TaskID);
@@ -42,7 +42,7 @@ StatusType TerminateTask(void)
 	}
 	else
 	{
-		if (OsTasksPCB[RunningTaskID].Reasourses_Occupied != 0)
+		if (OsTasksPCB[RunningTaskID]->Reasourses_Occupied != 0)
 		{
 			StatusMsg = E_OS_RESOURCE;
 		}
@@ -68,7 +68,7 @@ StatusType ChainTask(TaskType TaskID)
 		StatusMsg = E_OS_ID;
 		return StatusMsg;
 	}
-	if (OsTasksPCB[RunningTaskID].Reasourses_Occupied != 0)
+	if (OsTasksPCB[RunningTaskID]->Reasourses_Occupied != 0)
 	{
 		StatusMsg = E_OS_RESOURCE;
 		return StatusMsg;
@@ -79,13 +79,13 @@ StatusType ChainTask(TaskType TaskID)
 		StatusMsg = E_OS_LIMIT;
 		return StatusMsg;
 	}
-	if (OsTasksPCB[TaskID].ID == INVALID_TASK)
-	{
-		// error msg
-		StatusMsg = E_OS_ID;
-		return StatusMsg;
-	}
-	if (OsTasksPCB[TaskID].State == SUSPENDED) // if task is suspended
+	//if (OsTasksPCB[TaskID]->ID == INVALID_TASK) //////////////////////// We dont need this
+	//{
+	//	// error msg
+	//	StatusMsg = E_OS_ID;
+	//	return StatusMsg;
+	//}
+	if (OsTasksPCB[TaskID]->State == SUSPENDED) // if task is suspended
 	{
 		OS_ActivateTask(TaskID);
 		StatusMsg = E_OK;
@@ -94,14 +94,16 @@ StatusType ChainTask(TaskType TaskID)
 	return StatusMsg;
 }
 
-StatusType Schedule(void)
-{
-	
-}
+//StatusType Schedule(void)
+//{
+//	
+//}
 
 StatusType GetTaskID(TaskRefType TaskID)
 {
 	StatusType StatusMsg = E_OK;
+
+	
 	if (RunningTaskID == INVALID_TASK) //  implement RunningTaskID later
 	{
 		*TaskID = INVALID_TASK;
@@ -109,7 +111,7 @@ StatusType GetTaskID(TaskRefType TaskID)
 	}
 	else
 	{
-		*TaskID = OsTasksPCB[RunningTaskID].ID;
+		*TaskID = OsTasksPCB[RunningTaskID]->ID;
 	}
 	return StatusMsg;
 	
@@ -125,7 +127,7 @@ StatusType GetTaskState(TaskType TaskID, TaskStateRefType State)
 	}
 	else
 	{
-		*State = OsTasksPCB[TaskID].State; // Note: implement PCB later
+		*State = OsTasksPCB[TaskID]->State; // Note: implement PCB later
 	}
 	return StatusMsg;
 }
@@ -134,9 +136,9 @@ StatusType GetTaskState(TaskType TaskID, TaskStateRefType State)
 
 void OS_ActivateTask(TaskType TaskID)
 {
-		OsTasksPCB[TaskID].State = READY;
-		OsTasksPCB[TaskID].Activation_Record-- ;
-		OS_Insert(OsTasksPCB[TaskID]);
+		OsTasksPCB[TaskID]->State = READY;
+		OsTasksPCB[TaskID]->Activation_Record-- ;
+		/*OS_Insert(*OsTasksPCB[TaskID]);*/
 		return;
 }
 
@@ -144,13 +146,14 @@ void OS_TerminateTask(void)
 {
 
 	//Context_Switch();
-	OsTasksPCB[RunningTaskID].State = SUSPENDED;
+	OsTasksPCB[RunningTaskID]->State = SUSPENDED;
 	RunningTaskID = INVALID_TASK;
-	OS_Delete(RunningTaskID);
+	/*OS_Delete(RunningTaskID);*/
 
 	// return calllevel error msg when called from ISR...
 	return;
 }
+
 
 void OS_Heapify(uint8_t i)
 {
