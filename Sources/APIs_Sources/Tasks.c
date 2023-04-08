@@ -152,30 +152,29 @@ void OS_TerminateTask(void)
 	return;
 }
 
-
 void OS_Heapify(uint8_t i)
 {
 	int l = 2 * i + 1;
 	int r = 2 * i + 2;
 	uint8_t largest = i;
-	if (l < Queue_Size && &Ready_Queue[l]->Priority > &Ready_Queue[largest]->Priority)
+	if (l < Queue_Size && Ready_Queue[l]->Priority > Ready_Queue[largest]->Priority) //Removed & because we want values not addreses
 		largest = l;
-	if (r < Queue_Size && &Ready_Queue[r]->Priority > &Ready_Queue[largest]->Priority)
+	if (r < Queue_Size && Ready_Queue[r]->Priority > Ready_Queue[largest]->Priority) //Removed & because we want values not addreses
 		largest = r;
 	if (largest != i)
 	{
 		struct Task* temp = Ready_Queue[i];
 		Ready_Queue[i] = Ready_Queue[largest];
 		Ready_Queue[largest] = temp;
-		OS_heapify(largest);
+		OS_Heapify(largest);
 		temp = NULL;
 	}
-	
+
 }
 
 void OS_Insert(struct Task newTask)
 {
-	if(Queue_Size ==0)
+	if (Queue_Size == 0)
 	{
 		Ready_Queue[0] = &newTask;
 		Queue_Size++;
@@ -186,7 +185,7 @@ void OS_Insert(struct Task newTask)
 		Queue_Size++;
 		for (int i = Queue_Size / 2 - 1; i >= 0; i--)
 		{
-			OS_heapify(i);
+			OS_Heapify(i);
 		}
 	}
 }
@@ -194,17 +193,20 @@ void OS_Insert(struct Task newTask)
 void OS_Delete(uint8_t id)
 {
 	uint8_t j;
-	for(j = 0; j < Queue_Size; j++)
-		if(id == Ready_Queue[j]->ID)
+	for (j = 0; j < Queue_Size; j++)
+		if (id == Ready_Queue[j]->ID) 
 			break;
-	
-	struct Task* temp = Ready_Queue[j];
-	Ready_Queue[j] = Ready_Queue[Queue_Size-1];
-	Ready_Queue[Queue_Size-1] = temp;
+	if (j == Queue_Size) // Added this case for if an element is not found
+		return;
+	struct Task* temp;
+	for (int i = j; i < Queue_Size-1; i++) // Used this method instead of replacing elements, I shifted them up. It is better to preserve order of elements.
+	{
+			Ready_Queue[i] = Ready_Queue[i + 1];
+	}
 	Queue_Size--;
 	temp = NULL;
-	for(uint8_t i = Queue_Size / 2 - 1; i >= 0; i--)
+	for (int i = Queue_Size / 2 - 1; i >= 0; i--)
 	{
-		OS_heapify(i);
+		OS_Heapify(i);
 	}
 }
