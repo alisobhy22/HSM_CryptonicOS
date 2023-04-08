@@ -4,7 +4,7 @@ on:
   push:
     branches: [ "*" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "*" ]
 
 jobs:
   build:
@@ -13,8 +13,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: build
-      run: make
+    - name: compile
+      run: |
+        gcc -o GetTaskID_T1 Tests/Tasks/GetTaskID_T1.c Sources/APIs_Sources/Tasks.c -I Headers/APIs_Headers/
     - name: test
       run: |
         ./GetTaskID_T1
@@ -22,3 +23,4 @@ jobs:
           echo "Tests failed"
           exit 1
         fi
+
