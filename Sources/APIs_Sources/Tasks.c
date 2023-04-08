@@ -74,17 +74,17 @@ StatusType ChainTask(TaskType TaskID)
 		return StatusMsg;
 	}
 	OS_TerminateTask();
+	if (OsTasksPCB[TaskID]->ID == INVALID_TASK)
+	{
+		// error msg
+		StatusMsg = E_OS_ID;
+		return StatusMsg;
+	}
 	if (TaskID > MAX_TASKS) //max number of active tasks
 	{
 		StatusMsg = E_OS_LIMIT;
 		return StatusMsg;
 	}
-	//if (OsTasksPCB[TaskID]->ID == INVALID_TASK) //////////////////////// We dont need this
-	//{
-	//	// error msg
-	//	StatusMsg = E_OS_ID;
-	//	return StatusMsg;
-	//}
 	if (OsTasksPCB[TaskID]->State == SUSPENDED) // if task is suspended
 	{
 		OS_ActivateTask(TaskID);
