@@ -52,7 +52,7 @@ extern struct Task* Ready_Queue[MAX_TASKS];
 StatusType ActivateTask(TaskType TaskID); // 1
 StatusType TerminateTask(void); //2 
 StatusType ChainTask(TaskType TaskID);
-//StatusType Schedule(void);
+StatusType Schedule(void);
 StatusType GetTaskID(TaskRefType TaskID); // 1
 StatusType GetTaskState(TaskType TaskID, TaskStateRefType State); //2
 void OS_ActivateTask(TaskType TaskID); // 1
