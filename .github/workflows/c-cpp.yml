@@ -2,20 +2,23 @@ name: C/C++ CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "*" ]
   pull_request:
     branches: [ "main" ]
 
 jobs:
   build:
 
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
-    - name: set up MSVC
-      uses: microsoft/setup-msvc@v1.6.2
     - name: build
-      run: cl /EHsc /Fe:GetTaskID_T1.exe Tests\Tasks\GetTaskID_T1.c Tests\Tasks\Tasks.c /I Tests\Tasks
+      run: make
     - name: test
-      run: GetTaskID_T1.exe
+      run: |
+        ./GetTaskID_T1
+        if [ "$?" -ne 0 ]; then
+          echo "Tests failed"
+          exit 1
+        fi
