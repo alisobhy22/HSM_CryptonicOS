@@ -1,4 +1,4 @@
-#include "Headers.h"
+#include "..\..\Headers\APIs_Headers\Headers.h"
 
 struct Task *OsTasksPCB[MAX_TASKS];
 TaskType RunningTaskID;
@@ -20,7 +20,6 @@ StatusType ActivateTask(TaskType TaskID)
 	}
 	if ((OsTasksPCB[TaskID]->State == SUSPENDED) && (OsTasksPCB[TaskID]->Activation_Record != 0)) // if task is suspended and activationrecord not zero
 	{
-		//context switch
 		OS_ActivateTask(TaskID);
 		StatusMsg = E_OK;
 		return StatusMsg;
@@ -48,7 +47,6 @@ StatusType TerminateTask(void)
 		}
 		else
 		{
-			//Context_Switch();
 			OS_TerminateTask();
 		}
 		// return calllevel error msg when called from ISR...
@@ -96,7 +94,46 @@ StatusType ChainTask(TaskType TaskID)
 
 StatusType Schedule(void)
 {
-	
+	StatusType StatusMsg = E_OK;
+	//check if running task exists
+	//check if running task is preimpteable
+	//check if readyqueue has priority higher than running task
+
+	if(RunningTaskID == INVALID_TASK)
+	{
+		//feth highest priority task from ready queue
+		RunningTaskID = Ready_Queue[0]->ID;
+		Ready_Queue[0]->State = RUNNING;
+
+		// context switch?????
+		StatusMsg = E_OK;
+	}
+	else
+	{
+		if(OsTasksPCB[RunningTaskID]->F_PREEM == TASK_FULL)
+		{
+			if(Ready_Queue[0]->Priority > OsTasksPCB[RunningTaskID]->Priority)
+			{
+				OsTasksPCB[RunningTaskID]->State = READY;
+				RunningTaskID = Ready_Queue[0]->ID;
+				Ready_Queue[0]->State = RUNNING;
+				// context switch
+			}
+			else // running task still highest prio
+			{
+				// do nothing
+				StatusMsg = E_OK;
+			}
+		}
+		else //non preinmteable running task
+		{
+			// do nothing
+			StatusMsg = E_OK;
+		}
+
+	}
+
+	return StatusMsg;
 }
 
 StatusType GetTaskID(TaskRefType TaskID)

@@ -46,7 +46,7 @@ struct Task
 };
 
 extern struct Task *OsTasksPCB[MAX_TASKS]; // array of tasks
-extern TaskType RunningTaskID;
+extern TaskType RunningTaskID = INVALID_TASK;
 extern struct Task* Ready_Queue[MAX_TASKS];
 
 StatusType ActivateTask(TaskType TaskID); // 1
