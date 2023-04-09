@@ -1,6 +1,7 @@
 #include "Libraries.h"
 
-#include "TaskConfig.h"
+
+#include "../../Configurations/TaskConfig.h"
 
 #ifndef Headers_APIs_Headers_Tasks_H
 #define Headers_APIs_Headers_Tasks_H
@@ -14,6 +15,19 @@
 
 #define TASK_NON 0
 #define TASK_FULL 1
+
+
+
+typedef uint8_t StatusType;
+#define E_OK 0
+#define E_OS_ACCESS 1
+#define E_OS_CALLEVEL 2
+#define E_OS_ID 3
+#define E_OS_LIMIT 4
+#define E_OS_NOFUNC 5
+#define E_OS_RESOURCE 6
+#define E_OS_STATE 7
+#define E_OS_VALUE 8
 
 
 
@@ -34,9 +48,11 @@ struct Task
 	uint8_t Reasourses_Occupied; //reimplement later using array
 };
 
-extern struct Task *OsTasksPCB[MAX_TASKS]; // array of tasks
-extern TaskType RunningTaskID;
-extern struct Task* Ready_Queue[MAX_TASKS];
+
+struct Task *OsTasksPCB[MAX_TASKS]; // array of tasks
+TaskType RunningTaskID = INVALID_TASK;
+struct Task* Ready_Queue[MAX_TASKS];
+
 
 StatusType ActivateTask(TaskType TaskID); // 1
 StatusType TerminateTask(void); //2 
