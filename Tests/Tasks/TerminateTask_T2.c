@@ -1,6 +1,7 @@
 #include <stdio.h>
-#include "Tasks.h"
-
+#include <stdlib.h>
+#include "../../Headers/APIs_Headers/Tasks.h"
+#include "../../Sources/APIs_Sources/Tasks.c"
 int main() {
 
     struct Task T1 =
@@ -21,7 +22,7 @@ int main() {
     if(st != E_OS_RESOURCE)
     {
 		printf("Error Occured\n\n");
-		exit(EXIT_FAILURE);
+		exit(1);
     }
 
 

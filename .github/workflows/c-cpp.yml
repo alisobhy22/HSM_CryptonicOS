@@ -1,0 +1,155 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install dependencies
+      run: sudo apt-get install -y gcc
+    - name: Build ActivateTask_T1
+      run: |
+        cd Tests/Tasks
+        gcc ActivateTask_T1.c -o ActivateTask_T1
+    - name: Run ActivateTask_T1
+      run: |
+        cd Tests/Tasks
+        ./ActivateTask_T1
+        
+        
+    - name: Build ActivateTask_T2
+      run: |
+        cd Tests/Tasks
+        gcc ActivateTask_T2.c -o ActivateTask_T2
+    - name: Run ActivateTask_T2
+      run: |
+        cd Tests/Tasks
+        ./ActivateTask_T2
+        
+        
+    - name: Build ActivateTask_T3
+      run: |
+        cd Tests/Tasks
+        gcc ActivateTask_T3.c -o ActivateTask_T3
+    - name: Run ActivateTask_T3
+      run: |
+        cd Tests/Tasks
+        ./ActivateTask_T3
+        
+        
+    - name: Build ChainTask_T1
+      run: |
+        cd Tests/Tasks
+        gcc ChainTask_T1.c -o ChainTask_T1
+    - name: Run ChainTask_T1
+      run: |
+        cd Tests/Tasks
+        ./ChainTask_T1
+        
+        
+    - name: Build ChainTask_T2
+      run: |
+        cd Tests/Tasks
+        gcc ChainTask_T2.c -o ChainTask_T2
+    - name: Run ChainTask_T2
+      run: |
+        cd Tests/Tasks
+        ./ChainTask_T2
+        
+        
+    - name: Build ChainTask_T3
+      run: |
+        cd Tests/Tasks
+        gcc ChainTask_T3.c -o ChainTask_T3
+    - name: Run ChainTask_T3
+      run: |
+        cd Tests/Tasks
+        ./ChainTask_T3
+        
+        
+    - name: Build ChainTask_T4
+      run: |
+        cd Tests/Tasks
+        gcc ChainTask_T4.c -o ChainTask_T4
+    - name: Run ChainTask_T4
+      run: |
+        cd Tests/Tasks
+        ./ChainTask_T4
+        
+        
+    - name: Build GetTaskID_T1
+      run: |
+        cd Tests/Tasks
+        gcc GetTaskID_T1.c -o GetTaskID_T1
+    - name: Run GetTaskID_T1
+      run: |
+        cd Tests/Tasks
+        ./GetTaskID_T1
+        
+        
+    - name: Build GetTaskID_T2
+      run: |
+        cd Tests/Tasks
+        gcc GetTaskID_T2.c -o GetTaskID_T2
+    - name: Run GetTaskID_T2
+      run: |
+        cd Tests/Tasks
+        ./GetTaskID_T2
+        
+        
+    - name: Build GetTaskState_T1
+      run: |
+        cd Tests/Tasks
+        gcc GetTaskState_T1.c -o GetTaskState_T1
+    - name: Run GetTaskState_T1
+      run: |
+        cd Tests/Tasks
+        ./GetTaskState_T1
+        
+        
+    - name: Build GetTaskState_T2
+      run: |
+        cd Tests/Tasks
+        gcc GetTaskState_T2.c -o GetTaskState_T2
+    - name: Run GetTaskState_T2
+      run: |
+        cd Tests/Tasks
+        ./GetTaskState_T2
+        
+        
+    - name: Build TerminateTask_T1
+      run: |
+        cd Tests/Tasks
+        gcc TerminateTask_T1.c -o TerminateTask_T1
+    - name: Run TerminateTask_T1
+      run: |
+        cd Tests/Tasks
+        ./TerminateTask_T1
+        
+        
+    - name: Build TerminateTask_T2
+      run: |
+        cd Tests/Tasks
+        gcc TerminateTask_T2.c -o TerminateTask_T2
+    - name: Run TerminateTask_T2
+      run: |
+        cd Tests/Tasks
+        ./TerminateTask_T2
+        
+        
+    - name: Build TerminateTask_T3
+      run: |
+        cd Tests/Tasks
+        gcc TerminateTask_T3.c -o TerminateTask_T3
+    - name: Run TerminateTask_T3
+      run: |
+        cd Tests/Tasks
+        ./TerminateTask_T3
+
