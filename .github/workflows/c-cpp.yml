@@ -1,0 +1,22 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install build dependencies
+      run: sudo apt-get install -y build-essential
+    - name: Compile ChainTask_T1
+      run: gcc -o ChainTask_T1 ChainTask_T1.c
+    - name: Run ChainTask_T1
+      run: ./ChainTask_T1
+
