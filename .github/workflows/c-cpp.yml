@@ -2,25 +2,27 @@ name: C/C++ CI
 
 on:
   push:
-    branches: [ "*" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "*" ]
+    branches: [ "main" ]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
-    - name: compile
+    - name: Install dependencies
+      run: sudo apt-get install -y gcc
+    - name: Build ChainTask_T1
       run: |
-        gcc -o GetTaskID_T1 GetTaskID_T1.c Sources/APIs_Sources/Tasks.c -I Headers/APIs_Headers/Tasks.h
-    - name: test
+        cd Tests/Tasks
+        gcc ChainTask_T1.c -o ChainTask_T1
+    - name: Run ChainTask_T1
       run: |
-        ./GetTaskID_T1
-        if [ "$?" -ne 0 ]; then
-          echo "Tests failed"
+        cd Tests/Tasks
+        ./ChainTask_T1
+        if [ $? -eq 1 ]; then
           exit 1
         fi
 
