@@ -1,6 +1,7 @@
 #include <stdio.h>
-#include "Tasks.h"
-
+#include <stdlib.h>
+#include "../../Headers/APIs_Headers/Tasks.h"
+#include "../../Sources/APIs_Sources/Tasks.c"
 int main() {
     struct Task T1 =
     { 0,RUNNING,5,5,TASK_NON,1,1 };
@@ -26,7 +27,7 @@ int main() {
     if(st != E_OK)
     {
 		printf("Error Occured\n\n");
-		exit(EXIT_FAILURE);
+		exit(1);
     }
 
 
