@@ -13,10 +13,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Install build dependencies
-      run: sudo apt-get install -y build-essential
-    - name: Compile ChainTask_T1
-      run: gcc -o ChainTask_T1 ChainTask_T1.c
+    - name: Install dependencies
+      run: sudo apt-get install -y gcc
+    - name: Build ChainTask_T1
+      run: |
+        cd Tests/Tasks
+        gcc ChainTask_T1.c -o ChainTask_T1
     - name: Run ChainTask_T1
-      run: ./ChainTask_T1
+      run: ./Tests/Tasks/ChainTask_T1
 
