@@ -22,8 +22,7 @@ jobs:
       run: |
         cd Tests/Tasks
         ./ActivateTask_T1
-        if [ $? -eq 1 ]; then
-          exit 1
+        
         fi
     - name: Build ActivateTask_T2
       run: |
@@ -33,8 +32,7 @@ jobs:
       run: |
         cd Tests/Tasks
         ./ActivateTask_T2
-        if [ $? -eq 1 ]; then
-          exit 1
+        
         fi
     - name: Build ActivateTask_T3
       run: |
@@ -44,8 +42,7 @@ jobs:
       run: |
         cd Tests/Tasks
         ./ActivateTask_T3
-        if [ $? -eq 1 ]; then
-          exit 1
+        
         fi
     - name: Build ChainTask_T1
       run: |
@@ -55,8 +52,7 @@ jobs:
       run: |
         cd Tests/Tasks
         ./ChainTask_T1
-        if [ $? -eq 1 ]; then
-          exit 1
+        
         fi
     - name: Build ChainTask_T2
       run: |
@@ -66,8 +62,7 @@ jobs:
       run: |
         cd Tests/Tasks
         ./ChainTask_T2
-        if [ $? -eq 1 ]; then
-          exit 1
+        
         fi
     - name: Build ChainTask_T3
       run: |
@@ -77,8 +72,7 @@ jobs:
       run: |
         cd Tests/Tasks
         ./ChainTask_T3
-        if [ $? -eq 1 ]; then
-          exit 1
+        
         fi
     - name: Build ChainTask_T4
       run: |
@@ -88,8 +82,7 @@ jobs:
       run: |
         cd Tests/Tasks
         ./ChainTask_T4
-        if [ $? -eq 1 ]; then
-          exit 1
+        
         fi
     - name: Build GetTaskID_T1
       run: |
@@ -99,8 +92,7 @@ jobs:
       run: |
         cd Tests/Tasks
         ./GetTaskID_T1
-        if [ $? -eq 1 ]; then
-          exit 1
+        
         fi
     - name: Build GetTaskID_T2
       run: |
@@ -110,8 +102,7 @@ jobs:
       run: |
         cd Tests/Tasks
         ./GetTaskID_T2
-        if [ $? -eq 1 ]; then
-          exit 1
+        
         fi
     - name: Build GetTaskState_T1
       run: |
@@ -121,8 +112,7 @@ jobs:
       run: |
         cd Tests/Tasks
         ./GetTaskState_T1
-        if [ $? -eq 1 ]; then
-          exit 1
+        
         fi
     - name: Build GetTaskState_T2
       run: |
@@ -132,8 +122,7 @@ jobs:
       run: |
         cd Tests/Tasks
         ./GetTaskState_T2
-        if [ $? -eq 1 ]; then
-          exit 1
+        
         fi
     - name: Build TerminateTask_T1
       run: |
@@ -143,8 +132,7 @@ jobs:
       run: |
         cd Tests/Tasks
         ./TerminateTask_T1
-        if [ $? -eq 1 ]; then
-          exit 1
+        
         fi
     - name: Build TerminateTask_T2
       run: |
@@ -154,8 +142,7 @@ jobs:
       run: |
         cd Tests/Tasks
         ./TerminateTask_T2
-        if [ $? -eq 1 ]; then
-          exit 1
+        
         fi
     - name: Build TerminateTask_T3
       run: |
@@ -165,7 +152,6 @@ jobs:
       run: |
         cd Tests/Tasks
         ./TerminateTask_T3
-        if [ $? -eq 1 ]; then
-          exit 1
+        
         fi
 

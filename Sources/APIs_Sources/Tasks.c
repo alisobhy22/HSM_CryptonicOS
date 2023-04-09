@@ -11,7 +11,7 @@ StatusType ActivateTask(TaskType TaskID)
 		StatusMsg = E_OS_LIMIT;
 		return StatusMsg;
 	}
-	if (OsTasksPCB[TaskID]->ID == INVALID_TASK)
+	if (OsTasksPCB[TaskID]->State== INVALID_TASK)
 	{
 		// error msg
 		StatusMsg = E_OS_ID;
