@@ -1,7 +1,6 @@
 #include "Libraries.h"
 
-#include "TaskConfig.h"
-
+#include "../../Configurations/TaskConfig.h"
 #ifndef Headers_APIs_Headers_Tasks_H
 #define Headers_APIs_Headers_Tasks_H
 
@@ -45,9 +44,9 @@ struct Task
 	uint8_t Reasourses_Occupied; //reimplement later using array
 };
 
-extern struct Task *OsTasksPCB[MAX_TASKS]; // array of tasks
-extern TaskType RunningTaskID = INVALID_TASK;
-extern struct Task* Ready_Queue[MAX_TASKS];
+struct Task *OsTasksPCB[MAX_TASKS]; // array of tasks
+TaskType RunningTaskID = INVALID_TASK;
+struct Task* Ready_Queue[MAX_TASKS];
 
 StatusType ActivateTask(TaskType TaskID); // 1
 StatusType TerminateTask(void); //2 
