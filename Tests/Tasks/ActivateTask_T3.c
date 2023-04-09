@@ -3,11 +3,10 @@
 #include "../../Headers/APIs_Headers/Tasks.h"
 #include "../../Sources/APIs_Sources/Tasks.c"
 
-int main()
-{
+int main(){
     struct Task T1 =
     { INVALID_TASK,SUSPENDED,5,5,TASK_NON,1,0 };
-    OsTasksPCB[0] = &T1;
+    OsTasksPCB[255] = &T1;
     StatusType st = ActivateTask(T1.ID);
     printf("error_msg %d \n", st);
     printf("state %d \n", T1.State);
