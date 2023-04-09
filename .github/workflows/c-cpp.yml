@@ -23,7 +23,7 @@ jobs:
         cd Tests/Tasks
         ./ActivateTask_T1
         
-        fi
+        
     - name: Build ActivateTask_T2
       run: |
         cd Tests/Tasks
@@ -33,7 +33,7 @@ jobs:
         cd Tests/Tasks
         ./ActivateTask_T2
         
-        fi
+        
     - name: Build ActivateTask_T3
       run: |
         cd Tests/Tasks
@@ -43,7 +43,7 @@ jobs:
         cd Tests/Tasks
         ./ActivateTask_T3
         
-        fi
+        
     - name: Build ChainTask_T1
       run: |
         cd Tests/Tasks
@@ -53,7 +53,7 @@ jobs:
         cd Tests/Tasks
         ./ChainTask_T1
         
-        fi
+        
     - name: Build ChainTask_T2
       run: |
         cd Tests/Tasks
@@ -63,7 +63,7 @@ jobs:
         cd Tests/Tasks
         ./ChainTask_T2
         
-        fi
+        
     - name: Build ChainTask_T3
       run: |
         cd Tests/Tasks
@@ -73,7 +73,7 @@ jobs:
         cd Tests/Tasks
         ./ChainTask_T3
         
-        fi
+        
     - name: Build ChainTask_T4
       run: |
         cd Tests/Tasks
@@ -83,7 +83,7 @@ jobs:
         cd Tests/Tasks
         ./ChainTask_T4
         
-        fi
+        
     - name: Build GetTaskID_T1
       run: |
         cd Tests/Tasks
@@ -93,7 +93,7 @@ jobs:
         cd Tests/Tasks
         ./GetTaskID_T1
         
-        fi
+        
     - name: Build GetTaskID_T2
       run: |
         cd Tests/Tasks
@@ -103,7 +103,7 @@ jobs:
         cd Tests/Tasks
         ./GetTaskID_T2
         
-        fi
+        
     - name: Build GetTaskState_T1
       run: |
         cd Tests/Tasks
@@ -113,7 +113,7 @@ jobs:
         cd Tests/Tasks
         ./GetTaskState_T1
         
-        fi
+        
     - name: Build GetTaskState_T2
       run: |
         cd Tests/Tasks
@@ -123,7 +123,7 @@ jobs:
         cd Tests/Tasks
         ./GetTaskState_T2
         
-        fi
+        
     - name: Build TerminateTask_T1
       run: |
         cd Tests/Tasks
@@ -133,7 +133,7 @@ jobs:
         cd Tests/Tasks
         ./TerminateTask_T1
         
-        fi
+        
     - name: Build TerminateTask_T2
       run: |
         cd Tests/Tasks
@@ -143,7 +143,7 @@ jobs:
         cd Tests/Tasks
         ./TerminateTask_T2
         
-        fi
+        
     - name: Build TerminateTask_T3
       run: |
         cd Tests/Tasks
@@ -152,6 +152,4 @@ jobs:
       run: |
         cd Tests/Tasks
         ./TerminateTask_T3
-        
-        fi
 
