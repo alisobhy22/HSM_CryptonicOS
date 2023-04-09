@@ -3,13 +3,11 @@ name: C/C++ CI
 on:
   push:
     branches: [ "main" ]
-    if: ${{ success() }}
   pull_request:
     branches: [ "main" ]
-    if: ${{ success() }}
+
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -21,5 +19,11 @@ jobs:
         cd Tests/Tasks
         gcc ChainTask_T1.c -o ChainTask_T1
     - name: Run ChainTask_T1
-      run: ./Tests/Tasks/ChainTask_T1
+      run: |
+        cd Tests/Tasks
+        ./ChainTask_T1
+        if [ $? -eq 1 ]; then
+          exit 1
+        fi
+
 
