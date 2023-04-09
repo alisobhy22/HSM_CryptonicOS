@@ -104,68 +104,68 @@ jobs:
         fi
     - name: Build GetTaskID_T2
       run: |
-      cd Tests/Tasks
-      gcc GetTaskID_T2.c -o GetTaskID_T2
+        cd Tests/Tasks
+        gcc GetTaskID_T2.c -o GetTaskID_T2
     - name: Run GetTaskID_T2
       run: |
-      cd Tests/Tasks
-      ./GetTaskID_T2
-      if [ $? -eq 1 ]; then
-        exit 1
-      fi
+        cd Tests/Tasks
+        ./GetTaskID_T2
+        if [ $? -eq 1 ]; then
+          exit 1
+        fi
     - name: Build GetTaskState_T1
       run: |
-      cd Tests/Tasks
-      gcc GetTaskState_T1.c -o GetTaskState_T1
+        cd Tests/Tasks
+        gcc GetTaskState_T1.c -o GetTaskState_T1
     - name: Run GetTaskState_T1
       run: |
-      cd Tests/Tasks
-      ./GetTaskState_T1
-      if [ $? -eq 1 ]; then
-        exit 1
-      fi
+        cd Tests/Tasks
+        ./GetTaskState_T1
+        if [ $? -eq 1 ]; then
+          exit 1
+        fi
     - name: Build GetTaskState_T2
       run: |
-      cd Tests/Tasks
-      gcc GetTaskState_T2.c -o GetTaskState_T2
+        cd Tests/Tasks
+        gcc GetTaskState_T2.c -o GetTaskState_T2
     - name: Run GetTaskState_T2
       run: |
-      cd Tests/Tasks
-      ./GetTaskState_T2
-      if [ $? -eq 1 ]; then
-        exit 1
-      fi
+        cd Tests/Tasks
+        ./GetTaskState_T2
+        if [ $? -eq 1 ]; then
+          exit 1
+        fi
     - name: Build TerminateTask_T1
       run: |
-      cd Tests/Tasks
-      gcc TerminateTask_T1.c -o TerminateTask_T1
+        cd Tests/Tasks
+        gcc TerminateTask_T1.c -o TerminateTask_T1
     - name: Run TerminateTask_T1
       run: |
-      cd Tests/Tasks
-      ./TerminateTask_T1
-      if [ $? -eq 1 ]; then
-        exit 1
-      fi
+        cd Tests/Tasks
+        ./TerminateTask_T1
+        if [ $? -eq 1 ]; then
+          exit 1
+        fi
     - name: Build TerminateTask_T2
       run: |
-      cd Tests/Tasks
-      gcc TerminateTask_T2.c -o TerminateTask_T2
+        cd Tests/Tasks
+        gcc TerminateTask_T2.c -o TerminateTask_T2
     - name: Run TerminateTask_T2
       run: |
-      cd Tests/Tasks
-      ./TerminateTask_T2
-      if [ $? -eq 1 ]; then
-        exit 1
-      fi
+        cd Tests/Tasks
+        ./TerminateTask_T2
+        if [ $? -eq 1 ]; then
+          exit 1
+        fi
     - name: Build TerminateTask_T3
       run: |
-      cd Tests/Tasks
-      gcc TerminateTask_T3.c -o TerminateTask_T3
+        cd Tests/Tasks
+        gcc TerminateTask_T3.c -o TerminateTask_T3
     - name: Run TerminateTask_T3
       run: |
-      cd Tests/Tasks
-      ./TerminateTask_T3
-      if [ $? -eq 1 ]; then
-        exit 1
-      fi
+        cd Tests/Tasks
+        ./TerminateTask_T3
+        if [ $? -eq 1 ]; then
+          exit 1
+        fi
 
