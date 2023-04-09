@@ -6,7 +6,7 @@
 int main(){
     struct Task T1 =
     { 0,INVALID_TASK,5,5,TASK_NON,1,0 };
-    OsTasksPCB[INVALID_TASK] = &T1;
+    OsTasksPCB[0] = &T1;
     StatusType st = ActivateTask(T1.ID);
     printf("error_msg %d \n", st);
     printf("state %d \n", T1.State);
