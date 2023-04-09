@@ -1,6 +1,7 @@
 #include "..\..\Headers\APIs_Headers\Headers.h"
 
 struct Task *OsTasksPCB[MAX_TASKS];
+
 TaskType RunningTaskID;
 uint8_t Queue_Size = 0;
 struct Task* Ready_Queue[MAX_TASKS];
