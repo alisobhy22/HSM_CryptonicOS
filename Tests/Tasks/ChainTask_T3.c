@@ -7,7 +7,7 @@ int main() {
     struct Task T1 =
     { 0,RUNNING,5,5,TASK_NON,1,1 };
     struct Task T2 =
-    { 255,SUSPENDED,4,4,TASK_NON,1,1 };
+    { 1,SUSPENDED,4,4,TASK_NON,1,1 };
 
     RunningTaskID = 0;
 
@@ -17,7 +17,7 @@ int main() {
     
 
 
-    StatusType st = ChainTask(T2.ID);
+    StatusType st = ChainTask(255);
 
     printf("error_msg %d \n", st);
     printf("RunningTaskID %d \n", RunningTaskID);
