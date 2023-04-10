@@ -9,11 +9,11 @@ int main() {
 
     OsTasksPCB[0] = &T1;
    
-    RunningTaskID = 0;
+    RunningTaskID = T1.ID;
 
      TaskStateType ref = NULL;
 
-    StatusType st = GetTaskState(256,&ref);
+    StatusType st = GetTaskState(255,&ref);
     printf("error_msg %d \n", st);
     printf("ref Status %d \n", ref);
 
