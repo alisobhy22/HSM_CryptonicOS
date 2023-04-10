@@ -3,7 +3,7 @@
 #include "../../Headers/APIs_Headers/Tasks.h"
 #include "../../Sources/APIs_Sources/Tasks.c"
 int main() {
-    return 0; //remove this line
+    
     struct Task T1 =
     { 0,RUNNING,5,5,TASK_NON,0,0 };
     struct Task T2 =
