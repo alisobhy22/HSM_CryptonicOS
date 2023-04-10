@@ -7,7 +7,7 @@ int main() {
     struct Task T1 =
     { 0,RUNNING,5,5,TASK_NON,1,1 };
     struct Task T2 =
-    { 1,SUSPENDED,4,4,TASK_NON,1,1 };
+    { 255,SUSPENDED,4,4,TASK_NON,1,1 };
 
     RunningTaskID = 0;
 
@@ -17,7 +17,7 @@ int main() {
     
 
 
-    StatusType st = ChainTask(256);
+    StatusType st = ChainTask(T2.ID);
 
     printf("error_msg %d \n", st);
     printf("RunningTaskID %d \n", RunningTaskID);
@@ -25,7 +25,7 @@ int main() {
     printf("pointer state %d \n", OsTasksPCB[1]->State);
     printf("pointer record %d \n", OsTasksPCB[1]->Activation_Record);
 
-    if(st != E_OS_LIMIT)
+    if(st != E_OS_ID)
     {
 		printf("Error Occured\n\n");
 		exit(1);
