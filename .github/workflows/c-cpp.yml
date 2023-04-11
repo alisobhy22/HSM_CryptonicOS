@@ -83,7 +83,16 @@ jobs:
         cd Tests/Tasks
         ./ChainTask_T4
         
-        
+    -name: Build ChainTask_T5
+      run: |
+        cd Tests/Tasks
+        gcc ChainTask_T5.c -o ChainTask_T5
+    - name: Run ChainTask_T5
+      run: |
+        cd Tests/Tasks
+        ./ChainTask_T5
+
+
     - name: Build GetTaskID_T1
       run: |
         cd Tests/Tasks
