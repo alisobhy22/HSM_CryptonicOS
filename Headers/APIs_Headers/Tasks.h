@@ -39,12 +39,15 @@ typedef uint8_t* TaskStateRefType;
 
 struct Task
 {
-	TaskType ID;
-	TaskStateType State;
-	const uint8_t CONFIG_PRIORITY;
-	uint8_t Priority;
+	int address; //address of the task in memory
+	int current_pc; //might remove later
+	TaskType ID; //id of task
+	TaskStateType State; //current state of task
+	const uint8_t CONFIG_PRIORITY; //configured priority of task
+	uint8_t Priority; //current priority of task
 	const uint8_t F_PREEM; // flag of preemetivety 0 or 1
-	uint8_t Activation_Record;
+	uint8_t Preeimpted; // flag wether it was preimpted or not
+	uint8_t Activation_Record; // activation record of task
 	uint8_t Reasourses_Occupied; //reimplement later using array
 };
 
@@ -54,14 +57,14 @@ TaskType RunningTaskID = INVALID_TASK;
 struct Task* Ready_Queue[MAX_TASKS];
 
 
-StatusType ActivateTask(TaskType TaskID); // 1
-StatusType TerminateTask(void); //2 
+StatusType ActivateTask(TaskType TaskID);
+StatusType TerminateTask(void); 
 StatusType ChainTask(TaskType TaskID);
-//StatusType Schedule(void);
-StatusType GetTaskID(TaskRefType TaskID); // 1
-StatusType GetTaskState(TaskType TaskID, TaskStateRefType State); //2
-void OS_ActivateTask(TaskType TaskID); // 1
-void OS_TerminateTask(void); //2 
+StatusType Schedule(void);
+StatusType GetTaskID(TaskRefType TaskID);
+StatusType GetTaskState(TaskType TaskID, TaskStateRefType State);
+void OS_ActivateTask(TaskType TaskID);
+void OS_TerminateTask(void);
 void OS_Heapify(uint8_t i);
 void OS_Insert(struct Task newTask);
 void OS_Delete(uint8_t id);
