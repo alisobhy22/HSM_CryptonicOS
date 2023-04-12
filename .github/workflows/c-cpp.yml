@@ -14,6 +14,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Install dependencies
       run: sudo apt-get install -y gcc
+
     - name: Build ActivateTask_T1
       run: |
         cd Tests/Tasks
@@ -161,4 +162,5 @@ jobs:
       run: |
         cd Tests/Tasks
         ./TerminateTask_T3
+
 
