@@ -5,7 +5,7 @@
 int main() {
 
     struct Task T1 =
-    { 0,0,0,RUNNING,5,5,TASK_NON,0,2 };
+    { 0,0,0,RUNNING,5,5,TASK_NON,0,0,2 };
     
 
     RunningTaskID = 0;
