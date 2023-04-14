@@ -3,6 +3,7 @@
 #include "../../Headers/APIs_Headers/Tasks.h"
 #include "../../Sources/APIs_Sources/Tasks.c"
 int main() {
+	// need to be concered again, uint8_t case
     
     struct Task T1 =
     { 0,0,0,RUNNING,5,5,TASK_NON,0,0,0 };
