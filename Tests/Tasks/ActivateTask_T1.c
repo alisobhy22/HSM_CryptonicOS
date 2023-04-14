@@ -5,7 +5,7 @@
 
 int main(){
     struct Task T1 =
-    {0,0,0,SUSPENDED,5,5,TASK_NON,0,0 };
+    {0,0,0,SUSPENDED,5,5,TASK_NON,0,0,0 };
     OsTasksPCB[0] = &T1;
     StatusType st = ActivateTask(T1.ID);
     printf("error_msg %d \n", st);
