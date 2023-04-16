@@ -22,9 +22,8 @@ void print_PCB_Table();
 
 int main()
 {
-  
+    //test code
     fill_pcbtable();
-
 
     print_PCB_Table();
     print_ready_queue();
