@@ -50,15 +50,16 @@ void OS_Delete(uint8_t id)
 {
 	uint8_t j;
 	for (j = 0; j < Queue_Size; j++)
-		if (id == Ready_Queue[j]->ID)
+		if (id == Ready_Queue[j]->ID) 
 			break;
 	if (j == Queue_Size) // Added this case for if an element is not found
 		return;
 	struct Task* temp;
-	for (int i = j; i < Queue_Size - 1; i++) // Used this method instead of replacing elements, I shifted them up. It is better to preserve order of elements.
+	for (int i = j; i < Queue_Size-1; i++) // Used this method instead of replacing elements, I shifted them up. It is better to preserve order of elements.
 	{
-		Ready_Queue[i] = Ready_Queue[i + 1];
+			Ready_Queue[i] = Ready_Queue[i + 1];
 	}
+
 	Queue_Size--;
 	temp = NULL;
 	for (int i = Queue_Size / 2 - 1; i >= 0; i--)
