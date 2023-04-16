@@ -1,23 +1,28 @@
+#include "Tasks.h"
 
-struct Task *OsTasksPCB[MAX_TASKS];
-//testing
-TaskType RunningTaskID;
+struct Task* OsTasksPCB[MAX_TASKS+2];
+TaskType RunningTaskID = INVALID_TASK;
 uint8_t Queue_Size = 0;
-struct Task* Ready_Queue[MAX_TASKS];
+struct Task* Ready_Queue[MAX_TASKS+2];
+
+void OS_Heapify(uint8_t i);
+
+
 StatusType ActivateTask(TaskType TaskID)
 {
 	StatusType StatusMsg = E_OK;
 	if (TaskID > MAX_TASKS) //max number of active tasks
 	{
+		if (TaskID == INVALID_TASK)
+		{
+			// error msg
+			StatusMsg = E_OS_ID;
+			return StatusMsg;
+		}
 		StatusMsg = E_OS_LIMIT;
 		return StatusMsg;
 	}
-	if (OsTasksPCB[TaskID]->State== INVALID_TASK)
-	{
-		// error msg
-		StatusMsg = E_OS_ID;
-		return StatusMsg;
-	}
+
 	if ((OsTasksPCB[TaskID]->State == SUSPENDED) && (OsTasksPCB[TaskID]->Activation_Record != 0)) // if task is suspended and activationrecord not zero
 	{
 		OS_ActivateTask(TaskID);
@@ -72,14 +77,15 @@ StatusType ChainTask(TaskType TaskID)
 		return StatusMsg;
 	}
 	OS_TerminateTask();
-	if (OsTasksPCB[TaskID]->ID == INVALID_TASK)
-	{
-		// error msg
-		StatusMsg = E_OS_ID;
-		return StatusMsg;
-	}
+
 	if (TaskID > MAX_TASKS) //max number of active tasks
 	{
+		if (TaskID == INVALID_TASK)
+		{
+			// error msg
+			StatusMsg = E_OS_ID;
+			return StatusMsg;
+		}
 		StatusMsg = E_OS_LIMIT;
 		return StatusMsg;
 	}
@@ -169,29 +175,6 @@ StatusType GetTaskState(TaskType TaskID, TaskStateRefType State)
 	return StatusMsg;
 }
 
-
-
-void OS_ActivateTask(TaskType TaskID)
-{
-		OsTasksPCB[TaskID]->State = READY;
-		OsTasksPCB[TaskID]->Activation_Record-- ;
-		OS_Insert(*OsTasksPCB[TaskID]);
-		return;
-}
-
-void OS_TerminateTask(void)
-{
-
-	//Context_Switch();
-	OsTasksPCB[RunningTaskID]->State = SUSPENDED;
-	RunningTaskID = INVALID_TASK;
-	OS_Delete(RunningTaskID);
-
-	// return calllevel error msg when called from ISR...
-	return;
-}
-
-
 void OS_Heapify(uint8_t i)
 {
 	int l = 2 * i + 1;
@@ -201,52 +184,20 @@ void OS_Heapify(uint8_t i)
 		largest = l;
 	if (r < Queue_Size && Ready_Queue[r]->Priority > Ready_Queue[largest]->Priority) //Removed & because we want values not addreses
 		largest = r;
+
 	if (largest != i)
 	{
-		struct Task* temp = Ready_Queue[i];
+		struct Task* temp = Ready_Queue[largest];
+		for (int st = largest; st > i; st--)
+		{
+			Ready_Queue[st] = Ready_Queue[st - 1];
+		}
+		Ready_Queue[i] = temp;
+	/*	struct Task* temp = Ready_Queue[i];
 		Ready_Queue[i] = Ready_Queue[largest];
 		Ready_Queue[largest] = temp;
 		OS_Heapify(largest);
 		temp = NULL;
-	}
+*/  }
 
-}
-
-void OS_Insert(struct Task newTask)
-{
-	if (Queue_Size == 0)
-	{
-		Ready_Queue[0] = &newTask;
-		Queue_Size++;
-	}
-	else
-	{
-		Ready_Queue[Queue_Size] = &newTask;
-		Queue_Size++;
-		for (int i = Queue_Size / 2 - 1; i >= 0; i--)
-		{
-			OS_Heapify(i);
-		}
-	}
-}
-
-void OS_Delete(uint8_t id)
-{
-	uint8_t j;
-	for (j = 0; j < Queue_Size; j++)
-		if (id == Ready_Queue[j]->ID) 
-			break;
-	if (j == Queue_Size) // Added this case for if an element is not found
-		return;
-	struct Task* temp;
-	for (int i = j; i < Queue_Size-1; i++) // Used this method instead of replacing elements, I shifted them up. It is better to preserve order of elements.
-	{
-			Ready_Queue[i] = Ready_Queue[i + 1];
-	}
-	Queue_Size--;
-	temp = NULL;
-	for (int i = Queue_Size / 2 - 1; i >= 0; i--)
-	{
-		OS_Heapify(i);
-	}
 }
