@@ -1,5 +1,4 @@
-#include "OsTasks.h"
-
+#include "..\..\Headers\APIs_Headers\OsTasks.h"
 extern struct Task* OsTasksPCB[MAX_TASKS+2];
 extern TaskType RunningTaskID ;
 extern uint8_t Queue_Size ;
@@ -9,7 +8,7 @@ void OS_ActivateTask(TaskType TaskID)
 {
 	OsTasksPCB[TaskID]->State = READY;
 	OsTasksPCB[TaskID]->Activation_Record--;
-	//OS_Insert(*OsTasksPCB[TaskID]);
+	OS_Insert(OsTasksPCB[TaskID]);
 	return;
 }
 
@@ -19,7 +18,7 @@ void OS_TerminateTask(void)
 	//Context_Switch();
 	OsTasksPCB[RunningTaskID]->State = SUSPENDED;
 	RunningTaskID = INVALID_TASK;
-	//OS_Delete(RunningTaskID);
+	OS_Delete(RunningTaskID);
 
 	// return calllevel error msg when called from ISR...
 	return;
@@ -28,16 +27,20 @@ void OS_TerminateTask(void)
 
 
 
-void OS_Insert(struct Task newTask)
+void OS_Insert(struct Task *newTask)
 {
+	//struct Task* new = (struct Task*)malloc(sizeof(struct Task));
+
+	
+
 	if (Queue_Size == 0)
 	{
-		Ready_Queue[0] = &newTask;
+		Ready_Queue[0] = newTask;
 		Queue_Size++;
 	}
 	else
 	{
-		Ready_Queue[Queue_Size] = &newTask;
+		Ready_Queue[Queue_Size] = newTask;
 		Queue_Size++;
 		for (int i = Queue_Size / 2 - 1; i >= 0; i--)
 		{
