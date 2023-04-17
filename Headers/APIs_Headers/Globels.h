@@ -3,7 +3,7 @@
 
 
 
-#include "..\..\Configurations\TaskConfig.h"
+#include "../../Configurations/TaskConfig.h"
 //Tasks Things
 
 #define INVALID_TASK 255
