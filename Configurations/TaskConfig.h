@@ -1,7 +1,7 @@
 #ifndef Configurations_TaskConfig_H
 #define Configurations_TaskConfig_H
 
-#define MAX_TASKS 254
+#define MAX_TASKS 253
 
 #define TASK_MAX_PRIO_NUM 5
 
