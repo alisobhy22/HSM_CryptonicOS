@@ -1,4 +1,4 @@
-#include "..\..\Headers\APIs_Headers\Tasks.h"
+#include "../../Headers/APIs_Headers/Tasks.h"
 
 struct Task* OsTasksPCB[MAX_TASKS+2];
 TaskType RunningTaskID = INVALID_TASK;
