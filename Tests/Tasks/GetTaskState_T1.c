@@ -16,7 +16,7 @@ int main() {
     printf("error_msg %d \n", st);
     printf("ref Status %d \n", ref);
 
-    if(st != E_OS_STATE)
+    if(st != E_OS_ID)
     {
 		printf("Error Occured\n\n");
 		exit(1);
