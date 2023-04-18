@@ -156,7 +156,6 @@ StatusType GetTaskID(TaskRefType TaskID)
 	if (RunningTaskID == INVALID_TASK) //  implement RunningTaskID later
 	{
 		*TaskID = INVALID_TASK;
-		StatusMsg = E_OS_ID;
 	}
 	else
 	{
@@ -172,7 +171,7 @@ StatusType GetTaskState(TaskType TaskID, TaskStateRefType State)
 
 	if (TaskID > MAX_TASKS)
 	{
-		StatusMsg = E_OS_STATE;
+		StatusMsg = E_OS_ID;
 	}
 	else
 	{
