@@ -50,7 +50,7 @@ int main()
     Schedule();
     print_ready_queue();
 
-    TerminateTask(3);
+    TerminateTask();
     Schedule();
     print_ready_queue();
 
