@@ -22,7 +22,8 @@ void print_PCB_Table();
 
 int main()
 {
-
+    //Testing Scheduler with tasks that are non preemptive and preemptive with different priorities second time to check interupts will not happen 
+    //to the tasks of non premptive or not 
 
     fill_pcbtable();
 
