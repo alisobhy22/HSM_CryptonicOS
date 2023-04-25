@@ -22,8 +22,9 @@ void print_PCB_Table();
 
 int main()
 {
-    //test code
-    //test
+    //Testing Scheduler with tasks that are non preemptive and preemptive with different priorities 
+    
+    
     fill_pcbtable();
 
     print_PCB_Table();
