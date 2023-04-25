@@ -4,7 +4,7 @@
 struct Task T1 = { 10,0,0,SUSPENDED,5,5,TASK_FULL,0,1,0 };
 struct Task T2 = { 20,0,1,SUSPENDED,5,5,TASK_FULL,0,1,0 };
 struct Task T3 = { 30,0,2,SUSPENDED,5,5,TASK_FULL,0,1,0 };
-struct Task T4 = { 40,0,3,SUSPENDED,6,6,TASK_NON,0,1, 0 };
+struct Task T4 = { 40,0,3,SUSPENDED,6,6,TASK_FULL,0,1, 0 };
 //struct Task T5 = { 50,0,4,SUSPENDED,4,4,TASK_FULL,0,1, 0 };
 //struct Task T6 = { 60,0,5,SUSPENDED,5,5,TASK_NON,0,1,  0 };
 //struct Task T7 = { 70,0,6,SUSPENDED,1,1,TASK_FULL,0,1, 0 };
@@ -22,7 +22,7 @@ void print_PCB_Table();
 
 int main()
 {
-
+    //Testing Scheduler with tasks that are preemptive with same priorities except one to check the ordering in queue is right or not 
 
     fill_pcbtable();
 
