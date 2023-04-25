@@ -22,6 +22,7 @@ void print_PCB_Table();
 
 int main()
 {
+    //Testing all functions together to make sure everything is working with each other
 
     fill_pcbtable();
 
