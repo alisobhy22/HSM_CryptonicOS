@@ -1,4 +1,5 @@
-#include "Tasks.h"
+#include "../../Headers/APIs_Headers/Tasks.h"
+#include "../../Sources/APIs_Sources/Tasks.c"
 
 
 struct Task T1 = { 10,0,0,SUSPENDED,5,5,TASK_NON,0,1,0 };
