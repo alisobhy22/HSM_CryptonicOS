@@ -13,6 +13,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN}}
           other_options: --addon=misra.py
           output_file: Misra_Violations.txt
+          exclude_check: ./Tests
       - name: publish report    
         uses: mikeal/publish-to-github-action@master
         env:
