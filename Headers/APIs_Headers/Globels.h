@@ -56,6 +56,7 @@ struct Task
 	uint8_t Preeimpted; // flag wether it was preimpted or not
 	uint8_t Activation_Record; // activation record of task
 	uint8_t Reasourses_Occupied; //reimplement later using array
+	// add refrence to task function
 };
 
 //
