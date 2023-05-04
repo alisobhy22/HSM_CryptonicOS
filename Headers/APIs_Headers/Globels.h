@@ -4,6 +4,8 @@
 
 
 #include "../../Configurations/TaskConfig.h"
+#include "../../Configurations/OSExecutionControlCongif.h"
+
 //Tasks Things
 
 #define INVALID_TASK 255
@@ -59,6 +61,12 @@ struct Task
 	// add function pointer refrence to task function
 };
 
-//
+//OS Execution Control Things
+
+#define INVALID_APPMODE 255
+
+typedef uint8_t AppModeType;
+#define OSDEFAULTAPPMODE 0;
+
 
 #endif
