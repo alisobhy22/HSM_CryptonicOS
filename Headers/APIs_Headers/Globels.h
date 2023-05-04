@@ -66,6 +66,7 @@ struct Task
 #define INVALID_APPMODE 255
 
 typedef uint8_t AppModeType;
+AppModeType ActiveAppMode
 #define OSDEFAULTAPPMODE 0;
 
 
