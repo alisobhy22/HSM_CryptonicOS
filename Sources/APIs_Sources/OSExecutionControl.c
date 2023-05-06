@@ -21,6 +21,7 @@ void StartOS (AppModeType Mode)
 
 void ShutDownOS (StatusType Error)
 {
+  //hooks
   for(;;)
   {
     
