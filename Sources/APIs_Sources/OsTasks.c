@@ -2,7 +2,9 @@
 extern struct Task* OsTasksPCB[MAX_TASKS+2];
 extern TaskType RunningTaskID ;
 extern uint8_t Queue_Size ;
-extern struct Task* Ready_Queue[MAX_TASKS+2];
+extern struct Ready_List Ready_Queue;
+
+extern struct Ready_Entry Ready_Entries[MAX_TASKS+2];
 
 void OS_ActivateTask(TaskType TaskID)
 {
@@ -28,46 +30,83 @@ void OS_TerminateTask(void)
 
 
 
-void OS_Insert(struct Task *newTask)
+void OS_Insert(struct Task* newTask)
 {
-	//struct Task* new = (struct Task*)malloc(sizeof(struct Task));
-
+	Ready_Entries[newTask->ID] = (struct Ready_Entry){ newTask,NULL,NULL };
 	
-
-	if (Queue_Size == 0)
+	if (Ready_Queue.Queue_Size == 0)
 	{
-		Ready_Queue[0] = newTask;
-		Queue_Size++;
+		
+		Ready_Queue.Head = &Ready_Entries[newTask->ID];
+		Ready_Queue.Tail = Ready_Queue.Head;
+		
 	}
 	else
 	{
-		Ready_Queue[Queue_Size] = newTask;
-		Queue_Size++;
-		for (int i = Queue_Size / 2 - 1; i >= 0; i--)
+		struct Ready_Entry* Current = Ready_Queue.Head;
+		while (Current != NULL)
 		{
-			OS_Heapify(i);
+			if (newTask->Priority > Current->task->Priority)
+			{
+				if (Ready_Queue.Head == Current)
+				{
+					Ready_Queue.Head = &Ready_Entries[newTask->ID];
+			
+				}
+				else
+				{
+					Ready_Entries[newTask->ID].Prev = Current->Prev;
+					Current->Prev->Next = &Ready_Entries[newTask->ID];
+				}
+				Ready_Entries[newTask->ID].Next = Current;
+				Current->Prev = &Ready_Entries[newTask->ID];
+				break;
+			}
+			if (Current->Next == NULL)
+			{
+				Current->Next = &Ready_Entries[newTask->ID];
+				Ready_Entries[newTask->ID].Prev = Current;
+
+				Ready_Queue.Tail = &Ready_Entries[newTask->ID];
+				break;
+			}
+			Current = Current->Next;
 		}
 	}
+	Ready_Queue.Queue_Size++;
 }
+
 
 void OS_Delete(uint8_t id)
 {
-	uint8_t j;
-	for (j = 0; j < Queue_Size; j++)
-		if (id == Ready_Queue[j]->ID) 
-			break;
-	if (j == Queue_Size) // Added this case for if an element is not found
-		return;
-	struct Task* temp;
-	for (int i = j; i < Queue_Size-1; i++) // Used this method instead of replacing elements, I shifted them up. It is better to preserve order of elements.
-	{
-			Ready_Queue[i] = Ready_Queue[i + 1];
-	}
+	struct Ready_Entry* Current = Ready_Queue.Head;
 
-	Queue_Size--;
-	temp = NULL;
-	for (int i = Queue_Size / 2 - 1; i >= 0; i--)
+	while (Current != NULL)
 	{
-		OS_Heapify(i);
+		if (Current->task->ID == id)
+		{
+			
+			if (Ready_Queue.Head == Current)
+			{
+				Ready_Queue.Head = Current->Next;
+				Ready_Queue.Head->Prev = NULL;
+			}
+			else
+			{
+				Current->Prev->Next = Current->Next;
+			}
+			if (Ready_Queue.Tail == Current)
+			{
+				Ready_Queue.Tail = Current->Prev;
+				Ready_Queue.Tail->Next = NULL;
+			}
+			else
+			{
+				Current->Next->Prev = Current->Prev;
+			}
+			Ready_Queue.Queue_Size--;
+			break;
+		}
+		Current = Current->Next;
 	}
 }

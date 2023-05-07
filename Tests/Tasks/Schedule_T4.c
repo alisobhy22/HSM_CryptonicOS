@@ -102,9 +102,12 @@ void fill_pcbtable()
 void print_ready_queue()
 {
     printf("Ready Queue: ");
-    for (int i = 0; i < Queue_Size; i++)
+    struct Ready_Entry* current = Ready_Queue.Head;
+    while(current!=NULL)
     {
-        printf("%d ", Ready_Queue[i]->ID);
+        printf("%d ",current->task->ID);
+
+        current=current->Next;
     }
     printf("\n");
 }
