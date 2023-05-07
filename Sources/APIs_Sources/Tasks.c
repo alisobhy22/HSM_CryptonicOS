@@ -3,9 +3,10 @@
 struct Task* OsTasksPCB[MAX_TASKS+2];
 TaskType RunningTaskID = INVALID_TASK;
 uint8_t Queue_Size = 0;
-struct Task* Ready_Queue[MAX_TASKS+2];
+ struct Ready_List Ready_Queue = {0,NULL,NULL};
 
-void OS_Heapify(uint8_t i);
+ struct Ready_Entry Ready_Entries[MAX_TASKS+2];
+
 
 
 StatusType ActivateTask(TaskType TaskID)
@@ -110,9 +111,9 @@ StatusType Schedule(void)
 	{
 		printf("1\n");
 		//feth highest priority task from ready queue
-		RunningTaskID = Ready_Queue[0]->ID;
+		RunningTaskID = Ready_Queue.Head->task->ID;
 		printf("1\n");
-		Ready_Queue[0]->State = RUNNING;
+		Ready_Queue.Head->task->State = RUNNING;
 		printf("1\n");
 		// context switch?????
 		StatusMsg = E_OK;
@@ -123,12 +124,12 @@ StatusType Schedule(void)
 	{
 		if(OsTasksPCB[RunningTaskID]->F_PREEM == TASK_FULL)
 		{
-			if(Ready_Queue[0]->Priority > OsTasksPCB[RunningTaskID]->Priority)
+			if(Ready_Queue.Head->task->Priority > OsTasksPCB[RunningTaskID]->Priority)
 			{
 				printf("2\n");
 				OsTasksPCB[RunningTaskID]->State = READY;
-				RunningTaskID = Ready_Queue[0]->ID;
-				Ready_Queue[0]->State = RUNNING;
+				RunningTaskID = Ready_Queue.Head->task->ID;
+				Ready_Queue.Head->task->State = RUNNING;
 				// context switch
 			}
 			else // running task still highest prio
@@ -180,29 +181,3 @@ StatusType GetTaskState(TaskType TaskID, TaskStateRefType State)
 	return StatusMsg;
 }
 
-void OS_Heapify(uint8_t i)
-{
-	int l = 2 * i + 1;
-	int r = 2 * i + 2;
-	uint8_t largest = i;
-	if (l < Queue_Size && Ready_Queue[l]->Priority > Ready_Queue[largest]->Priority) //Removed & because we want values not addreses
-		largest = l;
-	if (r < Queue_Size && Ready_Queue[r]->Priority > Ready_Queue[largest]->Priority) //Removed & because we want values not addreses
-		largest = r;
-
-	if (largest != i)
-	{
-		struct Task* temp = Ready_Queue[largest];
-		for (int st = largest; st > i; st--)
-		{
-			Ready_Queue[st] = Ready_Queue[st - 1];
-		}
-		Ready_Queue[i] = temp;
-	/*	struct Task* temp = Ready_Queue[i];
-		Ready_Queue[i] = Ready_Queue[largest];
-		Ready_Queue[largest] = temp;
-		OS_Heapify(largest);
-		temp = NULL;
-*/  }
-
-}
