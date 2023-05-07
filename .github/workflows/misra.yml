@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: cppcheck
-        uses: deep5050/cppcheck-action@${{ github.ref }}
+        uses: "deep5050/cppcheck-action@${{ github.ref }}"
         with:
           github_token: ${{ secrets.GITHUB_TOKEN}}
           other_options: --addon=misra.py
