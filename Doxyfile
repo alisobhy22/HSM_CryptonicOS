@@ -5,7 +5,7 @@
 # Project information
 PROJECT_NAME           = HSM_CryptonicOS
 OUTPUT_DIRECTORY       = html
-INPUT                  = Configurations Headers Sources
+INPUT                  = Configurations #Headers Sources
 FILE_PATTERNS          = *.c *.h
 RECURSIVE              = YES
 EXCLUDE                = 
