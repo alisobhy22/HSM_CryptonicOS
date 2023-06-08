@@ -31,4 +31,5 @@ jobs:
 
     - name: Generate documentation
       run: |
-        doxygen Doxyfile
+        #doxygen Doxyfile
+        doxygen -g Doxyfile
