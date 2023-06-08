@@ -23,6 +23,9 @@ jobs:
       run: npm install
       env:
         CI: true
+        
+    - name: Install Doxygen
+      run: sudo apt-get update && sudo apt-get install -y doxygen
 
     - name: Generate documentation
       run: |
