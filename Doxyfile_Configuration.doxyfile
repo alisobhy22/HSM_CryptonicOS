@@ -5,7 +5,7 @@
 # Project information
 PROJECT_NAME           = HSM_CryptonicOS
 OUTPUT_DIRECTORY       = html
-INPUT                  = "HSM_CryptonicOS/Configurations" "HSM_CryptonicOS/Headers" "HSM_CryptonicOS/Sources" "HSM_CryptonicOS/Tests"
+INPUT                  = "HSM_CryptonicOS/Configurations" "HSM_CryptonicOS/Headers" "HSM_CryptonicOS/Sources"
 FILE_PATTERNS          = *.c *.h
 RECURSIVE              = YES
 EXCLUDE                = 
@@ -16,4 +16,4 @@ GENERATE_LATEX         = YES
 GENERATE_MAN           = NO
 
 # Example code
-EXAMPLE_PATH           = examples
+# EXAMPLE_PATH           = examples
