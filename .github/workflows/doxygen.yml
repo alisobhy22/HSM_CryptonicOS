@@ -25,7 +25,9 @@ jobs:
         CI: true
         
     - name: Install Doxygen
-      run: sudo apt-get update && sudo apt-get install -y doxygen
+      run: |
+        sudo apt-get update && sudo apt-get install -y doxygen
+        doxygen --version
 
     - name: Generate documentation
       run: |
