@@ -33,3 +33,9 @@ jobs:
       run: |
         #doxygen Doxyfile
         doxygen -g Doxyfile
+    
+    - name: Upload documentation
+      uses: actions/upload-artifact@v2
+      with:
+        name: documentation
+        path: docs/html
