@@ -1,0 +1,19 @@
+#---------------------------------------------------------------------------
+# Doxyfile for OurProject
+#---------------------------------------------------------------------------
+
+# Project information
+PROJECT_NAME           = HSM_CryptonicOS
+OUTPUT_DIRECTORY       = html
+INPUT                  = "HSM_CryptonicOS/Configurations" "HSM_CryptonicOS/Headers" "HSM_CryptonicOS/Sources" "HSM_CryptonicOS/Tests"
+FILE_PATTERNS          = *.c *.h
+RECURSIVE              = YES
+EXCLUDE                = 
+
+# Output options
+GENERATE_HTML          = YES
+GENERATE_LATEX         = YES
+GENERATE_MAN           = NO
+
+# Example code
+EXAMPLE_PATH           = examples
