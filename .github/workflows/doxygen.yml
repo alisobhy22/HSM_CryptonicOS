@@ -34,5 +34,4 @@ jobs:
         sudo apt-get install graphviz
         doxygen Doxyfile
         ls -l html
-        chmod -R a+rx html
         #doxygen -g Doxyfile
