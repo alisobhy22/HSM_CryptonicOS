@@ -31,5 +31,6 @@ jobs:
 
     - name: Generate documentation
       run: |
+        sudo apt-get install graphviz
         doxygen Doxyfile
         #doxygen -g Doxyfile
