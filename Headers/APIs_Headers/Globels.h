@@ -73,6 +73,7 @@ struct Task
 	const uint8_t F_PREEM; // flag of preemetivety 0 or 1
 	uint8_t Preeimpted; // flag wether it was preimpted or not
 	uint8_t Activation_Record; // activation record of task
+	uint8_t Activation_Request; // request record of task
 	uint8_t Reasourses_Occupied; //reimplement later using array
 	// add function pointer refrence to task function
 };
