@@ -77,13 +77,13 @@ void OS_Insert(struct Task* newTask)
 }
 
 
-void OS_Delete(uint8_t id)
+void OS_Delete(TaskType TaskID)
 {
 	struct Ready_Entry* Current = Ready_Queue.Head;
 
 	while (Current != NULL)
 	{
-		if (Current->task->ID == id)
+		if (Current->task->ID == TaskID)
 		{
 			
 			if (Ready_Queue.Head == Current)
