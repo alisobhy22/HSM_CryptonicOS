@@ -20,7 +20,7 @@ void OS_ActivateTask(TaskType TaskID);
 /**
  * @brief Public system function changes a task from running to suspended state
  *
- * This public system function makes the current running task changes from suspended to ready state.
+ * This public system function makes the current running task changes from running to suspended state.
  */
 void OS_TerminateTask(void);
 
