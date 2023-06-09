@@ -33,6 +33,6 @@ jobs:
       run: |
         sudo apt-get install graphviz
         doxygen Doxyfile
-        ls -l html
+        #ls -l html
         ls -a /home/runner/work/HSM_CryptonicOS/HSM_CryptonicOS/html
         #doxygen -g Doxyfile
