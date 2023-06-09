@@ -36,6 +36,8 @@ jobs:
         #ls -l html
         ls -a /home/runner/work/HSM_CryptonicOS/HSM_CryptonicOS/html/html
         cd /home/runner/work/HSM_CryptonicOS/HSM_CryptonicOS/html/html
+        git config --global user.email "mahmoud_gamal2001@aucegypt.edu"
+        git config --global user.name "Mahmoud-Matar"
         git add index.html
         git commit -m "upload doxy to repo"
         git push origin main
