@@ -20,11 +20,11 @@ StatusType ActivateTask(TaskType TaskID)
 			StatusMsg = E_OS_ID;
 			return StatusMsg;
 		}
-		StatusMsg = E_OS_LIMIT;
+		StatusMsg = E_OS_ID;
 		return StatusMsg;
 	}
 
-	if ((OsTasksPCB[TaskID]->State == SUSPENDED) && (OsTasksPCB[TaskID]->Activation_Record != 0)) // if task is suspended and activationrecord not zero
+	if ((OsTasksPCB[TaskID]->State == SUSPENDED) && (OsTasksPCB[TaskID]->Activation_Request != MAX_ACTIVATION_NUM)) // if task is suspended and activationrecord not zero
 	{
 		OS_ActivateTask(TaskID);
 		StatusMsg = E_OK;
@@ -32,7 +32,7 @@ StatusType ActivateTask(TaskType TaskID)
 	}
 	else
 	{
-		// to be implemented
+		StatusMsg = E_OS_LIMIT;
 	}
 	return StatusMsg;	
 }
@@ -41,23 +41,18 @@ StatusType TerminateTask(void)
 {
 	// to be continued later, i.e to free reasourses
 	StatusType StatusMsg = E_OK;
-	if (RunningTaskID == INVALID_TASK) //  implement RunningTaskID later
+
+	
+	if (OsTasksPCB[RunningTaskID]->Reasourses_Occupied != 0)
 	{
-		StatusMsg = E_OS_ID;
+		StatusMsg = E_OS_RESOURCE;
 	}
 	else
 	{
-		if (OsTasksPCB[RunningTaskID]->Reasourses_Occupied != 0)
-		{
-			StatusMsg = E_OS_RESOURCE;
-		}
-		else
-		{
-			OS_TerminateTask();
-		}
-		// return calllevel error msg when called from ISR...
-
+		OS_TerminateTask();
 	}
+	// return calllevel error msg when called from ISR...
+
 	return StatusMsg;
 }
 
@@ -66,7 +61,6 @@ StatusType ChainTask(TaskType TaskID)
 	StatusType StatusMsg = E_OK;
 
 	//E_OS_CALLEVEL
-
 	if (RunningTaskID == INVALID_TASK) //  implement RunningTaskID later
 	{
 		StatusMsg = E_OS_ID;

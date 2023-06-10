@@ -15,123 +15,41 @@ jobs:
     - name: Install dependencies
       run: sudo apt-get install -y gcc
 
-    - name: Build ActivateTask_T1
+    - name: Build ActivateTask
       run: |
         cd Tests/Tasks
-        gcc ActivateTask_T1.c -o ActivateTask_T1
-    - name: Run ActivateTask_T1
+        gcc ActivateTask.c -o ActivateTask
+    - name: Run ActivateTask
       run: |
         cd Tests/Tasks
-        ./ActivateTask_T1
+        ./ActivateTask  
         
-        
-    - name: Build ActivateTask_T2
+    - name: Build ChainTask
       run: |
         cd Tests/Tasks
-        gcc ActivateTask_T2.c -o ActivateTask_T2
-    - name: Run ActivateTask_T2
+        gcc ChainTask.c -o ChainTask
+    - name: Run ChainTask
       run: |
         cd Tests/Tasks
-        ./ActivateTask_T2
-        
-        
-    - name: Build ActivateTask_T3
-      run: |
-        cd Tests/Tasks
-        gcc ActivateTask_T3.c -o ActivateTask_T3
-    - name: Run ActivateTask_T3
-      run: |
-        cd Tests/Tasks
-        ./ActivateTask_T3
-        
-        
-    - name: Build ChainTask_T1
-      run: |
-        cd Tests/Tasks
-        gcc ChainTask_T1.c -o ChainTask_T1
-    - name: Run ChainTask_T1
-      run: |
-        cd Tests/Tasks
-        ./ChainTask_T1
-        
-        
-    - name: Build ChainTask_T2
-      run: |
-        cd Tests/Tasks
-        gcc ChainTask_T2.c -o ChainTask_T2
-    - name: Run ChainTask_T2
-      run: |
-        cd Tests/Tasks
-        ./ChainTask_T2
-        
-        
-    - name: Build ChainTask_T3
-      run: |
-        cd Tests/Tasks
-        gcc ChainTask_T3.c -o ChainTask_T3
-    - name: Run ChainTask_T3
-      run: |
-        cd Tests/Tasks
-        ./ChainTask_T3
-        
-        
-    - name: Build ChainTask_T4
-      run: |
-        cd Tests/Tasks
-        gcc ChainTask_T4.c -o ChainTask_T4
-    - name: Run ChainTask_T4
-      run: |
-        cd Tests/Tasks
-        ./ChainTask_T4
-        
-    - name: Build ChainTask_T5
-      run: |
-        cd Tests/Tasks
-        gcc ChainTask_T4.c -o ChainTask_T5
-    - name: Run ChainTask_T5
-      run: |
-        cd Tests/Tasks
-        ./ChainTask_T5
+        ./ChainTask
 
-
-    - name: Build GetTaskID_T1
+    - name: Build GetTaskID
       run: |
         cd Tests/Tasks
-        gcc GetTaskID_T1.c -o GetTaskID_T1
-    - name: Run GetTaskID_T1
+        gcc GetTaskID.c -o GetTaskID
+    - name: Run GetTaskID
       run: |
         cd Tests/Tasks
-        ./GetTaskID_T1
+        ./GetTaskID
         
-        
-    - name: Build GetTaskID_T2
+    - name: Build GetTaskState
       run: |
         cd Tests/Tasks
-        gcc GetTaskID_T2.c -o GetTaskID_T2
-    - name: Run GetTaskID_T2
+        gcc GetTaskState.c -o GetTaskState
+    - name: Run GetTaskState
       run: |
         cd Tests/Tasks
-        ./GetTaskID_T2
-        
-        
-    - name: Build GetTaskState_T1
-      run: |
-        cd Tests/Tasks
-        gcc GetTaskState_T1.c -o GetTaskState_T1
-    - name: Run GetTaskState_T1
-      run: |
-        cd Tests/Tasks
-        ./GetTaskState_T1
-        
-        
-    - name: Build GetTaskState_T2
-      run: |
-        cd Tests/Tasks
-        gcc GetTaskState_T2.c -o GetTaskState_T2
-    - name: Run GetTaskState_T2
-      run: |
-        cd Tests/Tasks
-        ./GetTaskState_T2
+        ./GetTaskState
         
     - name: Build Schedule_T1
       run: |
