@@ -24,7 +24,7 @@ StatusType ActivateTask(TaskType TaskID)
 		return StatusMsg;
 	}
 
-	if ((OsTasksPCB[TaskID]->State == SUSPENDED) && (OsTasksPCB[TaskID]->Activation_Request != MAX_ACTIVATION_NUM)) // if task is suspended and activationrecord not zero
+	if ((OsTasksPCB[TaskID]->State == SUSPENDED) && (OsTasksPCB[TaskID]->Activation_Request != MAX_ACTIVATION_NUM)) // if task is suspended and activationrecord not max
 	{
 		OS_ActivateTask(TaskID);
 		StatusMsg = E_OK;
