@@ -6,19 +6,20 @@
 int main()
 {
     struct Task T1 =
-    {0,0, 0,RUNNING,5,5,TASK_NON,0,0,0,0 };
+    {0,0, 0,SUSPENDED,5,5,TASK_NON,0,0,1,0 };
     struct Task T2 =
-    {0,0, 1,SUSPENDED,5,5,TASK_NON,0,0,0,0 };
+    {0,0, 1,SUSPENDED,5,5,TASK_NON,0,0,1,0 };
     struct Task T3 =
-    {0,0, 2,SUSPENDED,5,5,TASK_NON,0,0,MAX_ACTIVATION_NUM,0 }; //max activations
+    {0,0, 2,SUSPENDED,5,5,TASK_NON,0,5,5,0 }; //max activations
     struct Task T4 =
-    {0,0, 255,SUSPENDED,5,5,TASK_NON,0,0,0,0 }; //invalid task
+    {0,0, 255,SUSPENDED,5,5,TASK_NON,0,0,1,0 }; //invalid task
 
     OsTasksPCB[0] = &T1;
     OsTasksPCB[1] = &T2;
 
     //test E_OK
-    StatusType st = ChainTask(T2.ID);
+    StatusType st = ActivateTask(T1.ID)
+    st = ChainTask(T2.ID);
     printf("st = %d\n",st);
     if(st != E_OK)
     {
