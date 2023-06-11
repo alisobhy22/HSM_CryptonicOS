@@ -19,6 +19,7 @@ int main()
 
     //test E_OK
     StatusType st = ActivateTask(T1.ID);
+    RunningTaskID = T1.ID;
     st = ChainTask(T2.ID);
     printf("st = %d\n",st);
     if(st != E_OK)
@@ -38,6 +39,7 @@ int main()
     }
     printf("Test 1 Passed\n\n");
     //test E_OS_LIMIT (TO many activations of <TaskID>)
+    RunningTaskID = T2.ID;
     st = ChainTask(T3.ID);
     if (st != E_OS_ID)
     {
@@ -56,6 +58,7 @@ int main()
     }
     printf("Test 2 Passed\n\n");
     //test E_OS_ID (Invalid Task ID)
+    RunningTaskID = T3.ID;
     st = ChainTask(T4.ID);
     if (st != E_OS_ID)
     {
