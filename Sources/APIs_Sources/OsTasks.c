@@ -18,15 +18,15 @@ void OS_TerminateTask(void)
 {
 
 	//Context_Switch();
-	if(OsTasksPCB[RunningTaskID ]->Activation_Record == 0)
+	if(OsTasksPCB[RunningTaskID ]->Activation_Record == 1)
 	{
 		OsTasksPCB[RunningTaskID]->State = SUSPENDED;
-		OsTasksPCB[RunningTaskID]->Activation_Record--;
 		OS_Delete(RunningTaskID);
 		RunningTaskID = INVALID_TASK;
 	}
 	else
 	{
+		OsTasksPCB[RunningTaskID]->Activation_Record--;
 		OsTasksPCB[RunningTaskID]->State = READY;
 	}
 	
