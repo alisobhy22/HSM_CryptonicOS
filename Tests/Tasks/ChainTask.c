@@ -18,7 +18,7 @@ int main()
     OsTasksPCB[1] = &T2;
 
     //test E_OK
-    RunningTaskID = T1.ID;
+    RunningTaskID = 0;
     StatusType st = ChainTask(T2.ID);
     printf("st = %d\n",st);
     if(st != E_OK)
@@ -38,7 +38,7 @@ int main()
     }
     printf("Test 1 Passed\n\n");
     //test E_OS_LIMIT (TO many activations of <TaskID>)
-    RunningTaskID = T2.ID;
+    RunningTaskID = 1;
     st = ChainTask(T3.ID);
     if (st != E_OS_ID)
     {
@@ -57,7 +57,7 @@ int main()
     }
     printf("Test 2 Passed\n\n");
     //test E_OS_ID (Invalid Task ID)
-    RunningTaskID = T3.ID;
+    RunningTaskID = 2;
     st = ChainTask(T4.ID);
     if (st != E_OS_ID)
     {
