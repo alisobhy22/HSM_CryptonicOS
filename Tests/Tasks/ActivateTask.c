@@ -4,7 +4,7 @@
 int main()
 {
     struct Task T1 =
-    {0,0,0,SUSPENDED,5,5,TASK_NON,0,0,0,0 };//normal task
+    {0,0,0,SUSPENDED,5,5,TASK_NON,0,0,1,0 };//normal task
      struct Task T2 =
     {0,0,1,SUSPENDED,5,5,TASK_NON,0,0,5,0 }; //max activations
      struct Task T3 =
