@@ -18,7 +18,7 @@ void OS_TerminateTask(void)
 {
 
 	//Context_Switch();
-	if(OsTasksPCB[TaskID]->Activation_Record == 0)
+	if(OsTasksPCB[RunningTaskID ]->Activation_Record == 0)
 	{
 		OsTasksPCB[RunningTaskID]->State = SUSPENDED;
 		OsTasksPCB[RunningTaskID]->Activation_Record--;
