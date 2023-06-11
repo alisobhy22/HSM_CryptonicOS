@@ -9,7 +9,7 @@ extern struct Ready_Entry Ready_Entries[MAX_TASKS+2];
 void OS_ActivateTask(TaskType TaskID)
 {
 	OsTasksPCB[TaskID]->State = READY;
-	OsTasksPCB[TaskID]->Activation_Request++;
+	OsTasksPCB[TaskID]->Activation_Record++;
 	OS_Insert(OsTasksPCB[TaskID]);
 	return;
 }
@@ -19,7 +19,7 @@ void OS_TerminateTask(void)
 
 	//Context_Switch();
 	OsTasksPCB[RunningTaskID]->State = SUSPENDED;
-	OsTasksPCB[RunningTaskID]->Activation_Request--;
+	OsTasksPCB[RunningTaskID]->Activation_Record--;
 	OS_Delete(RunningTaskID);
 	RunningTaskID = INVALID_TASK;
 	
