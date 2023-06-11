@@ -83,11 +83,11 @@ jobs:
     - name: Build TerminateTask
       run: |
         cd Tests/Tasks
-        gcc TerminateTask_T1.c -o TerminateTask_T1
-    - name: Run TerminateTask_T1
+        gcc TerminateTask.c -o TerminateTask
+    - name: Run TerminateTask
       run: |
         cd Tests/Tasks
-        ./TerminateTask_T1
+        ./TerminateTask
 
 
 
