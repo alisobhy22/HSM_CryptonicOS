@@ -6,7 +6,7 @@
 int main()
 {
     struct Task T1 =
-    {0,0, 0,SUSPENDED,5,5,TASK_NON,0,0,1,0 };
+    {0,0, 0,RUNNING,5,5,TASK_NON,0,1,1,0 };
     struct Task T2 =
     {0,0, 1,SUSPENDED,5,5,TASK_NON,0,0,1,0 };
     struct Task T3 =
@@ -18,9 +18,8 @@ int main()
     OsTasksPCB[1] = &T2;
 
     //test E_OK
-    StatusType st = ActivateTask(T1.ID);
     RunningTaskID = T1.ID;
-    st = ChainTask(T2.ID);
+    StatusType st = ChainTask(T2.ID);
     printf("st = %d\n",st);
     if(st != E_OK)
     {
