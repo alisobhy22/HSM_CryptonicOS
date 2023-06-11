@@ -18,10 +18,18 @@ void OS_TerminateTask(void)
 {
 
 	//Context_Switch();
-	OsTasksPCB[RunningTaskID]->State = SUSPENDED;
-	OsTasksPCB[RunningTaskID]->Activation_Record--;
-	OS_Delete(RunningTaskID);
-	RunningTaskID = INVALID_TASK;
+	if(OsTasksPCB[TaskID]->Activation_Record == 0)
+	{
+		OsTasksPCB[RunningTaskID]->State = SUSPENDED;
+		OsTasksPCB[RunningTaskID]->Activation_Record--;
+		OS_Delete(RunningTaskID);
+		RunningTaskID = INVALID_TASK;
+	}
+	else
+	{
+		OsTasksPCB[RunningTaskID]->State = READY;
+	}
+	
 	
 
 	// return calllevel error msg when called from ISR...
