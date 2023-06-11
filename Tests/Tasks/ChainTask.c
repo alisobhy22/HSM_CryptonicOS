@@ -18,7 +18,7 @@ int main()
     OsTasksPCB[1] = &T2;
 
     //test E_OK
-    StatusType st = ActivateTask(T1.ID)
+    StatusType st = ActivateTask(T1.ID);
     st = ChainTask(T2.ID);
     printf("st = %d\n",st);
     if(st != E_OK)
