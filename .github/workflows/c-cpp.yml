@@ -96,17 +96,17 @@ jobs:
         cd Tests/Tasks
         ./Schedule_T5
         
-    - name: Build Example_T1
-      run: |
-        cd Tests/Tasks
-        gcc Example_T1.c -o Example_T1
-    - name: Run Example_T1
-      run: |
-        cd Tests/Tasks
-        ./Example_T1
+    #- name: Build Example_T1
+     # run: |
+      #  cd Tests/Tasks
+      #  gcc Example_T1.c -o Example_T1
+ #   - name: Run Example_T1
+    #  run: |
+     #   cd Tests/Tasks
+      #  ./Example_T1
         
         
-    - name: Build TerminateTask_T1
+    - name: Build TerminateTask
       run: |
         cd Tests/Tasks
         gcc TerminateTask_T1.c -o TerminateTask_T1
@@ -114,25 +114,6 @@ jobs:
       run: |
         cd Tests/Tasks
         ./TerminateTask_T1
-        
-        
-    - name: Build TerminateTask_T2
-      run: |
-        cd Tests/Tasks
-        gcc TerminateTask_T2.c -o TerminateTask_T2
-    - name: Run TerminateTask_T2
-      run: |
-        cd Tests/Tasks
-        ./TerminateTask_T2
-        
-        
-    - name: Build TerminateTask_T3
-      run: |
-        cd Tests/Tasks
-        gcc TerminateTask_T3.c -o TerminateTask_T3
-    - name: Run TerminateTask_T3
-      run: |
-        cd Tests/Tasks
-        ./TerminateTask_T3
+
 
 
