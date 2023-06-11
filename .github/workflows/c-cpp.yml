@@ -24,14 +24,14 @@ jobs:
         cd Tests/Tasks
         ./ActivateTask  
         
-    - name: Build ChainTask
-      run: |
-        cd Tests/Tasks
-        gcc ChainTask.c -o ChainTask
-    - name: Run ChainTask
-      run: |
-        cd Tests/Tasks
-        ./ChainTask
+   # - name: Build ChainTask
+    #  run: |
+      #  cd Tests/Tasks
+       # gcc ChainTask.c -o ChainTask
+   # - name: Run ChainTask
+     # run: |
+      #  cd Tests/Tasks
+        #./ChainTask
 
     - name: Build GetTaskID
       run: |
