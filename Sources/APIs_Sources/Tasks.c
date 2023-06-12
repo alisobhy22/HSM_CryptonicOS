@@ -81,11 +81,15 @@ StatusType ChainTask(TaskType TaskID)
 			StatusMsg = E_OS_ID;
 			return StatusMsg;
 		}
-		StatusMsg = E_OS_LIMIT;
 		return StatusMsg;
 	}
 	if (OsTasksPCB[TaskID]->State == SUSPENDED) // if task is suspended
 	{
+		if(OsTasksPCB[TaskID]->Activation_Request == OsTasksPCB[TaskID]->Activation_Record)
+		{
+			StatusMsg = E_OS_LIMIT;
+			return StatusMsg;
+		}
 		OS_ActivateTask(TaskID);
 		StatusMsg = E_OK;
 		return StatusMsg;
