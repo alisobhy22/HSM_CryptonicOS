@@ -98,7 +98,10 @@ void OS_Delete(TaskType TaskID)
 			if (Ready_Queue.Head == Current)
 			{
 				Ready_Queue.Head = Current->Next;
-				Ready_Queue.Head->Prev = NULL;
+				if ( Ready_Queue.Head != NULL )
+				{
+					Ready_Queue.Head->Prev = NULL;
+				}
 			}
 			else
 			{
@@ -107,7 +110,10 @@ void OS_Delete(TaskType TaskID)
 			if (Ready_Queue.Tail == Current)
 			{
 				Ready_Queue.Tail = Current->Prev;
-				Ready_Queue.Tail->Next = NULL;
+				if ( Ready_Queue.Tail != NULL )
+				{
+					Ready_Queue.Tail->Next = NULL;
+				}
 			}
 			else
 			{
