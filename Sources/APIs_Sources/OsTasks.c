@@ -11,7 +11,8 @@ void OS_ActivateTask(TaskType TaskID)
 	OsTasksPCB[TaskID]->State = READY;
 	OsTasksPCB[TaskID]->Activation_Record++;
 	OS_Insert(OsTasksPCB[TaskID]);
-	OS_Schedule();
+	if(OsTasksPCB[RunningTaskID]->F_PREEM == TASK_FULL)
+		OS_Schedule();
 	return;
 }
 
