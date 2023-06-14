@@ -11,6 +11,7 @@ void OS_ActivateTask(TaskType TaskID)
 	OsTasksPCB[TaskID]->State = READY;
 	OsTasksPCB[TaskID]->Activation_Record++;
 	OS_Insert(OsTasksPCB[TaskID]);
+	OS_Schedule();
 	return;
 }
 
@@ -31,7 +32,7 @@ void OS_TerminateTask(void)
 	}
 	
 	
-
+	OS_Schedule();
 	// return calllevel error msg when called from ISR...
 	return;
 }
