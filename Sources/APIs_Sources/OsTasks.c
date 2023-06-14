@@ -37,7 +37,22 @@ void OS_TerminateTask(void)
 }
 
 
-
+void OS_Schedule(void)
+{
+	if(OsTasksPCB[RunningTaskID]->F_PREEM == TASK_FULL)
+		{
+			if(Ready_Queue.Head->task->Priority > OsTasksPCB[RunningTaskID]->Priority)
+			{
+				printf("2\n");
+				OsTasksPCB[RunningTaskID]->State = READY;
+				RunningTaskID = Ready_Queue.Head->task->ID;
+				Ready_Queue.Head->task->State = RUNNING;
+				// context switch
+			}
+	}
+	
+	
+}
 
 void OS_Insert(struct Task* newTask)
 {
