@@ -12,35 +12,47 @@ int main()
     struct Task T3 =
     {0,0, 2,SUSPENDED,5,5,TASK_NON,0,5,5,0 }; //max activations
     struct Task T4 =
-    {0,0, INVALID_TASK,SUSPENDED,5,5,TASK_NON,0,0,1,0 }; //invalid task
+    {0,0, MAX_TASKS,SUSPENDED,5,5,TASK_NON,0,0,1,0 }; //invalid task
 
+
+    
     OsTasksPCB[0] = &T1;
     OsTasksPCB[1] = &T2;
     OsTasksPCB[2] = &T3;
-
+    struct Task IDLE = { 0,0,IDLE_TASK,SUSPENDED,0,0,TASK_FULL,0,200,0 };
+    OsTasksPCB[IDLE_TASK] = &IDLE;
+    //startos
+    StatusType st = ActivateTask(IDLE.ID);
+    if(st != E_OK)
+    {
+        printf("Error Occured in START OS EX1\n\n");
+        exit(1);
+    }
+    if(RunningTaskID != IDLE_TASK)
+    {
+        printf("Error Occured in START OS EX2\n\n");
+        exit(1);
+    }
     //test E_OK
-    StatusType st = ActivateTask(T1.ID);
-    RunningTaskID = 0;
     st = ChainTask(T2.ID);
-    printf("st = %d\n",st);
     if(st != E_OK)
     {
         printf("Error Occured in E_OK EX1\n\n");
         exit(1);
     }
-    if (T1.State != SUSPENDED)
+    if (IDLE.State != READY)
     {
         printf("Error Occured in E_OK EX2\n\n");
         exit(1);
     }
-    if (T2.State != READY)
+    if (T2.State != RUNNING)
     {
+        printf("st = %d\n",T2.State);
         printf("Error Occured in E_OK EX3\n\n");
         exit(1);
     }
     printf("Test 1 Passed\n\n");
     //test E_OS_LIMIT (TO many activations of <TaskID>)
-    RunningTaskID = 1;
     st = ChainTask(T3.ID);
     if (st != E_OS_LIMIT)
     {
@@ -60,7 +72,6 @@ int main()
     }
     printf("Test 2 Passed\n\n");
     //test E_OS_ID (Invalid Task ID)
-    RunningTaskID = 2;
     st = ChainTask(T4.ID);
     if (st != E_OS_ID)
     {

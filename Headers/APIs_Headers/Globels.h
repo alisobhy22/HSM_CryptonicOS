@@ -6,7 +6,7 @@
 #include "../../Configurations/TaskConfig.h"
 //Tasks Things
 
-#define INVALID_TASK 255
+#define INVALID_TASK MAX_TASKS
 
 #define RUNNING 1
 #define READY 2
@@ -37,7 +37,7 @@ typedef uint8_t* TaskRefType;
 typedef uint8_t TaskStateType;
 typedef uint8_t* TaskStateRefType;
 
-extern struct Task* OsTasksPCB[MAX_TASKS+2];
+extern struct Task* OsTasksPCB[MAX_TASKS];
 extern TaskType RunningTaskID;
 
 
@@ -57,7 +57,7 @@ struct Ready_List { //Is for size and head/tail pointers to navigate the ready e
 
 extern struct Ready_List Ready_Queue;
 
-extern struct Ready_Entry Ready_Entries[MAX_TASKS+2];
+extern struct Ready_Entry Ready_Entries[MAX_TASKS];
 
 
 

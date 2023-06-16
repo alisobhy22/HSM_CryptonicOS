@@ -1,29 +1,24 @@
 #include "../../Headers/APIs_Headers/Tasks.h"
 
-struct Task* OsTasksPCB[MAX_TASKS+2];
-TaskType RunningTaskID = INVALID_TASK;
+struct Task* OsTasksPCB[MAX_TASKS];
+TaskType RunningTaskID;
 uint8_t Queue_Size = 0;
  struct Ready_List Ready_Queue = {0,NULL,NULL};
 
- struct Ready_Entry Ready_Entries[MAX_TASKS+2];
+ struct Ready_Entry Ready_Entries[MAX_TASKS];
 
 
 
 StatusType ActivateTask(TaskType TaskID)
 {
 	StatusType StatusMsg = E_OK;
-	if (TaskID > MAX_TASKS) //max number of active tasks
+	if (TaskID >= MAX_TASKS) //max number of active tasks
 	{
-		if (TaskID == INVALID_TASK)
-		{
+		
 			// error msg
 			StatusMsg = E_OS_ID;
 			return StatusMsg;
-		}
-		StatusMsg = E_OS_ID;
-		return StatusMsg;
 	}
-
 	if ((OsTasksPCB[TaskID]->State == SUSPENDED) && (OsTasksPCB[TaskID]->Activation_Request != OsTasksPCB[TaskID]->Activation_Record)) // if task is suspended and activationrecord not max
 	{
 		OS_ActivateTask(TaskID);
@@ -61,7 +56,7 @@ StatusType ChainTask(TaskType TaskID)
 	StatusType StatusMsg = E_OK;
 
 	//E_OS_CALLEVEL
-	if (RunningTaskID == INVALID_TASK) //  implement RunningTaskID later
+	if (RunningTaskID >= INVALID_TASK) //  implement RunningTaskID later
 	{
 		StatusMsg = E_OS_ID;
 		return StatusMsg;
@@ -73,16 +68,15 @@ StatusType ChainTask(TaskType TaskID)
 	}
 	OS_TerminateTask();
 
-	if (TaskID > MAX_TASKS) //max number of active tasks
+	
+	if (TaskID >= INVALID_TASK)
 	{
-		if (TaskID == INVALID_TASK)
-		{
-			// error msg
-			StatusMsg = E_OS_ID;
-			return StatusMsg;
-		}
+		// error msg
+		StatusMsg = E_OS_ID;
 		return StatusMsg;
 	}
+	
+	
 	if (OsTasksPCB[TaskID]->State == SUSPENDED) // if task is suspended
 	{
 		if(OsTasksPCB[TaskID]->Activation_Request == OsTasksPCB[TaskID]->Activation_Record)
@@ -168,7 +162,7 @@ StatusType GetTaskState(TaskType TaskID, TaskStateRefType State)
 {
 	StatusType StatusMsg = E_OK;
 
-	if (TaskID > MAX_TASKS)
+	if (TaskID >= MAX_TASKS)
 	{
 		StatusMsg = E_OS_ID;
 	}

@@ -1,17 +1,17 @@
 #include "../../Headers/APIs_Headers/OsTasks.h"
-extern struct Task* OsTasksPCB[MAX_TASKS+2];
-extern TaskType RunningTaskID ;
+extern struct Task* OsTasksPCB[MAX_TASKS];
+extern TaskType RunningTaskID = IDLE_TASK ;
 extern uint8_t Queue_Size ;
 extern struct Ready_List Ready_Queue;
 
-extern struct Ready_Entry Ready_Entries[MAX_TASKS+2];
+extern struct Ready_Entry Ready_Entries[MAX_TASKS];
 
 void OS_ActivateTask(TaskType TaskID)
 {
 	OsTasksPCB[TaskID]->State = READY;
 	OsTasksPCB[TaskID]->Activation_Record++;
 	OS_Insert(OsTasksPCB[TaskID]);
-	if(OsTasksPCB[RunningTaskID]->F_PREEM == TASK_FULL)
+	if(OsTasksPCB[RunningTaskID]->F_PREEM == TASK_FULL )
 		OS_Schedule();
 	return;
 }
@@ -24,7 +24,7 @@ void OS_TerminateTask(void)
 	{
 		OsTasksPCB[RunningTaskID]->State = SUSPENDED;
 		OS_Delete(RunningTaskID);
-		RunningTaskID = INVALID_TASK;
+		RunningTaskID = IDLE_TASK;
 	}
 	else
 	{

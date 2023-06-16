@@ -8,22 +8,39 @@ int main()
      struct Task T2 =
     {0,0,1,SUSPENDED,5,5,TASK_NON,0,5,5,0 }; //max activations
      struct Task T3 =
-    {0,0,255,SUSPENDED,5,5,TASK_NON,0,0,0,0 }; //invalid task
-
+    {0,0,MAX_TASKS,SUSPENDED,5,5,TASK_NON,0,0,0,0 }; //invalid task
 
 
     OsTasksPCB[0] = &T1;
     OsTasksPCB[1] = &T2;
     OsTasksPCB[2] = &T3;
 
+
+    struct Task IDLE = { 0,0,IDLE_TASK,SUSPENDED,0,0,TASK_FULL,0,200,0 };
+    OsTasksPCB[IDLE_TASK] = &IDLE;
+    //startos
+    StatusType st = ActivateTask(IDLE.ID);
+    if(st != E_OK)
+    {
+        printf("Error Occured in START OS EX1\n\n");
+        exit(1);
+    }
+    if(RunningTaskID != IDLE_TASK)
+    {
+        printf("Error Occured in START OS EX2\n\n");
+        exit(1);
+    }
+
+
     //test E_OK normal activate
-    StatusType st = ActivateTask(T1.ID);
+    st = ActivateTask(T1.ID);
     if(st != E_OK)
     {
         printf("Error Occured in E_OK EX1\n\n");
         exit(1);
     }
-    if (T1.State != READY)
+
+    if (T1.State != RUNNING)
     {
         printf("Error Occured in E_OK EX2\n\n");
         exit(1);
