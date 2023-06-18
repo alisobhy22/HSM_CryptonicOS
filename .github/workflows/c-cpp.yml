@@ -68,6 +68,15 @@ jobs:
    #   run: |
     #    cd Tests/Tasks
     #    ./Schedule_T2
+    
+    - name: Build Schedule_T4
+      run: |
+        cd Tests/Tasks
+        gcc Schedule_T4.c -o Schedule_T4
+    - name: Run Schedule_T4
+      run: |
+        cd Tests/Tasks
+        ./Schedule_T4
         
         
     #- name: Build Example_T1
