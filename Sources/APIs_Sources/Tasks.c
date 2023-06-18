@@ -93,7 +93,7 @@ StatusType ChainTask(TaskType TaskID)
 
 StatusType Schedule(void)
 {
-	printf("Schedule\n");
+	
 	StatusType StatusMsg = E_OK;
 	//check if running task exists
 	//check if running task is preimpteable
