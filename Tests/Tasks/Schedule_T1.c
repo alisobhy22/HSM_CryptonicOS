@@ -1,16 +1,16 @@
 #include "../../Headers/APIs_Headers/Tasks.h"
 #include "../../Sources/APIs_Sources/Tasks.c"
 
-struct Task T1 = { 10,0,0,SUSPENDED,5,5,TASK_FULL,0,1,1 };
-struct Task T2 = { 20,0,1,SUSPENDED,1,1,TASK_NON,0,1,1 };
-struct Task T3 = { 30,0,2,SUSPENDED,2,2,TASK_FULL,0,1,1 };
-struct Task T4 = { 40,0,3,SUSPENDED,3,3,TASK_NON,0,1,1 };
-struct Task T5 = { 50,0,4,SUSPENDED,4,4,TASK_FULL,0,1,1 };
-struct Task T6 = { 60,0,5,SUSPENDED,5,5,TASK_NON,0,1,1 };
-struct Task T7 = { 70,0,6,SUSPENDED,1,1,TASK_FULL,0,1,1 };
-struct Task T8 = { 80,0,7,SUSPENDED,2,2,TASK_NON,0,1,1 };
-struct Task T9 = { 90,0,8,SUSPENDED,3,3,TASK_FULL,0,1,1 };
-struct Task T10 = { 100,0,9,SUSPENDED,4,4,TASK_NON,0,1,1 };
+struct Task T1 = { 10,0,0,SUSPENDED,5,5,TASK_FULL,0,0,1,1 };
+struct Task T2 = { 20,0,1,SUSPENDED,1,1,TASK_NON,0,0,1,1 };
+struct Task T3 = { 30,0,2,SUSPENDED,2,2,TASK_FULL,0,0,1,1 };
+struct Task T4 = { 40,0,3,SUSPENDED,3,3,TASK_NON,0,0,1,1 };
+struct Task T5 = { 50,0,4,SUSPENDED,4,4,TASK_FULL,0,0,1,1 };
+struct Task T6 = { 60,0,5,SUSPENDED,5,5,TASK_NON,0,0,1,1 };
+struct Task T7 = { 70,0,6,SUSPENDED,1,1,TASK_FULL,0,0,1,1 };
+struct Task T8 = { 80,0,7,SUSPENDED,2,2,TASK_NON,0,0,1,1 };
+struct Task T9 = { 90,0,8,SUSPENDED,3,3,TASK_FULL,0,0,1,1 };
+struct Task T10 = { 100,0,9,SUSPENDED,4,4,TASK_NON,0,0,1,1 };
 
 
 void fill_pcbtable();

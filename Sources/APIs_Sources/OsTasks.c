@@ -45,7 +45,6 @@ void OS_Schedule(void)
 		{
 			if(Ready_Queue.Head->task->Priority > OsTasksPCB[RunningTaskID]->Priority)
 			{
-				printf("2\n");
 				OsTasksPCB[RunningTaskID]->State = READY;
 				RunningTaskID = Ready_Queue.Head->task->ID;
 				Ready_Queue.Head->task->State = RUNNING;

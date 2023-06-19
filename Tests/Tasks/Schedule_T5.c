@@ -2,11 +2,11 @@
 #include "../../Sources/APIs_Sources/Tasks.c"
 
 
-struct Task T1 = { 10,0,0,SUSPENDED,5,5,TASK_NON,0,1,0 };
-struct Task T2 = { 20,0,1,SUSPENDED,5,5,TASK_FULL,0,1,0 };
-struct Task T3 = { 30,0,2,SUSPENDED,6,6,TASK_FULL,0,1,0 };
-struct Task T4 = { 40,0,3,SUSPENDED,6,6,TASK_NON,0,1, 0 };
-struct Task T5 = { 50,0,4,SUSPENDED,8,8,TASK_FULL,0,1, 0 };
+struct Task T1 = { 10,0,0,SUSPENDED,5,5,TASK_NON,0,0,1,0 };
+struct Task T2 = { 20,0,1,SUSPENDED,5,5,TASK_FULL,0,0,1,0 };
+struct Task T3 = { 30,0,2,SUSPENDED,6,6,TASK_FULL,0,0,1,0 };
+struct Task T4 = { 40,0,3,SUSPENDED,6,6,TASK_NON,0,0,1, 0 };
+struct Task T5 = { 50,0,4,SUSPENDED,8,8,TASK_FULL,0,0,1, 0 };
 //struct Task T6 = { 60,0,5,SUSPENDED,5,5,TASK_NON,0,1,  0 };
 //struct Task T7 = { 70,0,6,SUSPENDED,1,1,TASK_FULL,0,1, 0 };
 //struct Task T8 = { 80,0,7,SUSPENDED,2,2,TASK_NON,0,1,  0 };

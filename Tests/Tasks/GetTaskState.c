@@ -8,9 +8,9 @@ int main()
 {
 
    
-    struct Task IDLE = { 0,0,IDLE_TASK,SUSPENDED,0,0,TASK_FULL,0,200,0 };
+    struct Task IDLE = { 0,0,IDLE_TASK,SUSPENDED,0,0,TASK_FULL,0,0,200,0 };
     struct Task T1 =
-    {0,0, 0,SUSPENDED,5,5,TASK_NON,0,1,0 };
+    {0,0, 0,SUSPENDED,5,5,TASK_NON,0,0,1,0 };
     OsTasksPCB[T1.ID] = &T1;
     OsTasksPCB[IDLE_TASK] = &IDLE;
     //startos

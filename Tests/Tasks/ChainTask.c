@@ -19,7 +19,7 @@ int main()
     OsTasksPCB[0] = &T1;
     OsTasksPCB[1] = &T2;
     OsTasksPCB[2] = &T3;
-    struct Task IDLE = { 0,0,IDLE_TASK,SUSPENDED,0,0,TASK_FULL,0,200,0 };
+    struct Task IDLE = { 0,0,IDLE_TASK,SUSPENDED,0,0,TASK_FULL,0,5,200,0 }; // causes error !!
     OsTasksPCB[IDLE_TASK] = &IDLE;
     //startos
     StatusType st = ActivateTask(IDLE.ID);

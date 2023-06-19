@@ -101,16 +101,15 @@ StatusType Schedule(void)
 
 	if(RunningTaskID == INVALID_TASK)
 	{
-		printf("1\n");
+		
 		//feth highest priority task from ready queue
 		RunningTaskID = Ready_Queue.Head->task->ID;
-		printf("1\n");
+		
 		Ready_Queue.Head->task->State = RUNNING;
-		printf("1\n");
+		
 		// context switch?????
 		StatusMsg = E_OK;
-		printf("1\n");
-		printf("1 DONE\n");
+		
 	}
 	else
 	{
@@ -118,7 +117,7 @@ StatusType Schedule(void)
 		{
 			if(Ready_Queue.Head->task->Priority > OsTasksPCB[RunningTaskID]->Priority)
 			{
-				printf("2\n");
+				
 				OsTasksPCB[RunningTaskID]->State = READY;
 				RunningTaskID = Ready_Queue.Head->task->ID;
 				Ready_Queue.Head->task->State = RUNNING;
@@ -137,7 +136,7 @@ StatusType Schedule(void)
 		}
 
 	}
-	printf("Schedule end\n");
+	
 	return StatusMsg;
 }
 
