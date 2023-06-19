@@ -1,6 +1,6 @@
 #include "../../Headers/APIs_Headers/Tasks.h"
 #include "../../Sources/APIs_Sources/Tasks.c"
-#include <stdlib.h>c
+#include <stdlib.h>
 
 struct Task IDLE = { 0,0,IDLE_TASK,SUSPENDED,0,0,TASK_FULL,0,0,200,0 };
 struct Task T1 = { 10,0,0,SUSPENDED,5,5,TASK_FULL,0,0,1,0 };
