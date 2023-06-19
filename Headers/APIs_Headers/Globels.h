@@ -8,7 +8,7 @@
 
 //Tasks Things
 
-#define INVALID_TASK 255
+#define INVALID_TASK MAX_TASKS
 
 #define RUNNING 1
 #define READY 2
@@ -39,11 +39,29 @@ typedef uint8_t* TaskRefType;
 typedef uint8_t TaskStateType;
 typedef uint8_t* TaskStateRefType;
 
-extern struct Task* OsTasksPCB[MAX_TASKS+2];
+extern struct Task* OsTasksPCB[MAX_TASKS];
 extern TaskType RunningTaskID;
-extern struct Task* Ready_Queue[MAX_TASKS+2];
+
 
 extern uint8_t Queue_Size;
+
+struct Ready_Entry { //Is for an array holding all entries of the ready list
+	struct Task* task;
+	struct Ready_Entry* Prev;
+	struct Ready_Entry* Next;
+};
+
+struct Ready_List { //Is for size and head/tail pointers to navigate the ready entries
+	uint8_t Queue_Size;
+	struct Ready_Entry* Head;
+	struct Ready_Entry* Tail;
+};
+
+extern struct Ready_List Ready_Queue;
+
+extern struct Ready_Entry Ready_Entries[MAX_TASKS];
+
+
 
 
 struct Task
@@ -57,6 +75,7 @@ struct Task
 	const uint8_t F_PREEM; // flag of preemetivety 0 or 1
 	uint8_t Preeimpted; // flag wether it was preimpted or not
 	uint8_t Activation_Record; // activation record of task
+	uint8_t Activation_Request; // request record of task
 	uint8_t Reasourses_Occupied; //reimplement later using array
 	// add function pointer refrence to task function
 };

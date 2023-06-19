@@ -1,11 +1,12 @@
 #include "../../Headers/APIs_Headers/Tasks.h"
 #include "../../Sources/APIs_Sources/Tasks.c"
+#include <stdlib.h>
 
-
-struct Task T1 = { 10,0,0,SUSPENDED,5,5,TASK_FULL,0,1,0 };
-struct Task T2 = { 20,0,1,SUSPENDED,5,5,TASK_FULL,0,1,0 };
-struct Task T3 = { 30,0,2,SUSPENDED,5,5,TASK_FULL,0,1,0 };
-struct Task T4 = { 40,0,3,SUSPENDED,6,6,TASK_FULL,0,1, 0 };
+struct Task IDLE = { 0,0,IDLE_TASK,SUSPENDED,0,0,TASK_FULL,0,0,200,0 };
+struct Task T1 = { 10,0,0,SUSPENDED,5,5,TASK_FULL,0,0,1,0 };
+struct Task T2 = { 20,0,1,SUSPENDED,5,5,TASK_FULL,0,0,1,0 };
+struct Task T3 = { 30,0,2,SUSPENDED,5,5,TASK_FULL,0,0,1,0 };
+struct Task T4 = { 40,0,3,SUSPENDED,6,6,TASK_FULL,0,0,1,0 };
 //struct Task T5 = { 50,0,4,SUSPENDED,4,4,TASK_FULL,0,1, 0 };
 //struct Task T6 = { 60,0,5,SUSPENDED,5,5,TASK_NON,0,1,  0 };
 //struct Task T7 = { 70,0,6,SUSPENDED,1,1,TASK_FULL,0,1, 0 };
@@ -26,44 +27,86 @@ int main()
     //Testing Scheduler with tasks that are preemptive with same priorities except one to check the ordering in queue is right or not 
 
     fill_pcbtable();
+    StatusType st = ActivateTask(IDLE_TASK);
+    if (st != E_OK)
+    {
+        printf("Error Occured in START OS EX1 \n\n");
+        exit(1);
+    }
+    if (RunningTaskID != IDLE_TASK)
+    {
+        printf("Error Occured in START OS EX2 \n\n");
+        exit(1);
+    }
+
+
+    st = ActivateTask(0); //T1
+    
+    if (st != E_OK)
+    {
+        printf("Error Occured in T1 E_OK \n\n");
+        exit(1);
+    }
+    if (T1.State != RUNNING && IDLE.State != READY)
+    {
+        printf("Error Occured in T1 Act \n\n");
+        exit(1);
+    }
+
+
+    st = ActivateTask(1);
+    if (st != E_OK)
+    {
+        printf("Error Occured in T2 E_OK \n\n");
+        exit(1);
+    }
+    if (RunningTaskID != T1.ID)
+    {
+        printf("Error Occured in T2 Act \n\n");
+        exit(1);
+    }
 
 
 
-    print_PCB_Table();
+    st =ActivateTask(2);
+    
+    if (st != E_OK)
+    {
+        printf("Error Occured in T3 E_OK \n\n");
+        exit(1);
+    }
+    if (RunningTaskID != T1.ID)
+    {
+        printf("Error Occured in T3 Act \n\n");
+        exit(1);
+    }
 
 
-    ActivateTask(0);
-    Schedule();
-    print_ready_queue();
+    st = ActivateTask(3);
+    if (st != E_OK)
+    {
+        printf("Error Occured in T4 E_OK \n\n");
+        exit(1);
+    }
+    if (RunningTaskID != T4.ID)
+    {
+        printf("Error Occured in T4 Act \n\n");
+        exit(1);
+    }
+    st = TerminateTask();
 
-    ActivateTask(1);
-    Schedule();
-    print_ready_queue();
+    if(st!=E_OK)
+    {
+        printf("Error Occured in T4 Ter \n\n");
+        exit(1);
+    }
+    if (RunningTaskID != T1.ID)
+    {
+        printf("Error Occured in T4 Ter \n\n");
+        exit(1);
+    }
 
-
-
-    ActivateTask(2);
-    Schedule();
-    print_ready_queue();
-
-
-    ActivateTask(3);
-    Schedule();
-    print_ready_queue();
-
-    TerminateTask();
-    Schedule();
-    print_ready_queue();
-
-
-    print_PCB_Table();
-
-
-   
-
-
-    ///print PCB
-    //print Ready queue
+    printf("TEST PASSED");
 
     return 0;
 }
@@ -75,7 +118,7 @@ void fill_pcbtable()
 {
 
 
-
+    OsTasksPCB[IDLE_TASK] = &IDLE;
     OsTasksPCB[0] = &T1;
     OsTasksPCB[1] = &T2;
     OsTasksPCB[2] = &T3;
@@ -92,9 +135,12 @@ void fill_pcbtable()
 void print_ready_queue()
 {
     printf("Ready Queue: ");
-    for (int i = 0; i < Queue_Size; i++)
+    struct Ready_Entry* current = Ready_Queue.Head;
+    while(current!=NULL)
     {
-        printf("%d ", Ready_Queue[i]->ID);
+        printf("%d ",current->task->ID);
+
+        current=current->Next;
     }
     printf("\n");
 }
@@ -105,4 +151,5 @@ void print_PCB_Table()
     {
         printf("id: %d, state: %d \n", OsTasksPCB[i]->ID, OsTasksPCB[i]->State);
     }
+    printf("\n\n\n");
 }

@@ -11,7 +11,8 @@
 
 void OS_ActivateTask(TaskType TaskID);
 void OS_TerminateTask(void);
+void OS_Schedule(void);
 void OS_Insert(struct Task *newTask);
-void OS_Delete(uint8_t id);
+void OS_Delete(TaskType TaskID);
 
 #endif
