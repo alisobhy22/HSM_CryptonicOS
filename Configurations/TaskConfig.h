@@ -11,5 +11,5 @@
 
 #define MAX_TASK_PER_PRIO 3
 
-
+#define MAX_EVENTS 5
 #endif
