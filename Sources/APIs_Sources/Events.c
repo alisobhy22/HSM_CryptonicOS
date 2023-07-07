@@ -100,9 +100,7 @@ StatusType ClearEvent (EventMaskRefType Mask)
     }
 
         // E_OS_CALLEVEL
-
-    for(int i=0;i<MAX_EVENTS;i++)
-        Mask[i]=0;
+    OsTasksPCB[RunningTaskID]->Waiting_Events=Mask;
     
     return E_OK;
 }
