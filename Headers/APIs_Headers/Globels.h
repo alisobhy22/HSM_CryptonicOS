@@ -37,11 +37,17 @@ typedef uint8_t* TaskRefType;
 typedef uint8_t TaskStateType;
 typedef uint8_t* TaskStateRefType;
 
+
+typedef uint8_t EventMaskType;
+typedef uint8_t* EventMaskRefType;
+
+
 extern struct Task* OsTasksPCB[MAX_TASKS];
 extern TaskType RunningTaskID;
 
 
 extern uint8_t Queue_Size;
+
 
 struct Ready_Entry { //Is for an array holding all entries of the ready list
 	struct Task* task;
@@ -76,6 +82,10 @@ struct Task
 	uint8_t Activation_Request; // request record of task
 	uint8_t Reasourses_Occupied; //reimplement later using array
 	// add function pointer refrence to task function
+
+	//for events
+	uint8_t Extended; // flag wether it is extended or basic
+	EventMaskType* Waiting_Events; // array of events that the task is waiting for
 };
 
 //
