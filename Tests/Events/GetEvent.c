@@ -6,7 +6,6 @@
 int main()
 {
     printf("Testing GetEvent\n\n");
-    exit(0);
     EventMaskRefType Event;
     EventMaskType EventMask[MAX_EVENTS] = {0,0,0,0,0};
     struct Task T0 =  {0,0,0,READY,5,5,TASK_NON,0,0,1,0,1,EventMask}; //normal extended task
@@ -22,32 +21,32 @@ int main()
     OsTasksPCB[3] = &T3;
 
     printf("Before GetEvent\n\n");
-    StatusType st = GetEvent(T0.ID,Event);
-    printf("After GetEvent\n\n");
-    if(st != E_OK)
-    {
-        printf("Error Occured in E_OK EX1\n\n");
-        exit(1);
-    }
-    for(int i=0;i<MAX_EVENTS;i++)
-    {
-        if(Event[i] != EventMask[i])
-        {
-            printf("Error Occured in E_OK EX2\n\n");
-            exit(1);
-        }
-    }
-    printf("Test 1 Passed\n\n");
+    // StatusType st = GetEvent(T0.ID,Event);
+    // printf("After GetEvent\n\n");
+    // if(st != E_OK)
+    // {
+    //     printf("Error Occured in E_OK EX1\n\n");
+    //     exit(1);
+    // }
+    // for(int i=0;i<MAX_EVENTS;i++)
+    // {
+    //     if(Event[i] != EventMask[i])
+    //     {
+    //         printf("Error Occured in E_OK EX2\n\n");
+    //         exit(1);
+    //     }
+    // }
+    // printf("Test 1 Passed\n\n");
 
-    st = GetEvent(T1.ID,Event);
-    if(st != E_OS_ID)
-    {
-        printf("Error Occured in E_OS_ID EX1\n\n");
-        exit(1);
-    }
-    printf("Test 2 Passed\n\n");
+    // st = GetEvent(T1.ID,Event);
+    // if(st != E_OS_ID)
+    // {
+    //     printf("Error Occured in E_OS_ID EX1\n\n");
+    //     exit(1);
+    // }
+    // printf("Test 2 Passed\n\n");
 
-    st = GetEvent(T2.ID,Event);
+    // st = GetEvent(T2.ID,Event);
     // if(st != E_OS_ACCESS)
     // {
     //     printf("Error Occured in E_OS_ACCESS EX1\n\n");
