@@ -1,8 +1,8 @@
 #include "../../Headers/APIs_Headers/Events.h"
 #include "../../Headers/APIs_Headers/OSTasks.h"
-//include OSTasks.c
 #include "OsTasks.c"
 #include "../../Headers/APIs_Headers/Globels.h"
+#include "../../Headers/APIs_Headers/Libraries.h"
 
 
 struct Task *OsTasksPCB[MAX_TASKS];

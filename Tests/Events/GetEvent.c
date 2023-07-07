@@ -10,7 +10,7 @@ int main()
     struct Task T0 =  {0,0,0,READY,5,5,TASK_NON,0,0,1,0,1,EventMask}; //normal extended task
     struct Task T1 = {0,0,MAX_TASKS,SUSPENDED,5,5,TASK_NON,0,0,0,0,0,NULL}; //invalid task
     struct Task T2 =  {0,0,2,READY,5,5,TASK_NON,0,0,1,0,0,NULL};  //not extended task
-    struct Task T3 =  {0,0,3,SUSPENDED,5,5,TASK_NON,0,0,1,0,1,EventMask};
+    struct Task T3 =  {0,0,3,SUSPENDED,5,5,TASK_NON,0,0,1,0,1,EventMask}; //suspended task
 
 
 
