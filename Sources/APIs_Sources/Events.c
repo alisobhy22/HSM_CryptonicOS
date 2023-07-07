@@ -90,6 +90,8 @@ StatusType GetEvent(TaskType TaskID, EventMaskRefType Event)
     }
 
 
+    Event = OsTasksPCB[TaskID]->Waiting_Events;
+
 
     
     return E_OK;

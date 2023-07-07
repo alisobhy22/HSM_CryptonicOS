@@ -21,7 +21,7 @@ int main()
     OsTasksPCB[3] = &T3;
 
     printf("Before GetEvent\n\n");
-    StatusType st = GetEvent(T0.ID,Event);
+    StatusType st = GetEvent(T0.ID,&Event);
     printf("After GetEvent\n\n");
     // if(st != E_OK)
     // {
