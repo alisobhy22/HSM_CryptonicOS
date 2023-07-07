@@ -1,7 +1,15 @@
 #include "../../Headers/APIs_Headers/Events.h"
-extern struct Task *OsTasksPCB[MAX_TASKS];
-extern TaskType RunningTaskID;
+#include "../../Headers/APIs_Headers/OSTasks.h"
+//include OSTasks.c
+#include "OsTasks.c"
+#include "../../Headers/APIs_Headers/Globels.h"
 
+
+struct Task *OsTasksPCB[MAX_TASKS];
+TaskType RunningTaskID;
+uint8_t Queue_Size;
+struct Ready_List Ready_Queue;
+struct Ready_Entry Ready_Entries[MAX_TASKS];
 
 
 StatusType SetEvent (TaskType TaskID, EventMaskType* ActivatedEvents)
@@ -28,7 +36,7 @@ StatusType SetEvent (TaskType TaskID, EventMaskType* ActivatedEvents)
             {
                 //OsTasksPCB[RunningTaskID]->Waiting_Events[i]=0; //clear the event
                 OsTasksPCB[TaskID]->State = READY;
-                OS_insert(TaskID); //insert to ready queue
+                OS_Insert(OsTasksPCB[TaskID]); //insert to ready queue
                 return E_OK;
             }
         }
@@ -70,16 +78,16 @@ StatusType GetEvent(TaskType TaskID, EventMaskRefType Event)
         return E_OS_ID;
     }
 
-     if (OsTasksPCB[RunningTaskID]->Extended == 0)
+     if (OsTasksPCB[TaskID]->Extended == 0)
     {
         return E_OS_ACCESS;
     }
     
-       if (OsTasksPCB[RunningTaskID]->State == SUSPENDED)
+       if (OsTasksPCB[TaskID]->State == SUSPENDED)
     {
         return E_OS_STATE;
     }
-    Event = OsTasksPCB[RunningTaskID]->Waiting_Events;
+    memcpy(Event, OsTasksPCB[TaskID]->Waiting_Events, MAX_EVENTS * sizeof(uint8_t));
     return E_OK;
     
 }
