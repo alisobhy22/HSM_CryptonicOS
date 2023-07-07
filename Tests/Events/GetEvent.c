@@ -28,29 +28,6 @@ int main()
         printf("Error Occured in E_OK EX1\n\n");
         exit(1);
     }
-    uint8_t Temp1[MAX_EVENTS];
-    
-    for(int i = 0; i < MAX_EVENTS; i++)
-    {
-        Temp1[i] = Event[i];
-    }
-    
-    //print temp1
-    printf("Temp1: ");
-    for(int i = 0; i < MAX_EVENTS; i++)
-    {
-        printf("%d ", Temp1[i]);
-    }
-
-
-    // for(int i=0;i<MAX_EVENTS;i++)
-    // {
-    //     if(Temp1[i] != EventMask[i])
-    //     {
-    //         printf("Error Occured in E_OK EX2\n\n");
-    //         exit(1);
-    //     }
-    // }
     printf("Test 1 Passed\n\n");
 
     st = GetEvent(T1.ID,Event);
