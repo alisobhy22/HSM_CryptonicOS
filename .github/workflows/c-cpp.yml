@@ -116,5 +116,39 @@ jobs:
         cd Tests/Tasks
         ./TerminateTask
 
-
-
+    - name: Build ClearEvent
+      run: |
+            cd Tests/Events
+            gcc ClearEvent.c -o ClearEvent
+    - name: Run ClearEvent
+      run: |
+            cd Tests/Events
+            ./ClearEvent
+        
+    - name: Build WaitEvent
+      run: |
+            cd Tests/Events
+            gcc WaitEvent.c -o WaitEvent
+    - name: Run WaitEvent
+      run: |
+            cd Tests/Events
+            ./WaitEvent
+            
+            
+    - name: Build GetEvent
+      run: |
+            cd Tests/Events
+            gcc GetEvent.c -o GetEvent
+    - name: Run GetEvent
+      run: |
+            cd Tests/Events
+            ./GetEvent
+            
+    - name: Build SetEvent
+      run: |
+            cd Tests/Events
+            gcc SetEvent.c -o SetEvent
+    - name: Run SetEvent
+      run: |
+            cd Tests/Events
+            ./SetEvent
