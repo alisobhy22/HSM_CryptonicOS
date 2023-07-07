@@ -24,28 +24,28 @@ int main()
     printf("Before GetEvent\n\n");
     StatusType st = GetEvent(T0.ID,Event);
     printf("After GetEvent\n\n");
-    // if(st != E_OK)
-    // {
-    //     printf("Error Occured in E_OK EX1\n\n");
-    //     exit(1);
-    // }
-    // for(int i=0;i<MAX_EVENTS;i++)
-    // {
-    //     if(Event[i] != EventMask[i])
-    //     {
-    //         printf("Error Occured in E_OK EX2\n\n");
-    //         exit(1);
-    //     }
-    // }
-    // printf("Test 1 Passed\n\n");
+    if(st != E_OK)
+    {
+        printf("Error Occured in E_OK EX1\n\n");
+        exit(1);
+    }
+    for(int i=0;i<MAX_EVENTS;i++)
+    {
+        if(Event[i] != EventMask[i])
+        {
+            printf("Error Occured in E_OK EX2\n\n");
+            exit(1);
+        }
+    }
+    printf("Test 1 Passed\n\n");
 
-    // st = GetEvent(T1.ID,Event);
-    // if(st != E_OS_ID)
-    // {
-    //     printf("Error Occured in E_OS_ID EX1\n\n");
-    //     exit(1);
-    // }
-    // printf("Test 2 Passed\n\n");
+    st = GetEvent(T1.ID,Event);
+    if(st != E_OS_ID)
+    {
+        printf("Error Occured in E_OS_ID EX1\n\n");
+        exit(1);
+    }
+    printf("Test 2 Passed\n\n");
 
     // st = GetEvent(T2.ID,Event);
     // if(st != E_OS_ACCESS)
