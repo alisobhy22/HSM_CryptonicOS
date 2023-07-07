@@ -87,7 +87,7 @@ StatusType GetEvent(TaskType TaskID, EventMaskRefType Event)
     {
         return E_OS_STATE;
     }
-    memcpy(Event, OsTasksPCB[TaskID]->Waiting_Events, MAX_EVENTS * sizeof(uint8_t));
+    //memcpy(Event, OsTasksPCB[TaskID]->Waiting_Events, MAX_EVENTS * sizeof(uint8_t));
     return E_OK;
     
 }
