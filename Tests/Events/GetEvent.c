@@ -47,7 +47,7 @@ int main()
     }
     printf("Test 2 Passed\n\n");
 
-    // st = GetEvent(T2.ID,Event);
+    st = GetEvent(T2.ID,Event);
     // if(st != E_OS_ACCESS)
     // {
     //     printf("Error Occured in E_OS_ACCESS EX1\n\n");
