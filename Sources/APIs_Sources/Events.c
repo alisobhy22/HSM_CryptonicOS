@@ -3,7 +3,7 @@
 #include "OsTasks.c"
 #include "../../Headers/APIs_Headers/Globels.h"
 #include "../../Headers/APIs_Headers/Libraries.h"
-
+#include <string.h>
 
 struct Task *OsTasksPCB[MAX_TASKS];
 TaskType RunningTaskID;
