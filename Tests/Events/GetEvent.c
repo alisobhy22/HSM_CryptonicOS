@@ -7,21 +7,21 @@ int main()
 {
     printf("Testing GetEvent\n\n");
     exit(0);
-    // EventMaskRefType Event;
-    // EventMaskType EventMask[MAX_EVENTS] = {0,0,0,0,0};
-    // struct Task T0 =  {0,0,0,READY,5,5,TASK_NON,0,0,1,0,1,EventMask}; //normal extended task
-    // struct Task T1 = {0,0,MAX_TASKS,SUSPENDED,5,5,TASK_NON,0,0,0,0,0,NULL}; //invalid task
-    // struct Task T2 =  {0,0,2,READY,5,5,TASK_NON,0,0,1,0,0,NULL};  //not extended task
-    // struct Task T3 =  {0,0,3,SUSPENDED,5,5,TASK_NON,0,0,1,0,1,EventMask}; //suspended task
+    EventMaskRefType Event;
+    EventMaskType EventMask[MAX_EVENTS] = {0,0,0,0,0};
+    struct Task T0 =  {0,0,0,READY,5,5,TASK_NON,0,0,1,0,1,EventMask}; //normal extended task
+    struct Task T1 = {0,0,MAX_TASKS,SUSPENDED,5,5,TASK_NON,0,0,0,0,0,NULL}; //invalid task
+    struct Task T2 =  {0,0,2,READY,5,5,TASK_NON,0,0,1,0,0,NULL};  //not extended task
+    struct Task T3 =  {0,0,3,SUSPENDED,5,5,TASK_NON,0,0,1,0,1,EventMask}; //suspended task
 
 
 
-    // OsTasksPCB[0] = &T0;
-    // OsTasksPCB[1] = &T1;
-    // OsTasksPCB[2] = &T2;
-    // OsTasksPCB[3] = &T3;
+    OsTasksPCB[0] = &T0;
+    OsTasksPCB[1] = &T1;
+    OsTasksPCB[2] = &T2;
+    OsTasksPCB[3] = &T3;
 
-    // printf("Before GetEvent\n\n");
+    printf("Before GetEvent\n\n");
     // StatusType st = GetEvent(T0.ID,Event);
     // printf("After GetEvent\n\n");
     // if(st != E_OK)
