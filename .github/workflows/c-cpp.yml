@@ -134,16 +134,6 @@ jobs:
             cd Tests/Events
             ./WaitEvent
             
-            
-    - name: Build GetEvent
-      run: |
-            cd Tests/Events
-            gcc GetEvent.c -o GetEvent
-    - name: Run GetEvent
-      run: |
-            cd Tests/Events
-            ./GetEvent
-            
     - name: Build SetEvent
       run: |
             cd Tests/Events
@@ -152,3 +142,13 @@ jobs:
       run: |
             cd Tests/Events
             ./SetEvent
+
+
+    - name: Build GetEvent
+      run: |
+            cd Tests/Events
+            gcc GetEvent.c -o GetEvent
+    - name: Run GetEvent
+      run: |
+            cd Tests/Events
+            ./GetEvent
