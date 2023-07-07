@@ -5,6 +5,7 @@
 
 int main()
 {
+    printf("Testing GetEvent\n\n");
     EventMaskRefType Event;
     EventMaskType EventMask[MAX_EVENTS] = {0,0,0,0,0};
     struct Task T0 =  {0,0,0,READY,5,5,TASK_NON,0,0,1,0,1,EventMask}; //normal extended task
@@ -19,8 +20,9 @@ int main()
     OsTasksPCB[2] = &T2;
     OsTasksPCB[3] = &T3;
 
-
+    printf("Before GetEvent\n\n");
     StatusType st = GetEvent(T0.ID,Event);
+    printf("After GetEvent\n\n");
     if(st != E_OK)
     {
         printf("Error Occured in E_OK EX1\n\n");
