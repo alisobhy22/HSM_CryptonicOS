@@ -3,6 +3,9 @@
 
 #include "../../Configurations/TaskConfig.h"
 #include "../../Configurations/ResourceConfig.h"
+#include "Libraries.h"
+
+
 
 // Tasks Things
 
@@ -57,7 +60,7 @@ struct Ready_List
 extern struct Ready_List Ready_Queue;
 
 extern struct Ready_Entry Ready_Entries[MAX_TASKS];
-
+typedef uint8_t ResourceType;
 struct Task
 {
 	int address;					   // address of the task in memory
@@ -79,7 +82,7 @@ struct Task
 
 	// for resoruces
 	ResourceType Last_Running_Resource; // Current/Last assigned reso
-	ResourceType *Needed_Resources;		// refrence to Resources needed by Task
+	struct Resource *Needed_Resources;		// refrence to Resources needed by Task
 };
 
 //
@@ -90,10 +93,11 @@ struct Task
 
 
 
-typedef uint8_t ResourceType;
+
 
 struct Resource
 {
+	ResourceType Res_ID;
 	uint8_t Ceiling_Priority;
 
 	ResourceType Linked_Resource ;
@@ -104,6 +108,6 @@ struct Resource
 
 };
 
-extern struct Resource *OsResourcePCB[MAX_RESOURCES];
+extern struct Resource *OsResourcesPCB[MAX_RESOURCES];
 
 #endif
