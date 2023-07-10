@@ -18,12 +18,14 @@ int main()
     OsResourcesPCB[2] = &R2;
     OsResourcesPCB[3] = &R3;
 
-    struct Task T0 = {0, 0, 0, WAITING, 5, 5, TASK_NON, 0, 0, 1, 4, 1, NULL, INVALID_RESOURCE, &(struct Resource[]){R0, R1, R2, R3}};
-    struct Task T1 = {0, 0, 1, WAITING, 6, 6, TASK_NON, 0, 0, 1, 4, 0, NULL, INVALID_RESOURCE, &(struct Resource[]){R0, R1, R3}};
-    struct Task T2 = {0, 0, 2, SUSPENDED, 5, 5, TASK_NON, 0, 0, 1, 4, 1, NULL, INVALID_RESOURCE, &(struct Resource[]){R0, R1, R2, R3}};
-    struct Task T3 = {0, 0, MAX_TASKS, SUSPENDED, 5, 5, TASK_NON, 0, 0, 0, 4, 0, NULL, INVALID_RESOURCE, &(struct Resource[]){R0, R1, R2, R3}};
-    struct Task T4 = {0, 0, 4, WAITING, 5, 5, TASK_NON, 0, 0, 1, 4, 1, NULL, INVALID_RESOURCE, &(struct Resource[]){R0, R1, R2, R3}};
+    struct Task IDLE = {0, 0, IDLE_TASK, SUSPENDED, 0, 0, TASK_FULL, 0, 0, 200, 0};
+    struct Task T0 = {0, 0, 0, WAITING, 5, 5, TASK_NON, 0, 0, 1, 0, 1, NULL, INVALID_RESOURCE, &(struct Resource[]){R0, R1, R2, R3}};
+    struct Task T1 = {0, 0, 1, WAITING, 6, 6, TASK_NON, 0, 0, 1, 0, 0, NULL, INVALID_RESOURCE, &(struct Resource[]){R0, R1, R3}};
+    struct Task T2 = {0, 0, 2, SUSPENDED, 5, 5, TASK_NON, 0, 0, 1, 0, 1, NULL, INVALID_RESOURCE, &(struct Resource[]){R0, R1, R2, R3}};
+    struct Task T3 = {0, 0, MAX_TASKS, SUSPENDED, 5, 5, TASK_NON, 0, 0, 0, 0, 0, NULL, INVALID_RESOURCE, &(struct Resource[]){R0, R1, R2, R3}};
+    struct Task T4 = {0, 0, 4, WAITING, 5, 5, TASK_NON, 0, 0, 1, 0, 1, NULL, INVALID_RESOURCE, &(struct Resource[]){R0, R1, R2, R3}};
 
+    OsTasksPCB[IDLE_TASK] = &IDLE;
     OsTasksPCB[0] = &T0;
     OsTasksPCB[1] = &T1;
     OsTasksPCB[2] = &T2;
@@ -31,7 +33,7 @@ int main()
     OsTasksPCB[4] = &T4;
 
     StatusType st;
-    st = Activate_Task(T0.ID);
+    OS_ActivateTask(T0.ID);
 
     st = GetResource(R0.Res_ID);
     st = GetResource(R1.Res_ID);
