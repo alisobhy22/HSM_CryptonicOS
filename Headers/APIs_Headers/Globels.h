@@ -84,6 +84,7 @@ struct Task
 	// for resoruces
 	ResourceType Last_Running_Resource; // Current/Last assigned reso
 	struct Resource *Needed_Resources;		// refrence to Resources needed by Task
+	// BAAAD WARNING FROM HERE here 
 };
 
 //
@@ -101,7 +102,7 @@ struct Resource
 	ResourceType Res_ID;
 	uint8_t Ceiling_Priority;
 
-	ResourceType Linked_Resource ;
+	ResourceType *Linked_Resource ;
 	ResourceType Resrouce_Property;
 
 	TaskType Resource_Owner;

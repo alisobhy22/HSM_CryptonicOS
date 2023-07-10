@@ -3,8 +3,8 @@
 
 
 
-#include "Globels.h"
-#include "Libraries.h"
+#include "OsTasks.h"
+#include "../../Sources/APIs_Sources/OsTasks.c"
 
 
 StatusType GetResource(ResourceType ResID); 

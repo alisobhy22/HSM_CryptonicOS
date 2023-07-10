@@ -1,5 +1,14 @@
 #include "../../Headers/APIs_Headers/Resources.h"
 
+struct Task *OsTasksPCB[MAX_TASKS];
+TaskType RunningTaskID;
+uint8_t Queue_Size;
+struct Ready_List Ready_Queue;
+struct Ready_Entry Ready_Entries[MAX_TASKS];
+
+struct Task *OsTasksPCB[MAX_TASKS];
+struct Resource *OsResourcesPCB[MAX_RESOURCES];
+
 StatusType GetResource(ResourceType ResID)
 {
     StatusType StatusMsg = E_OK;
@@ -25,7 +34,7 @@ StatusType GetResource(ResourceType ResID)
             OsResourcesPCB[ResID]->Resource_Owner = OsTasksPCB[RunningTaskID]->ID;
             OsResourcesPCB[ResID]->Prev_Resource = OsTasksPCB[RunningTaskID]->Last_Running_Resource;
             OsTasksPCB[RunningTaskID]->Last_Running_Resource = ResID;
-            OS_Schedule();
+            //OS_Schedule();
             
         }
     }
@@ -76,7 +85,11 @@ StatusType ReleaseResource(ResourceType ResID)
 
                 OsResourcesPCB[ResID]->Resource_Owner = INVALID_TASK;
 
-                OS_Schedule();
+                if(OsTasksPCB[RunningTaskID]->F_PREEM == TASK_FULL)
+                {
+                    OS_Schedule();
+                }
+                
             }
         }
     }

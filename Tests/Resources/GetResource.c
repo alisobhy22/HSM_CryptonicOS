@@ -1,11 +1,11 @@
 #include "../../Headers/APIs_Headers/Resources.h"
 #include "../../Sources/APIs_Sources/Resources.c"
+#include <stdlib.h>
 
 
 
 int main()
 {
-    printf("Error Occured in E_OK EX4\n\n");
     // EventMaskType EventMask[MAX_EVENTS] = {0,1,0,1,0};
     // EventMaskType ActivatedEvents[MAX_EVENTS] = {0,0,0,0,0};
 
@@ -19,13 +19,15 @@ int main()
     OsResourcesPCB[2] = &R2;
     OsResourcesPCB[3] = &R3;
 
-    
-    struct Task T0 =  {0,0,0,WAITING,5,5,TASK_NON,0,0,1,2,1,NULL, INVALID_RESOURCE, &(struct Resource[]){R0,R1} }; 
-    struct Task T1 =  {0,0,1,WAITING,5,5,TASK_NON,0,0,1,1,0,NULL, INVALID_RESOURCE, &(struct Resource[]){R2} };  
-    struct Task T2 =  {0,0,2,SUSPENDED,5,5,TASK_NON,0,0,1,1,1,NULL, INVALID_RESOURCE, &(struct Resource[]){R3} }; 
-    struct Task T3 = {0,0,MAX_TASKS,SUSPENDED,5,5,TASK_NON,0,0,0,4,0,NULL, INVALID_RESOURCE, &(struct Resource[]){R0,R1,R2,R3} };
-    struct Task T4 =  {0,0,4,WAITING,5,5,TASK_NON,0,0,1,4,1,NULL, INVALID_RESOURCE, &(struct Resource[]){R0,R1,R2,R3}};
+    //Terminating functions are bad in Tasks.c for E_OS_RESOURCE, must be handled
+    struct Task IDLE = {0, 0, IDLE_TASK, SUSPENDED, 0, 0, TASK_FULL, 0, 0, 200, 0};
+    struct Task T0 =  {0,0,0,WAITING,5,5,TASK_NON,0,0,1,0,1,NULL, INVALID_RESOURCE, &(struct Resource[]){R0,R1} }; 
+    struct Task T1 =  {0,0,1,WAITING,5,5,TASK_NON,0,0,1,0,0,NULL, INVALID_RESOURCE, &(struct Resource[]){R2} };  
+    struct Task T2 =  {0,0,2,SUSPENDED,5,5,TASK_NON,0,0,1,0,1,NULL, INVALID_RESOURCE, &(struct Resource[]){R3} }; 
+    struct Task T3 = {0,0,MAX_TASKS,SUSPENDED,5,5,TASK_NON,0,0,0,0,0,NULL, INVALID_RESOURCE, &(struct Resource[]){R0,R1,R2,R3} };
+    struct Task T4 =  {0,0,4,WAITING,5,5,TASK_NON,0,0,1,0,1,NULL, INVALID_RESOURCE, &(struct Resource[]){R0,R1,R2,R3}};
 
+    OsTasksPCB[IDLE_TASK] = &IDLE;
     OsTasksPCB[0] = &T0;
     OsTasksPCB[1] = &T1;
     OsTasksPCB[2] = &T2;
@@ -34,7 +36,8 @@ int main()
 
 
     StatusType st;
-    st = Activate_Task(T0.ID);
+    OS_ActivateTask(IDLE.ID);
+    OS_ActivateTask(T0.ID);
     
     // st = Activate_Task(T3.ID);
     // st = Activate_Task(T4.ID);
@@ -94,8 +97,8 @@ int main()
     printf("Test 1 Passed\n\n");
     
     //----------------------------
-
-    st = Activate_Task(T1.ID);
+    OS_TerminateTask();
+    OS_ActivateTask(T1.ID);
     st = GetResource(R2.Res_ID);
     if(st != E_OS_ID)
     {
@@ -126,8 +129,8 @@ int main()
     printf("Test 2 Passed\n\n");
 
     //----------------------------
-
-    st = Activate_Task(T2.ID);
+    OS_TerminateTask();
+    OS_ActivateTask(T2.ID);
     st = GetResource(R1.Res_ID);
     if(st != E_OS_ACCESS)
     {
@@ -149,7 +152,7 @@ int main()
         printf("Error Occured in E_OS_ACCESS EX4\n\n");
         exit(1);
     }
-    if(R1.Prev_Resource != INVALID_RESOURCE)
+    if(R1.Prev_Resource != R0.Res_ID)
     {
         printf("Error Occured in E_OS_ACCESS EX5\n\n");
         exit(1);
