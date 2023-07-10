@@ -186,7 +186,7 @@ int main()
     
     printf("Test 3 Passed\n\n");
     
-    // printf("All Tests Passed\n\n");
+    printf("All Tests Passed\n\n");
     
 
 }
