@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "ostasks.h": "c",
+        "globels.h": "c",
+        "libraries.h": "c"
+    }
+}

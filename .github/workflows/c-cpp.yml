@@ -152,3 +152,12 @@ jobs:
       run: |
             cd Tests/Events
             ./GetEvent
+            
+    - name: Build GetResource
+      run: |
+            cd Tests/Resources
+            gcc GetResource.c -o GetResource
+    - name: Run GetResource
+      run: |
+            cd Tests/Resources
+            ./GetResource
