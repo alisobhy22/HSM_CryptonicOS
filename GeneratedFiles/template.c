@@ -14,5 +14,5 @@ void TasksInit(void)
     {% endfor %}
     OsTasksPCB[IDLE_TASK] = &IDLE;
 
-    RunningTaskID = NULL;
+    RunningTaskID = INVALID_TASK;
 }

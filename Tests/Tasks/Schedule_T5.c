@@ -1,5 +1,6 @@
     #include "../../Headers/APIs_Headers/Tasks.h"
     #include "../../Sources/APIs_Sources/Tasks.c"
+    #include "../../Headers/APIs_Headers/Globels.h"
 
     struct Task IDLE = {0, 0, IDLE_TASK, SUSPENDED, 0, 0, TASK_FULL, 0, 0, 200, 0};
     struct Task T1 = { 10,0,0,SUSPENDED,5,5,TASK_NON,0,0,1,0 };
@@ -21,7 +22,7 @@
     {
         //Testing Scheduler with tasks that are non preemptive and preemptive with same priorities of each pair of tasks to make sure that eveything working when 
         //they have the same priorities in scheduling non preemptive and preemptive tasks together
-
+        RunningTaskID = INVALID_TASK;
         fill_pcbtable();
 
 

@@ -18,4 +18,6 @@ void TasksInit(void)
     
     OsTasksPCB[IDLE_TASK] = &IDLE;
 
+    RunningTaskID = INVALID_TASK;
+
 }

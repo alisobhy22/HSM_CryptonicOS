@@ -1,5 +1,6 @@
 #include "../../Headers/APIs_Headers/Tasks.h"
 #include "../../Sources/APIs_Sources/Tasks.c"
+#include "../../Headers/APIs_Headers/Globels.h"
 #include <stdlib.h>
 
 struct Task IDLE = { 0,0,IDLE_TASK,SUSPENDED,0,0,TASK_FULL,0,0,200,0 };
@@ -25,7 +26,7 @@ void print_PCB_Table();
 int main()
 {
     //Testing Scheduler with tasks that are preemptive with same priorities except one to check the ordering in queue is right or not 
-
+    RunningTaskID = INVALID_TASK;
     fill_pcbtable();
     StatusType st = ActivateTask(IDLE_TASK);
     if (st != E_OK)

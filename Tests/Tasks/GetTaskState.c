@@ -2,12 +2,13 @@
 #include <stdlib.h>
 #include "../../Headers/APIs_Headers/Tasks.h"
 #include "../../Sources/APIs_Sources/Tasks.c"
+#include "../../Headers/APIs_Headers/Globels.h"
 
 
 int main()
 {
 
-   
+   RunningTaskID = INVALID_TASK;
     struct Task IDLE = { 0,0,IDLE_TASK,SUSPENDED,0,0,TASK_FULL,0,0,200,0 };
     struct Task T1 =
     {0,0, 0,SUSPENDED,5,5,TASK_NON,0,0,1,0 };

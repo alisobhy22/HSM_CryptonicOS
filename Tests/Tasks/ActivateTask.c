@@ -1,8 +1,10 @@
 #include "../../Headers/APIs_Headers/Tasks.h"
 #include "../../Sources/APIs_Sources/Tasks.c"
+#include "../../Headers/APIs_Headers/Globels.h"
 #include <stdlib.h>
 int main()
 {
+    RunningTaskID = INVALID_TASK;
     struct Task T1 =
     {0,0,0,SUSPENDED,5,5,TASK_NON,0,0,1,0 };//normal task
      struct Task T2 =
@@ -27,6 +29,8 @@ int main()
     }
     if(RunningTaskID != IDLE_TASK)
     {
+        //print RunningTaskID
+        printf("RunningTaskID = %d\n\n",RunningTaskID);
         printf("Error Occured in START OS EX2\n\n");
         exit(1);
     }
