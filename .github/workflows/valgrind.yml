@@ -1,5 +1,5 @@
 ## this is for testing valgrind on every test case
-name: C/C++ CI
+name: Valgrind
 
 on: [push]
 
