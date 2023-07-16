@@ -2,7 +2,6 @@
 
 struct Task* OsTasksPCB[MAX_TASKS];
 TaskType RunningTaskID;
-uint8_t Queue_Size = 0;
  struct Ready_List Ready_Queue = {0,NULL,NULL};
 
  struct Ready_Entry Ready_Entries[MAX_TASKS];

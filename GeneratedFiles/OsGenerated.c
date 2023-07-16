@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "OsGenerated.h"
+#include "../Headers/APIs_Headers/Globels.h"
 void TasksInit(void)
 {
     
@@ -16,4 +17,5 @@ void TasksInit(void)
     OsTasksPCB[1] = &Task2;
     
     OsTasksPCB[IDLE_TASK] = &IDLE;
+
 }

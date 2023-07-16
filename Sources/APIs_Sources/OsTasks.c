@@ -1,7 +1,7 @@
 #include "../../Headers/APIs_Headers/OsTasks.h"
 extern struct Task* OsTasksPCB[MAX_TASKS];
-extern TaskType RunningTaskID = IDLE_TASK ;
-extern uint8_t Queue_Size ;
+extern TaskType RunningTaskID;
+uint8_t Queue_Size;
 extern struct Ready_List Ready_Queue;
 // need to be modified
 extern struct Ready_Entry Ready_Entries[MAX_TASKS];
@@ -12,8 +12,7 @@ void OS_ActivateTask(TaskType TaskID)
 	OsTasksPCB[TaskID]->State = READY;
 	OsTasksPCB[TaskID]->Activation_Record++;
 	OS_Insert(OsTasksPCB[TaskID]);
-	if(OsTasksPCB[RunningTaskID]->F_PREEM == TASK_FULL )
-		OS_Schedule();
+	OS_Schedule();
 	return;
 }
 
@@ -40,9 +39,18 @@ void OS_TerminateTask(void)
 }
 
 
+
+
 void OS_Schedule(void)
 {
-	if(OsTasksPCB[RunningTaskID]->F_PREEM == TASK_FULL)
+	if(RunningTaskID == INVALID_TASK)
+	{
+		RunningTaskID = Ready_Queue.Head->task->ID;
+		Ready_Queue.Head->task->State = RUNNING;
+		//start IDLE or first task
+		return;
+	}
+	else if(OsTasksPCB[RunningTaskID]->F_PREEM == TASK_FULL)
 		{
 			if(Ready_Queue.Head->task->Priority > OsTasksPCB[RunningTaskID]->Priority)
 			{
@@ -54,6 +62,8 @@ void OS_Schedule(void)
 					//save context for current task in stack
 					//load context for next task from stack
 					//change pc
+
+
 			}
 	}
 	

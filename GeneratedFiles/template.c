@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "OsGenerated.h"
+#include "../Headers/APIs_Headers/Globels.h"
 void TasksInit(void)
 {
     {% for task in tasks %}
@@ -12,4 +13,6 @@ void TasksInit(void)
     OsTasksPCB[{{loop.index-1}}] = &{{task.name}};
     {% endfor %}
     OsTasksPCB[IDLE_TASK] = &IDLE;
+
+    RunningTaskID = NULL;
 }
