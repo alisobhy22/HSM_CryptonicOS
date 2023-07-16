@@ -11,16 +11,19 @@ jobs:
         uses: deep5050/cppcheck-action@main
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          other_options: --addon=misra.py
+          other_options: --addon=misra.py --rule-texts=misra_rules.txt
           output_file: Misra_Violations.txt
           exclude_check: ./Tests
-      - name: Generate Misra-Violations.txt
+      - name: Create MISRA folder
         run: |
-          cp Misra_Violations.txt $GITHUB_WORKSPACE/Generated_Misra_Violations.txt
+          mkdir -p Tests/MISRA
+      - name: Move Misra-Violations.txt to /Tests/MISRA
+        run: |
+          mv Misra_Violations.txt Tests/MISRA/
       - name: Commit and push Misra-Violations.txt
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
-          git add Generated_Misra_Violations.txt
-          git commit -m "Add Generated_Misra_Violations.txt"
-          git push --force origin ${{ github.ref }}
+          git add Tests/MISRA/Misra_Violations.txt
+          git commit -m "Add Misra_Violations.txt to /Tests/MISRA folder"
+          git push origin ${{ github.ref }}
