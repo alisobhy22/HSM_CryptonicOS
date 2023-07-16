@@ -1,4 +1,4 @@
-name: cppcheck-action
+name: MISRA-C
 on: [push]
 
 jobs:
