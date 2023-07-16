@@ -23,4 +23,4 @@ jobs:
           git config --local user.name "GitHub Actions"
           git add Generated_Misra_Violations.txt
           git commit -m "Add Generated_Misra_Violations.txt"
-          git push origin ${{ github.ref }}
+          git push --force origin ${{ github.ref }}
