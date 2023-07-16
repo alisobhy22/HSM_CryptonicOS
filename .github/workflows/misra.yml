@@ -6,19 +6,21 @@ jobs:
     name: Misra
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-        with:
-          ref: ${{ github.ref }}
+      - uses: actions/checkout@v2
       - name: cppcheck
         uses: deep5050/cppcheck-action@main
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN}}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           other_options: --addon=misra.py
           output_file: Misra_Violations.txt
           exclude_check: ./Tests
-      - name: publish report    
-        uses: mikeal/publish-to-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH_NAME: ${{ github.ref }}
+      - name: Generate Misra-Violations.txt
+        run: |
+          cp Misra_Violations.txt $GITHUB_WORKSPACE/Misra_Violations.txt
+      - name: Commit and push Misra-Violations.txt
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add Misra_Violations.txt
+          git commit -m "Add Misra_Violations.txt"
+          git push origin ${{ github.ref }}
