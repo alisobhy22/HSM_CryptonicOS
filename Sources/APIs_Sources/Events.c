@@ -5,11 +5,11 @@
 #include "../../Headers/APIs_Headers/Libraries.h"
 #include <string.h>
 
-struct Task *OsTasksPCB[MAX_TASKS];
-TaskType RunningTaskID;
-uint8_t Queue_Size;
-struct Ready_List Ready_Queue;
-struct Ready_Entry Ready_Entries[MAX_TASKS];
+extern struct Task *OsTasksPCB[MAX_TASKS];
+extern TaskType RunningTaskID;
+extern uint8_t Queue_Size;
+extern struct Ready_List Ready_Queue;
+extern struct Ready_Entry Ready_Entries[MAX_TASKS];
 
 
 StatusType SetEvent (TaskType TaskID, EventMaskType* ActivatedEvents)

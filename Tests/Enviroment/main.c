@@ -13,26 +13,21 @@ void Task1();
 
 int main()
 {
+    uint8_t  test;
 
     TasksInit();
     StartOS(OSDEFAULTAPPMODE);
+
+    GetTaskID(&test);
+    printf("%d",test);
+    
     ActivateTask(0);
-    Task0();
+
+    GetTaskID(&test);
+    printf("%d",test);
+
     ActivateTask(1);
-    Task1();
-    printf("Hello World!\n");
-}
 
-
-
-void Task0()
-{
-    printf("Task0\n");
-    TerminateTask();
-}
-
-void Task1()
-{
-    printf("Task1\n");
-    TerminateTask();
+    GetTaskID(&test);
+    printf("%d",test);
 }

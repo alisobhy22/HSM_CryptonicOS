@@ -44,11 +44,11 @@ typedef uint8_t EventMaskType;
 typedef uint8_t* EventMaskRefType;
 
 
-extern struct Task* OsTasksPCB[MAX_TASKS];
-extern TaskType RunningTaskID;
+struct Task* OsTasksPCB[MAX_TASKS];
+TaskType RunningTaskID;
 
 
-extern uint8_t Queue_Size;
+uint8_t Queue_Size;
 
 
 struct Ready_Entry { //Is for an array holding all entries of the ready list
@@ -63,9 +63,9 @@ struct Ready_List { //Is for size and head/tail pointers to navigate the ready e
 	struct Ready_Entry* Tail;
 };
 
-extern struct Ready_List Ready_Queue;
+struct Ready_List Ready_Queue;
 
-extern struct Ready_Entry Ready_Entries[MAX_TASKS];
+struct Ready_Entry Ready_Entries[MAX_TASKS];
 
 
 
@@ -76,9 +76,9 @@ struct Task
 	int current_pc; //might remove later
 	TaskType ID; //id of task
 	TaskStateType State; //current state of task
-	const uint8_t CONFIG_PRIORITY; //configured priority of task
+	uint8_t CONFIG_PRIORITY; //configured priority of task
 	uint8_t Priority; //current priority of task
-	const uint8_t F_PREEM; // flag of preemetivety 0 or 1
+	uint8_t F_PREEM; // flag of preemetivety 0 or 1
 	uint8_t Preeimpted; // flag wether it was preimpted or not
 	uint8_t Activation_Record; // activation record of task
 	uint8_t Activation_Request; // request record of task

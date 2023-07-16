@@ -2,7 +2,7 @@
     "tasks": [
         {
             "name": "Task1",
-            "Priority": 5,
+            "Priority": 2,
             "Request" : 1,
             "AutoStart" : false,
             "Premtive" : true,

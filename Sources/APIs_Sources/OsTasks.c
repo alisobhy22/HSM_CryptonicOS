@@ -1,7 +1,7 @@
 #include "../../Headers/APIs_Headers/OsTasks.h"
 extern struct Task* OsTasksPCB[MAX_TASKS];
 extern TaskType RunningTaskID;
-uint8_t Queue_Size;
+extern uint8_t Queue_Size;
 extern struct Ready_List Ready_Queue;
 // need to be modified
 extern struct Ready_Entry Ready_Entries[MAX_TASKS];
