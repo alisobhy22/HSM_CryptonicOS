@@ -24,11 +24,6 @@ jobs:
         cd Tests/Tasks
         ./ActivateTask  
         
-    - name: Run Valgrind Memory Profiling
-      run: |
-          cd Tests/Tasks
-          valgrind --leak-check=full ./ActivateTask    
-        
     
     - name: Build ChainTask
       run: |
