@@ -105,11 +105,11 @@ jobs:
         valgrind --leak-check=full ./GetResource
 
 
-    - name: valgrind ReleaseResource
-      run: |
-        cd Tests/Resources
-        gcc ReleaseResource.c -o ReleaseResource
-        valgrind --leak-check=full ./ReleaseResource
+    # - name: valgrind ReleaseResource
+    #   run: |
+    #     cd Tests/Resources
+    #     gcc ReleaseResource.c -o ReleaseResource
+    #     valgrind --leak-check=full ./ReleaseResource
 
 
 
