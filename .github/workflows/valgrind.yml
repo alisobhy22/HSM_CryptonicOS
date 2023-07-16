@@ -74,7 +74,7 @@ jobs:
 
     - name: valgrind WaitEvent
       run: |
-        cd Tests/Tasks
+        cd Tests/Events
         gcc WaitEvent.c -o WaitEvent
         valgrind --leak-check=full ./WaitEvent
 
