@@ -8,6 +8,7 @@ extern struct Ready_Entry Ready_Entries[MAX_TASKS];
 
 void OS_ActivateTask(TaskType TaskID)
 {
+	//assign registers????
 	OsTasksPCB[TaskID]->State = READY;
 	OsTasksPCB[TaskID]->Activation_Record++;
 	OS_Insert(OsTasksPCB[TaskID]);
@@ -49,6 +50,10 @@ void OS_Schedule(void)
 				RunningTaskID = Ready_Queue.Head->task->ID;
 				Ready_Queue.Head->task->State = RUNNING;
 				// context switch
+					//assign pc to task
+					//save context for current task in stack
+					//load context for next task from stack
+					//change pc
 			}
 	}
 	
@@ -104,6 +109,7 @@ void OS_Insert(struct Task* newTask)
 
 void OS_Delete(TaskType TaskID)
 {
+	//free registers????
 	struct Ready_Entry* Current = Ready_Queue.Head;
 
 	while (Current != NULL)
