@@ -4,6 +4,8 @@
 
 
 #include "../../Configurations/TaskConfig.h"
+#include "../../Configurations/OSExecutionControlCongif.h"
+
 //Tasks Things
 
 #define INVALID_TASK MAX_TASKS
@@ -88,6 +90,13 @@ struct Task
 	EventMaskType* Waiting_Events; // array of events that the task is waiting for
 };
 
-//
+//OS Execution Control Things
+
+#define INVALID_APPMODE 255
+
+typedef uint8_t AppModeType;
+AppModeType ActiveAppMode
+#define OSDEFAULTAPPMODE 0;
+
 
 #endif
