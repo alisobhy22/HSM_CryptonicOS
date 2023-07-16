@@ -1,12 +1,15 @@
-name: MISRA-C
+name: cppcheck-action
 on: [push]
 
 jobs:
   build:
-    name: Misra-C
+    name: Misra
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.ref }}
       - name: cppcheck
         uses: deep5050/cppcheck-action@main
         with:
