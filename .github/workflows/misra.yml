@@ -11,7 +11,7 @@ jobs:
         uses: deep5050/cppcheck-action@main
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          other_options: --addon=misra.py
+          other_options: --addon=misra.py --rule-texts=misra_rules.txt
           output_file: Misra_Violations.txt
           exclude_check: ./Tests
       - name: Generate Misra-Violations.txt
