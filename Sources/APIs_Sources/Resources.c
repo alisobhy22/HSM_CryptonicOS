@@ -21,7 +21,7 @@ StatusType GetResource(ResourceType ResID)
     }
     else
     {
-        if (OsResourcesPCB[ResID]->Resource_Owner != INVALID_TASK ||  
+        if (OsResourcesPCB[ResID]->Resource_Owner != INVALID_TASK ||
             OsTasksPCB[RunningTaskID]->Priority > OsResourcesPCB[ResID]->Ceiling_Priority)
         {
             StatusMsg = E_OS_ACCESS; // return later
@@ -29,13 +29,11 @@ StatusType GetResource(ResourceType ResID)
         else
         {
 
-            
             OsTasksPCB[RunningTaskID]->Priority = OsResourcesPCB[ResID]->Ceiling_Priority;
             OsResourcesPCB[ResID]->Resource_Owner = OsTasksPCB[RunningTaskID]->ID;
             OsResourcesPCB[ResID]->Prev_Resource = OsTasksPCB[RunningTaskID]->Last_Running_Resource;
             OsTasksPCB[RunningTaskID]->Last_Running_Resource = ResID;
-            //OS_Schedule();
-            
+            // OS_Schedule();
         }
     }
 
@@ -55,15 +53,18 @@ StatusType ReleaseResource(ResourceType ResID)
     }
     else
     {
-        if (OsResourcesPCB[ResID]->Ceiling_Priority < OsTasksPCB[RunningTaskID]->Priority)
+        if (OsResourcesPCB[ResID]->Resource_Owner == INVALID_TASK 
+            || (OsTasksPCB[RunningTaskID]->Last_Running_Resource != ResID
+                && OsTasksPCB[OsResourcesPCB[ResID]->Resource_Owner]->State == RUNNING))
         {
-            StatusMsg = E_OS_ACCESS;
+            StatusMsg = E_OS_NOFUNC;
         }
+        // T1(5) R0 8  > T1(8)    T2(9)>
         else
         {
-            if (OsResourcesPCB[ResID]->Resource_Owner == INVALID_TASK || OsTasksPCB[RunningTaskID]->Last_Running_Resource != ResID)
+            if (OsResourcesPCB[ResID]->Ceiling_Priority < OsTasksPCB[RunningTaskID]->Priority)
             {
-                StatusMsg = E_OS_NOFUNC;
+                StatusMsg = E_OS_ACCESS;
             }
             else
             {
@@ -71,7 +72,7 @@ StatusType ReleaseResource(ResourceType ResID)
                 OsTasksPCB[RunningTaskID]->Last_Running_Resource = OsResourcesPCB[ResID]->Prev_Resource;
 
                 // access the previous resource priority
-                if(OsResourcesPCB[ResID]->Prev_Resource != INVALID_RESOURCE)
+                if (OsResourcesPCB[ResID]->Prev_Resource != INVALID_RESOURCE)
                 {
                     OsTasksPCB[RunningTaskID]->Priority = OsResourcesPCB[OsResourcesPCB[ResID]->Prev_Resource]->Ceiling_Priority;
                 }
@@ -79,17 +80,15 @@ StatusType ReleaseResource(ResourceType ResID)
                 {
                     OsTasksPCB[RunningTaskID]->Priority = OsTasksPCB[RunningTaskID]->CONFIG_PRIORITY;
                 }
-                
 
                 OsResourcesPCB[ResID]->Prev_Resource = INVALID_RESOURCE;
 
                 OsResourcesPCB[ResID]->Resource_Owner = INVALID_TASK;
 
-                if(OsTasksPCB[RunningTaskID]->F_PREEM == TASK_FULL)
+                if (OsTasksPCB[RunningTaskID]->F_PREEM == TASK_FULL)
                 {
                     OS_Schedule();
                 }
-                
             }
         }
     }
