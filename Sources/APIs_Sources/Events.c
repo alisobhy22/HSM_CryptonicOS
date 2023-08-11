@@ -32,7 +32,7 @@ StatusType SetEvent(TaskType TaskID, EventMaskType ActivatedEvents)
     if ((OsTasksPCB[TaskID]->EventMask.Configured_Events && OsTasksPCB[TaskID]->EventMask.Event_State && OsTasksPCB[TaskID]->EventMask.Event_Waiting) != 0) // if there is a match between configured and activated events
     {
         OsTasksPCB[TaskID]->State = READY; // set to ready state
-        OS_Insert(TaskID);                 // insert to ready queue
+        OS_Insert(OsTasksPCB[TaskID]);                 // insert to ready queue
         OsTasksPCB[TaskID]->EventMask.Event_Waiting = OsTasksPCB[TaskID]->EventMask.Event_Waiting & ~OsTasksPCB[TaskID]->EventMask.Event_State; 
         return E_OK;// clear the activated events
     }
