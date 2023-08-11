@@ -36,8 +36,16 @@ typedef uint8_t *TaskRefType;
 typedef uint8_t TaskStateType;
 typedef uint8_t *TaskStateRefType;
 
-typedef uint8_t EventMaskType;
-typedef uint8_t *EventMaskRefType;
+ typedef uint64_t EventMaskType;
+ typedef uint64_t *EventMaskRefType;
+
+struct Event
+{
+	uint64_t Configured_Events; // 64 bit configured events
+	uint64_t Event_Waiting; // 64 bit event id
+	uint64_t Event_State; // 64 bit event state
+
+};
 
 extern struct Task *OsTasksPCB[MAX_TASKS];
 extern TaskType RunningTaskID;
@@ -79,8 +87,8 @@ struct Task
 
 	// for events
 	uint8_t Extended;			   // flag wether it is extended or basic
-	EventMaskType *Waiting_Events; // array of events that the task is waiting for
-
+	//EventMaskType *Waiting_Events; // array of events that the task is waiting for
+	struct Event EventMask;
 	// for resoruces
 	ResourceType Last_Running_Resource; // Current/Last assigned reso
 	struct Resource *Needed_Resources;		// refrence to Resources needed by Task
