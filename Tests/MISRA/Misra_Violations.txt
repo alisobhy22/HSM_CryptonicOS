@@ -37,9 +37,9 @@ Sources/APIs_Sources/Events.c:21:38: style: misra violation (use --rule-texts=<f
 Sources/APIs_Sources/Events.c:25:35: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
     if (OsTasksPCB[TaskID]->State == SUSPENDED)
                                   ^
-Sources/APIs_Sources/Events.c:32:151: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
-    if ((OsTasksPCB[TaskID]->EventMask.Configured_Events && OsTasksPCB[TaskID]->EventMask.Event_State && OsTasksPCB[TaskID]->EventMask.Event_Waiting) != 0) // if there is a match between configured and activated events
-                                                                                                                                                      ^
+Sources/APIs_Sources/Events.c:32:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
+    if (condition != 0) // if there is a match between configured and activated events
+                  ^
 Sources/APIs_Sources/Events.c:44:45: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
     if (OsTasksPCB[RunningTaskID]->Extended == 0)
                                             ^
