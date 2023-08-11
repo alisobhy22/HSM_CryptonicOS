@@ -5,8 +5,6 @@
 
 int main()
 {
-    // EventMaskType EventMask[MAX_EVENTS] = {0,1,0,1,0};
-    // EventMaskType ActivatedEvents[MAX_EVENTS] = {0,0,0,0,0};
     struct Event EventMask = {0b11111,0b01010,0b00000};
     uint64_t ActivatedEvents = 0b00000;
     struct Task T0 =  {0,0,0,WAITING,5,5,TASK_NON,0,0,1,0,1,EventMask}; //normal extended task
