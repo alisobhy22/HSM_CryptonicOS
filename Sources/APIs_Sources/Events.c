@@ -11,8 +11,7 @@ extern uint8_t Queue_Size;
 extern struct Ready_List Ready_Queue;
 extern struct Ready_Entry Ready_Entries[MAX_TASKS];
 
-
-StatusType SetEvent (TaskType TaskID, EventMaskType* ActivatedEvents)
+StatusType SetEvent(TaskType TaskID, EventMaskType ActivatedEvents)
 {
     if (TaskID >= MAX_TASKS) // Invalid task ID
     {
@@ -28,27 +27,19 @@ StatusType SetEvent (TaskType TaskID, EventMaskType* ActivatedEvents)
         return E_OS_STATE;
     }
 
-    //check if ActiavtedEvents activated any of the waiting events , for example (01010) & (00010) = 1
-  
-    for(int i=0;i<MAX_EVENTS;i++) //check if any of the waiting events is activated
-        {
-            if(OsTasksPCB[TaskID]->Waiting_Events[i]*ActivatedEvents[i]==1)
-            {
-                //OsTasksPCB[RunningTaskID]->Waiting_Events[i]=0; //clear the event
-                OsTasksPCB[TaskID]->State = READY;
-                OS_Insert(OsTasksPCB[TaskID]); //insert to ready queue
-                return E_OK;
-            }
-        }
-     
+    OsTasksPCB[TaskID]->EventMask.Event_State = OsTasksPCB[TaskID]->EventMask.Event_State | ActivatedEvents; // set the activated events
+    uint64_t condition = OsTasksPCB[TaskID]->EventMask.Configured_Events & OsTasksPCB[TaskID]->EventMask.Event_State & OsTasksPCB[TaskID]->EventMask.Event_Waiting;
+    if (condition != 0) // if there is a match between configured and activated events
+    {
+        OsTasksPCB[TaskID]->State = READY; // set to ready state
+        OS_Insert(OsTasksPCB[TaskID]);                 // insert to ready queue
+        OsTasksPCB[TaskID]->EventMask.Event_Waiting = OsTasksPCB[TaskID]->EventMask.Event_Waiting & ~OsTasksPCB[TaskID]->EventMask.Event_State; 
+        return E_OK;// clear the activated events
+    }
     return E_OK;
-
-
-
 }
 
-
-StatusType WaitEvent(EventMaskType *EventMask)
+StatusType WaitEvent(EventMaskType EventMask)
 {
     if (OsTasksPCB[RunningTaskID]->Extended == 0)
     {
@@ -61,11 +52,13 @@ StatusType WaitEvent(EventMaskType *EventMask)
     }
 
     // E_OS_CALLEVEL
-
-    OsTasksPCB[RunningTaskID]->State = WAITING; //set to waititng state
-    OsTasksPCB[RunningTaskID]->Waiting_Events = EventMask; //set waiting events
-    OS_Delete(RunningTaskID); //delete from ready queue
-    OS_Schedule(); //schedule next task
+    if (OsTasksPCB[RunningTaskID]->EventMask.Configured_Events & EventMask != 0)
+    {
+        OsTasksPCB[RunningTaskID]->State = WAITING;                                                                                                                                     // set to waititng state
+        OsTasksPCB[RunningTaskID]->EventMask.Event_Waiting = (OsTasksPCB[RunningTaskID]->EventMask.Configured_Events & EventMask) | OsTasksPCB[RunningTaskID]->EventMask.Event_Waiting; // set waiting events
+    }
+    OS_Delete(RunningTaskID); // delete from ready queue
+    OS_Schedule();            // schedule next task
     return E_OK;
 }
 
@@ -79,34 +72,29 @@ StatusType GetEvent(TaskType TaskID, EventMaskRefType Event)
         return E_OS_ID;
     }
 
-     if (OsTasksPCB[TaskID]->Extended == 0)
+    if (OsTasksPCB[TaskID]->Extended == 0)
     {
         return E_OS_ACCESS;
     }
-    
-       if (OsTasksPCB[TaskID]->State == SUSPENDED)
+
+    if (OsTasksPCB[TaskID]->State == SUSPENDED)
     {
         return E_OS_STATE;
     }
 
+    Event = OsTasksPCB[TaskID]->EventMask.Event_State;
 
-    Event = OsTasksPCB[TaskID]->Waiting_Events;
-
-
-    
     return E_OK;
-    
 }
 
-StatusType ClearEvent (EventMaskRefType Mask)
+StatusType ClearEvent(EventMaskType Mask)
 {
-  if (OsTasksPCB[RunningTaskID]->Extended == 0)
+    if (OsTasksPCB[RunningTaskID]->Extended == 0)
     {
         return E_OS_ACCESS;
-    }
+    } 
+    // E_OS_CALLEVEL
+    OsTasksPCB[RunningTaskID]->EventMask.Event_State = OsTasksPCB[RunningTaskID]->EventMask.Event_State & ~Mask; // clear the activated events
 
-        // E_OS_CALLEVEL
-    OsTasksPCB[RunningTaskID]->Waiting_Events=Mask;
-    
     return E_OK;
 }

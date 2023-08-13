@@ -5,8 +5,8 @@
 
 int main()
 {
-    EventMaskType EventMask[MAX_EVENTS] = {0,1,0,1,0};
-    EventMaskType ActivatedEvents[MAX_EVENTS] = {0,0,0,0,0};
+    struct Event EventMask = {0b11111,0b01010,0b00000};
+    uint64_t ActivatedEvents = 0b00000;
     struct Task T0 =  {0,0,0,WAITING,5,5,TASK_NON,0,0,1,0,1,EventMask}; //normal extended task
     struct Task T1 =  {0,0,1,WAITING,5,5,TASK_NON,0,0,1,0,0,NULL};  //not extended task
     struct Task T2 =  {0,0,2,SUSPENDED,5,5,TASK_NON,0,0,1,0,1,EventMask}; //suspended task
@@ -21,8 +21,7 @@ int main()
 
 
     //set ActivatedEvents to be {0,1,0,1,0}
-    ActivatedEvents[1] = 1;
-    ActivatedEvents[3] = 1;
+    ActivatedEvents = 0b01010;
     StatusType st = SetEvent(T0.ID,ActivatedEvents);
     if(st != E_OK)
     {
@@ -40,10 +39,9 @@ int main()
         exit(1);
     }
     printf("Test 1 Passed\n\n");
-    ActivatedEvents[0] = 1;
-    ActivatedEvents[1] = 0;
-    ActivatedEvents[3] = 0;
-    ActivatedEvents[4] = 0;
+
+  
+    ActivatedEvents = 0b00001;
 
     st = SetEvent(T4.ID,ActivatedEvents);
     if(st != E_OK)
