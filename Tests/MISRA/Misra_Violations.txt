@@ -1,15 +1,9 @@
-Sources/APIs_Sources/Events.c:85:5: warning: Assignment of function parameter has no effect outside the function. Did you forget dereferencing it? [uselessAssignmentPtrArg]
-    Event = OsTasksPCB[TaskID]->EventMask.Event_State;
-    ^
 Sources/APIs_Sources/Events.c:55:64: style:inconclusive: Boolean expression 'EventMask!=0' is used in bitwise operation. Did you mean '&&'? [bitwiseOnBoolean]
     if (OsTasksPCB[RunningTaskID]->EventMask.Configured_Events & EventMask != 0)
                                                                ^
 Sources/APIs_Sources/Events.c:55:64: style: Boolean result is used in bitwise operation. Clarify expression with parentheses. [clarifyCondition]
     if (OsTasksPCB[RunningTaskID]->EventMask.Configured_Events & EventMask != 0)
                                                                ^
-Sources/APIs_Sources/Events.c:85:11: style: Variable 'Event' is assigned a value that is never used. [unreadVariable]
-    Event = OsTasksPCB[TaskID]->EventMask.Event_State;
-          ^
 Sources/APIs_Sources/OsTasks.c:3:33: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-7.2]
 extern TaskType RunningTaskID = IDLE_TASK ;
                                 ^
@@ -94,9 +88,6 @@ Sources/APIs_Sources/Events.c:82:9: style: misra violation (use --rule-texts=<fi
 Sources/APIs_Sources/Events.c:94:9: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
         return E_OS_ACCESS;
         ^
-Sources/APIs_Sources/Events.c:85:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.8]
-    Event = OsTasksPCB[TaskID]->EventMask.Event_State;
-          ^
 Headers/APIs_Headers/Libraries.h:1:0: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-21.6]
 #include <stdio.h>
 ^
