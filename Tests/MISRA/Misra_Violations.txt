@@ -136,15 +136,18 @@ Sources/APIs_Sources/OSExecutionControl.c:14:11: style: misra violation (use --r
 Sources/APIs_Sources/OSExecutionControl.c:16:17: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
     ActivateTask(IDLE_TASK);
                 ^
-Sources/APIs_Sources/Resources.c:88:55: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
-                if(OsTasksPCB[RunningTaskID]->F_PREEM == TASK_FULL)
-                                                      ^
+Sources/APIs_Sources/Resources.c:58:77: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
+                && OsTasksPCB[OsResourcesPCB[ResID]->Resource_Owner]->State == RUNNING))
+                                                                            ^
+Sources/APIs_Sources/Resources.c:88:56: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
+                if (OsTasksPCB[RunningTaskID]->F_PREEM == TASK_FULL)
+                                                       ^
 Sources/APIs_Sources/Resources.c:24:67: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.1]
         if (OsResourcesPCB[ResID]->Resource_Owner != INVALID_TASK ||
                                                                   ^
-Sources/APIs_Sources/Resources.c:64:71: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.1]
-            if (OsResourcesPCB[ResID]->Resource_Owner == INVALID_TASK || OsTasksPCB[RunningTaskID]->Last_Running_Resource != ResID)
-                                                                      ^
+Sources/APIs_Sources/Resources.c:57:13: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.1]
+            || (OsTasksPCB[RunningTaskID]->Last_Running_Resource != ResID
+            ^
 Sources/APIs_Sources/Tasks.c:149:13: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-7.2]
   *TaskID = INVALID_TASK;
             ^
@@ -223,7 +226,7 @@ Sources/APIs_Sources/Tasks.c:142:0: style: The function 'GetTaskID' is never use
 Sources/APIs_Sources/Tasks.c:159:0: style: The function 'GetTaskState' is never used. [unusedFunction]
 
 ^
-Sources/APIs_Sources/Resources.c:45:0: style: The function 'ReleaseResource' is never used. [unusedFunction]
+Sources/APIs_Sources/Resources.c:43:0: style: The function 'ReleaseResource' is never used. [unusedFunction]
 
 ^
 Sources/APIs_Sources/Tasks.c:93:0: style: The function 'Schedule' is never used. [unusedFunction]
