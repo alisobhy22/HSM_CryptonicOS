@@ -6,7 +6,8 @@
             "Request" : 1,
             "AutoStart" : false,
             "Premtive" : true,
-            "Extended" : true
+            "Extended" : true,
+            "Events" : "010111"
         },
         {
             "name": "Task2",
@@ -14,7 +15,8 @@
             "Request" : 2,
             "AutoStart" : false,
             "Premtive" : true,
-            "Extended" : true
+            "Extended" : true,
+            "Events" : "101000"
         }
     ]
 }

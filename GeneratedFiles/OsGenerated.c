@@ -3,7 +3,8 @@
 #include "../Headers/APIs_Headers/Globels.h"
 void TasksInit(void)
 {
-    extern struct Task *OsTasksPCB[MAX_TASKS];
+    
+
     struct Task *Task1 = malloc(sizeof(struct Task));
     Task1->address = 0;
     Task1->current_pc = 0;
@@ -16,9 +17,12 @@ void TasksInit(void)
     Task1->Activation_Request = 1;
     Task1->Reasourses_Occupied = 0;
     Task1->Extended = 1;
-    Task1->Waiting_Events = NULL;
+    Task1->EventMask.Configured_Events = 0b010111;
+    Task1->EventMask.Event_Waiting = 0;
+    Task1->EventMask.Event_State = 0;
     OsTasksPCB[0] = Task1;
     
+
     struct Task *Task2 = malloc(sizeof(struct Task));
     Task2->address = 0;
     Task2->current_pc = 0;
@@ -31,13 +35,15 @@ void TasksInit(void)
     Task2->Activation_Request = 2;
     Task2->Reasourses_Occupied = 0;
     Task2->Extended = 1;
-    Task2->Waiting_Events = NULL;
+    Task2->EventMask.Configured_Events = 0b101000;
+    Task2->EventMask.Event_Waiting = 0;
+    Task2->EventMask.Event_State = 0;
     OsTasksPCB[1] = Task2;
     
 
     // struct Task IDLE = {0,0,IDLE_TASK,SUSPENDED,0,0,TASK_FULL,0,0,200,0,0,NULL};
     // OsTasksPCB[IDLE_TASK] = &IDLE;
-
+    
     struct Task *IDLE = malloc(sizeof(struct Task));
     IDLE->address = 0;
     IDLE->current_pc = 0;
@@ -50,8 +56,10 @@ void TasksInit(void)
     IDLE->Activation_Request = 200;
     IDLE->Reasourses_Occupied = 0;
     IDLE->Extended = 0;
-    IDLE->Waiting_Events = NULL;
-    OsTasksPCB[IDLE_TASK] = IDLE;
+    IDLE->EventMask.Configured_Events = 0;
+    IDLE->EventMask.Event_Waiting = 0;
+    IDLE->EventMask.Event_State = 0;
+    OsTasksPCB[IDLE_TASK] = &IDLE;
 
     RunningTaskID = INVALID_TASK;
 }

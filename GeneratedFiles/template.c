@@ -4,6 +4,7 @@
 void TasksInit(void)
 {
     {% for task in tasks %}
+
     struct Task *{{task.name}} = malloc(sizeof(struct Task));
     {{task.name}}->address = 0;
     {{task.name}}->current_pc = 0;
@@ -16,13 +17,15 @@ void TasksInit(void)
     {{task.name}}->Activation_Request = {{task.Request}};
     {{task.name}}->Reasourses_Occupied = 0;
     {{task.name}}->Extended = {{task.Extended}};
-    {{task.name}}->Waiting_Events = NULL;
+    {{task.name}}->EventMask.Configured_Events = 0b{{task.Events}};
+    {{task.name}}->EventMask.Event_Waiting = 0;
+    {{task.name}}->EventMask.Event_State = 0;
     OsTasksPCB[{{loop.index-1}}] = {{task.name}};
     {% endfor %}
 
     // struct Task IDLE = {0,0,IDLE_TASK,SUSPENDED,0,0,TASK_FULL,0,0,200,0,0,NULL};
     // OsTasksPCB[IDLE_TASK] = &IDLE;
-
+    
     struct Task *IDLE = malloc(sizeof(struct Task));
     IDLE->address = 0;
     IDLE->current_pc = 0;
@@ -35,7 +38,9 @@ void TasksInit(void)
     IDLE->Activation_Request = 200;
     IDLE->Reasourses_Occupied = 0;
     IDLE->Extended = 0;
-    IDLE->Waiting_Events = NULL;
+    IDLE->EventMask.Configured_Events = 0;
+    IDLE->EventMask.Event_Waiting = 0;
+    IDLE->EventMask.Event_State = 0;
     OsTasksPCB[IDLE_TASK] = &IDLE;
 
     RunningTaskID = INVALID_TASK;
