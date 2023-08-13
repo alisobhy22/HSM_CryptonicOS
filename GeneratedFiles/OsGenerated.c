@@ -4,6 +4,27 @@
 void TasksInit(void)
 {
     
+    struct Resource *R0 = malloc(sizeof(struct Resource));
+    R0->Ceiling_Priority = 7;
+    R0->Linked_Resource = 0;
+    R0->Resource_Property = 0;
+    R0->Resource_Owner = INVALID_TASK;
+    R0->Prev_Resource = INVALID_RESOURCE;
+
+    OsResourcesPCB[0] = &R0;
+    
+    struct Resource *R1 = malloc(sizeof(struct Resource));
+    R1->Ceiling_Priority = 5;
+    R1->Linked_Resource = 0;
+    R1->Resource_Property = 0;
+    R1->Resource_Owner = INVALID_TASK;
+    R1->Prev_Resource = INVALID_RESOURCE;
+
+    OsResourcesPCB[1] = &R1;
+    
+
+
+    
 
     struct Task *Task1 = malloc(sizeof(struct Task));
     Task1->address = 0;
@@ -20,6 +41,7 @@ void TasksInit(void)
     Task1->EventMask.Configured_Events = 0b010111;
     Task1->EventMask.Event_Waiting = 0;
     Task1->EventMask.Event_State = 0;
+    Task1->Needed_Resources = &(struct Resource[]){R0,R1};
     OsTasksPCB[0] = Task1;
     
 
@@ -38,6 +60,7 @@ void TasksInit(void)
     Task2->EventMask.Configured_Events = 0b101000;
     Task2->EventMask.Event_Waiting = 0;
     Task2->EventMask.Event_State = 0;
+    Task2->Needed_Resources = &(struct Resource[]){R0,R1};
     OsTasksPCB[1] = Task2;
     
 
@@ -59,6 +82,7 @@ void TasksInit(void)
     IDLE->EventMask.Configured_Events = 0;
     IDLE->EventMask.Event_Waiting = 0;
     IDLE->EventMask.Event_State = 0;
+    IDLE->Needed_Resources = INVALID_RESOURCE;
     OsTasksPCB[IDLE_TASK] = &IDLE;
 
     RunningTaskID = INVALID_TASK;
