@@ -43,7 +43,7 @@ void TasksInit(void)
     Task1->EventMask.Event_State = 0;
     Task1->Needed_Resources = &(struct Resource[]){R0,R1};
     OsTasksPCB[0] = Task1;
-    
+
 
     struct Task *Task2 = malloc(sizeof(struct Task));
     Task2->address = 0;

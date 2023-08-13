@@ -7,7 +7,8 @@
             "AutoStart" : false,
             "Premtive" : true,
             "Extended" : true,
-            "Events" : "010111"
+            "Events" : "010111",
+            "Needed_Resources":"R0,R1"
         },
         {
             "name": "Task2",
@@ -16,7 +17,26 @@
             "AutoStart" : false,
             "Premtive" : true,
             "Extended" : true,
-            "Events" : "101000"
+            "Events" : "101000",
+            "Needed_Resources":"R0,R1"
+        }
+    ]
+    ,
+    "resources": [
+
+        {
+            "name":"R0",
+            "Res_ID":0,
+            "Ceiling_Priority":7,
+            "Linked_Resource":0,
+            "Resource_Property":0
+        },
+        {
+            "name":"R1",
+            "Res_ID":1,
+            "Ceiling_Priority":5,
+            "Linked_Resource":0,
+            "Resource_Property":0
         }
     ]
 }

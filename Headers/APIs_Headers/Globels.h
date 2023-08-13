@@ -126,14 +126,14 @@ struct Resource
 	uint8_t Ceiling_Priority;
 
 	ResourceType *Linked_Resource ;
-	ResourceType Resrouce_Property;
+	ResourceType Resource_Property;
 
 	TaskType Resource_Owner;
 	ResourceType Prev_Resource;
 
 };
 
-extern struct Resource *OsResourcesPCB[MAX_RESOURCES];
+struct Resource *OsResourcesPCB[MAX_RESOURCES];
 
 
 

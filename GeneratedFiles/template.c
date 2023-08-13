@@ -3,6 +3,18 @@
 #include "../Headers/APIs_Headers/Globels.h"
 void TasksInit(void)
 {
+    {% for r in res %}
+    struct Resource *{{r.name}} = malloc(sizeof(struct Resource));
+    {{r.name}}->Ceiling_Priority = {{r.Ceiling_Priority}};
+    {{r.name}}->Linked_Resource = {{r.Linked_Resource}};
+    {{r.name}}->Resource_Property = {{r.Resource_Property}};
+    {{r.name}}->Resource_Owner = INVALID_TASK;
+    {{r.name}}->Prev_Resource = INVALID_RESOURCE;
+
+    OsResourcesPCB[{{loop.index-1}}] = &{{r.name}};
+    {% endfor %}
+
+
     {% for task in tasks %}
 
     struct Task *{{task.name}} = malloc(sizeof(struct Task));
@@ -20,6 +32,7 @@ void TasksInit(void)
     {{task.name}}->EventMask.Configured_Events = 0b{{task.Events}};
     {{task.name}}->EventMask.Event_Waiting = 0;
     {{task.name}}->EventMask.Event_State = 0;
+    {{task.name}}->Needed_Resources = {{task.Needed_Resources}};
     OsTasksPCB[{{loop.index-1}}] = {{task.name}};
     {% endfor %}
 
@@ -41,6 +54,7 @@ void TasksInit(void)
     IDLE->EventMask.Configured_Events = 0;
     IDLE->EventMask.Event_Waiting = 0;
     IDLE->EventMask.Event_State = 0;
+    IDLE->Needed_Resources = INVALID_RESOURCE;
     OsTasksPCB[IDLE_TASK] = &IDLE;
 
     RunningTaskID = INVALID_TASK;
