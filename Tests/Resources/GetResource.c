@@ -21,11 +21,11 @@ int main()
 
     //Terminating functions are bad in Tasks.c for E_OS_RESOURCE, must be handled
     struct Task IDLE = {0, 0, IDLE_TASK, SUSPENDED, 0, 0, TASK_FULL, 0, 0, 200, 0};
-    struct Task T0 =  {0,0,0,WAITING,5,5,TASK_NON,0,0,1,0,1,NULL, INVALID_RESOURCE, &(struct Resource[]){R0,R1} }; 
-    struct Task T1 =  {0,0,1,WAITING,5,5,TASK_NON,0,0,1,0,0,NULL, INVALID_RESOURCE, &(struct Resource[]){R2} };  
-    struct Task T2 =  {0,0,2,SUSPENDED,5,5,TASK_NON,0,0,1,0,1,NULL, INVALID_RESOURCE, &(struct Resource[]){R3} }; 
-    struct Task T3 = {0,0,MAX_TASKS,SUSPENDED,5,5,TASK_NON,0,0,0,0,0,NULL, INVALID_RESOURCE, &(struct Resource[]){R0,R1,R2,R3} };
-    struct Task T4 =  {0,0,4,WAITING,5,5,TASK_NON,0,0,1,0,1,NULL, INVALID_RESOURCE, &(struct Resource[]){R0,R1,R2,R3}};
+    struct Task T0 =  {0,0,0,WAITING,5,5,TASK_NON,0,0,1,1,0,{0,0,0}, INVALID_RESOURCE, &(struct Resource[]){R0,R1} }; 
+    struct Task T1 =  {0,0,1,WAITING,5,5,TASK_NON,0,0,1,0,0,{0,0,0}, INVALID_RESOURCE, &(struct Resource[]){R2} };  
+    struct Task T2 =  {0,0,2,SUSPENDED,5,5,TASK_NON,0,0,1,1,0,{0,0,0}, INVALID_RESOURCE, &(struct Resource[]){R3} }; 
+    struct Task T3 = {0,0,MAX_TASKS,SUSPENDED,5,5,TASK_NON,0,0,0,0,0,{0,0,0}, INVALID_RESOURCE, &(struct Resource[]){R0,R1,R2,R3} };
+    struct Task T4 =  {0,0,4,WAITING,5,5,TASK_NON,0,0,1,1,0,{0,0,0}, INVALID_RESOURCE, &(struct Resource[]){R0,R1,R2,R3}};
 
     OsTasksPCB[IDLE_TASK] = &IDLE;
     OsTasksPCB[0] = &T0;

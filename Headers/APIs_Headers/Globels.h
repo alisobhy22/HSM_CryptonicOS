@@ -75,7 +75,7 @@ struct Ready_List Ready_Queue;
 struct Ready_Entry Ready_Entries[MAX_TASKS];
 
 
-
+typedef uint8_t ResourceType;
 
 struct Task
 {
@@ -97,8 +97,10 @@ struct Task
 	//EventMaskType *Waiting_Events; // array of events that the task is waiting for
 	struct Event EventMask;
 	// for resoruces
+	ResourceType Last_Running_Resource; // Current/Last assigned reso
 	struct Resource *Needed_Resources;		// refrence to Resources needed by Task
 	// BAAAD WARNING FROM HERE here 
+
 };
 
 //OS Execution Control Things
@@ -113,6 +115,25 @@ AppModeType ActiveAppMode;
 // Resource Things
 
 #define INVALID_RESOURCE MAX_RESOURCES
+
+
+
+
+
+struct Resource
+{
+	ResourceType Res_ID;
+	uint8_t Ceiling_Priority;
+
+	ResourceType *Linked_Resource ;
+	ResourceType Resrouce_Property;
+
+	TaskType Resource_Owner;
+	ResourceType Prev_Resource;
+
+};
+
+extern struct Resource *OsResourcesPCB[MAX_RESOURCES];
 
 
 
