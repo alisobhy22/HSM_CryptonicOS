@@ -1,21 +1,39 @@
-GeneratedFiles/OsGenerated.c:50:16: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-7.2]
+GeneratedFiles/OsGenerated.c:11:26: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-7.2]
+    R0->Resource_Owner = INVALID_TASK;
+                         ^
+GeneratedFiles/OsGenerated.c:20:26: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-7.2]
+    R1->Resource_Owner = INVALID_TASK;
+                         ^
+GeneratedFiles/OsGenerated.c:73:16: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-7.2]
     IDLE->ID = IDLE_TASK;
                ^
-GeneratedFiles/OsGenerated.c:56:32: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-7.2]
+GeneratedFiles/OsGenerated.c:79:32: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-7.2]
     IDLE->Activation_Request = 200;
                                ^
-GeneratedFiles/OsGenerated.c:64:21: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-7.2]
+GeneratedFiles/OsGenerated.c:88:21: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-7.2]
     RunningTaskID = INVALID_TASK;
                     ^
-GeneratedFiles/OsGenerated.c:8:24: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-11.5]
+GeneratedFiles/OsGenerated.c:7:25: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-11.5]
+    struct Resource *R0 = malloc(sizeof(struct Resource));
+                        ^
+GeneratedFiles/OsGenerated.c:16:25: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-11.5]
+    struct Resource *R1 = malloc(sizeof(struct Resource));
+                        ^
+GeneratedFiles/OsGenerated.c:29:24: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-11.5]
     struct Task *Task1 = malloc(sizeof(struct Task));
                        ^
-GeneratedFiles/OsGenerated.c:26:24: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-11.5]
+GeneratedFiles/OsGenerated.c:48:24: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-11.5]
     struct Task *Task2 = malloc(sizeof(struct Task));
                        ^
-GeneratedFiles/OsGenerated.c:47:23: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-11.5]
+GeneratedFiles/OsGenerated.c:70:23: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-11.5]
     struct Task *IDLE = malloc(sizeof(struct Task));
                       ^
+GeneratedFiles/OsGenerated.c:9:25: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-11.9]
+    R0->Linked_Resource = 0;
+                        ^
+GeneratedFiles/OsGenerated.c:18:25: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-11.9]
+    R1->Linked_Resource = 0;
+                        ^
 GeneratedFiles/OsGenerated.c:1:0: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-21.6]
 #include <stdio.h>
 ^
