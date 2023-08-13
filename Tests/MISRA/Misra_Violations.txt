@@ -1,31 +1,55 @@
-Sources/APIs_Sources/Events.c:85:5: warning: Assignment of function parameter has no effect outside the function. Did you forget dereferencing it? [uselessAssignmentPtrArg]
-    Event = OsTasksPCB[TaskID]->EventMask.Event_State;
-    ^
+GeneratedFiles/OsGenerated.c:6:25: style: Local variable 'OsTasksPCB' shadows outer variable [shadowVariable]
+    extern struct Task *OsTasksPCB[MAX_TASKS];
+                        ^
+Headers/APIs_Headers/Globels.h:53:14: note: Shadowed declaration
+struct Task* OsTasksPCB[MAX_TASKS];
+             ^
+GeneratedFiles/OsGenerated.c:6:25: note: Shadow variable
+    extern struct Task *OsTasksPCB[MAX_TASKS];
+                        ^
+GeneratedFiles/OsGenerated.c:44:16: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-7.2]
+    IDLE->ID = IDLE_TASK;
+               ^
+GeneratedFiles/OsGenerated.c:50:32: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-7.2]
+    IDLE->Activation_Request = 200;
+                               ^
+GeneratedFiles/OsGenerated.c:56:21: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-7.2]
+    RunningTaskID = INVALID_TASK;
+                    ^
+GeneratedFiles/OsGenerated.c:7:24: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-11.5]
+    struct Task *Task1 = malloc(sizeof(struct Task));
+                       ^
+GeneratedFiles/OsGenerated.c:22:24: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-11.5]
+    struct Task *Task2 = malloc(sizeof(struct Task));
+                       ^
+GeneratedFiles/OsGenerated.c:41:23: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-11.5]
+    struct Task *IDLE = malloc(sizeof(struct Task));
+                      ^
+GeneratedFiles/OsGenerated.c:1:0: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-21.6]
+#include <stdio.h>
+^
+GeneratedFiles/template.c:6:8: error: syntax error [syntaxError]
+    {% for task in tasks %}
+       ^
 Sources/APIs_Sources/Events.c:55:64: style:inconclusive: Boolean expression 'EventMask!=0' is used in bitwise operation. Did you mean '&&'? [bitwiseOnBoolean]
     if (OsTasksPCB[RunningTaskID]->EventMask.Configured_Events & EventMask != 0)
                                                                ^
 Sources/APIs_Sources/Events.c:55:64: style: Boolean result is used in bitwise operation. Clarify expression with parentheses. [clarifyCondition]
     if (OsTasksPCB[RunningTaskID]->EventMask.Configured_Events & EventMask != 0)
                                                                ^
-Sources/APIs_Sources/Events.c:85:11: style: Variable 'Event' is assigned a value that is never used. [unreadVariable]
-    Event = OsTasksPCB[TaskID]->EventMask.Event_State;
-          ^
-Sources/APIs_Sources/OsTasks.c:3:33: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-7.2]
-extern TaskType RunningTaskID = IDLE_TASK ;
-                                ^
 Sources/APIs_Sources/OsTasks.c:27:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-7.2]
   RunningTaskID = IDLE_TASK;
                   ^
-Sources/APIs_Sources/OsTasks.c:14:40: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
- if(OsTasksPCB[RunningTaskID]->F_PREEM == TASK_FULL )
-                                       ^
 Sources/APIs_Sources/OsTasks.c:23:51: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
  if(OsTasksPCB[RunningTaskID ]->Activation_Record == 1)
                                                   ^
-Sources/APIs_Sources/OsTasks.c:44:40: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
- if(OsTasksPCB[RunningTaskID]->F_PREEM == TASK_FULL)
-                                       ^
-Sources/APIs_Sources/OsTasks.c:62:29: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
+Sources/APIs_Sources/OsTasks.c:46:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
+ if(RunningTaskID == INVALID_TASK)
+                  ^
+Sources/APIs_Sources/OsTasks.c:53:45: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
+ else if(OsTasksPCB[RunningTaskID]->F_PREEM == TASK_FULL)
+                                            ^
+Sources/APIs_Sources/OsTasks.c:77:29: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
  if (Ready_Queue.Queue_Size == 0)
                             ^
 Sources/APIs_Sources/Events.c:16:16: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
@@ -61,8 +85,11 @@ Sources/APIs_Sources/Events.c:80:35: style: misra violation (use --rule-texts=<f
 Sources/APIs_Sources/Events.c:92:45: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
     if (OsTasksPCB[RunningTaskID]->Extended == 0)
                                             ^
-Sources/APIs_Sources/OsTasks.c:73:3: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.4]
+Sources/APIs_Sources/OsTasks.c:88:3: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.4]
   {
+  ^
+Sources/APIs_Sources/OsTasks.c:51:3: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+  return;
   ^
 Sources/APIs_Sources/Events.c:19:9: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
         return E_OS_ID;
@@ -94,97 +121,94 @@ Sources/APIs_Sources/Events.c:82:9: style: misra violation (use --rule-texts=<fi
 Sources/APIs_Sources/Events.c:94:9: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
         return E_OS_ACCESS;
         ^
-Sources/APIs_Sources/Events.c:85:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.8]
-    Event = OsTasksPCB[TaskID]->EventMask.Event_State;
-          ^
+Sources/APIs_Sources/OsTasks.c:68:2: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.7]
+ }
+ ^
 Headers/APIs_Headers/Libraries.h:1:0: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-21.6]
 #include <stdio.h>
 ^
-Sources/APIs_Sources/Resources.c:86:57: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-7.2]
-                OsResourcesPCB[ResID]->Resource_Owner = INVALID_TASK;
-                                                        ^
-Sources/APIs_Sources/Resources.c:18:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
-    if (ResID >= INVALID_RESOURCE)
-              ^
-Sources/APIs_Sources/Resources.c:24:51: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
-        if (OsResourcesPCB[ResID]->Resource_Owner != INVALID_TASK ||
-                                                  ^
-Sources/APIs_Sources/Resources.c:52:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
-    if (ResID >= INVALID_RESOURCE)
-              ^
-Sources/APIs_Sources/Resources.c:64:55: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
-            if (OsResourcesPCB[ResID]->Resource_Owner == INVALID_TASK || OsTasksPCB[RunningTaskID]->Last_Running_Resource != ResID)
-                                                      ^
-Sources/APIs_Sources/Resources.c:74:57: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
-                if(OsResourcesPCB[ResID]->Prev_Resource != INVALID_RESOURCE)
-                                                        ^
+Headers/APIs_Headers/OSExecutionControl.h:11:6: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-2.7]
+void ShutDownOS (StatusType Error);
+     ^
+Sources/APIs_Sources/OSExecutionControl.c:14:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
+  if(Mode == OSDEFAULTAPPMODE)
+          ^
+Sources/APIs_Sources/OSExecutionControl.c:16:17: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    ActivateTask(IDLE_TASK);
+                ^
 Sources/APIs_Sources/Resources.c:88:55: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
                 if(OsTasksPCB[RunningTaskID]->F_PREEM == TASK_FULL)
                                                       ^
-Sources/APIs_Sources/Tasks.c:150:13: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-7.2]
+Sources/APIs_Sources/Resources.c:24:67: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.1]
+        if (OsResourcesPCB[ResID]->Resource_Owner != INVALID_TASK ||
+                                                                  ^
+Sources/APIs_Sources/Resources.c:64:71: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.1]
+            if (OsResourcesPCB[ResID]->Resource_Owner == INVALID_TASK || OsTasksPCB[RunningTaskID]->Last_Running_Resource != ResID)
+                                                                      ^
+Sources/APIs_Sources/Tasks.c:149:13: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-7.2]
   *TaskID = INVALID_TASK;
             ^
-Sources/APIs_Sources/Tasks.c:15:13: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
+Sources/APIs_Sources/Tasks.c:14:13: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
  if (TaskID >= MAX_TASKS) //max number of active tasks
             ^
-Sources/APIs_Sources/Tasks.c:22:33: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
+Sources/APIs_Sources/Tasks.c:21:33: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
  if ((OsTasksPCB[TaskID]->State == SUSPENDED) && (OsTasksPCB[TaskID]->Activation_Request != OsTasksPCB[TaskID]->Activation_Record)) // if task is suspended and activationrecord not max
                                 ^
-Sources/APIs_Sources/Tasks.c:41:53: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
+Sources/APIs_Sources/Tasks.c:40:53: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
  if (OsTasksPCB[RunningTaskID]->Reasourses_Occupied != 0)
                                                     ^
-Sources/APIs_Sources/Tasks.c:59:20: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
+Sources/APIs_Sources/Tasks.c:58:20: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
  if (RunningTaskID >= INVALID_TASK) //  implement RunningTaskID later
                    ^
-Sources/APIs_Sources/Tasks.c:64:53: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
+Sources/APIs_Sources/Tasks.c:63:53: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
  if (OsTasksPCB[RunningTaskID]->Reasourses_Occupied != 0)
                                                     ^
-Sources/APIs_Sources/Tasks.c:72:13: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
+Sources/APIs_Sources/Tasks.c:71:13: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
  if (TaskID >= INVALID_TASK)
             ^
-Sources/APIs_Sources/Tasks.c:80:32: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
+Sources/APIs_Sources/Tasks.c:79:32: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
  if (OsTasksPCB[TaskID]->State == SUSPENDED) // if task is suspended
                                ^
-Sources/APIs_Sources/Tasks.c:102:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
+Sources/APIs_Sources/Tasks.c:101:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
  if(RunningTaskID == INVALID_TASK)
                   ^
-Sources/APIs_Sources/Tasks.c:116:41: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
+Sources/APIs_Sources/Tasks.c:115:41: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
   if(OsTasksPCB[RunningTaskID]->F_PREEM == TASK_FULL)
                                         ^
-Sources/APIs_Sources/Tasks.c:148:20: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
+Sources/APIs_Sources/Tasks.c:147:20: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
  if (RunningTaskID == INVALID_TASK) //  implement RunningTaskID later
                    ^
-Sources/APIs_Sources/Tasks.c:164:13: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
+Sources/APIs_Sources/Tasks.c:163:13: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
  if (TaskID >= MAX_TASKS)
             ^
-Sources/APIs_Sources/Tasks.c:20:4: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+Sources/APIs_Sources/Tasks.c:19:4: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
    return StatusMsg;
    ^
-Sources/APIs_Sources/Tasks.c:26:3: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+Sources/APIs_Sources/Tasks.c:25:3: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
   return StatusMsg;
   ^
-Sources/APIs_Sources/Tasks.c:62:3: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+Sources/APIs_Sources/Tasks.c:61:3: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
   return StatusMsg;
   ^
-Sources/APIs_Sources/Tasks.c:67:3: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+Sources/APIs_Sources/Tasks.c:66:3: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
   return StatusMsg;
   ^
-Sources/APIs_Sources/Tasks.c:76:3: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+Sources/APIs_Sources/Tasks.c:75:3: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
   return StatusMsg;
   ^
-Sources/APIs_Sources/Tasks.c:85:4: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+Sources/APIs_Sources/Tasks.c:84:4: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
    return StatusMsg;
    ^
-Sources/APIs_Sources/Tasks.c:89:3: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+Sources/APIs_Sources/Tasks.c:88:3: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
   return StatusMsg;
   ^
-Sources/APIs_Sources/Tasks.c:12:0: style: The function 'ActivateTask' is never used. [unusedFunction]
-
-^
-Sources/APIs_Sources/Tasks.c:54:0: style: The function 'ChainTask' is never used. [unusedFunction]
+Sources/APIs_Sources/Tasks.c:53:0: style: The function 'ChainTask' is never used. [unusedFunction]
 
 ^
 Sources/APIs_Sources/Events.c:90:0: style: The function 'ClearEvent' is never used. [unusedFunction]
+
+^
+Sources/APIs_Sources/OSExecutionControl.c:4:0: style: The function 'GetActiveApplicationMode' is never used. [unusedFunction]
 
 ^
 Sources/APIs_Sources/Events.c:65:0: style: The function 'GetEvent' is never used. [unusedFunction]
@@ -193,26 +217,35 @@ Sources/APIs_Sources/Events.c:65:0: style: The function 'GetEvent' is never used
 Sources/APIs_Sources/Resources.c:12:0: style: The function 'GetResource' is never used. [unusedFunction]
 
 ^
-Sources/APIs_Sources/Tasks.c:143:0: style: The function 'GetTaskID' is never used. [unusedFunction]
+Sources/APIs_Sources/Tasks.c:142:0: style: The function 'GetTaskID' is never used. [unusedFunction]
 
 ^
-Sources/APIs_Sources/Tasks.c:160:0: style: The function 'GetTaskState' is never used. [unusedFunction]
+Sources/APIs_Sources/Tasks.c:159:0: style: The function 'GetTaskState' is never used. [unusedFunction]
 
 ^
 Sources/APIs_Sources/Resources.c:45:0: style: The function 'ReleaseResource' is never used. [unusedFunction]
 
 ^
-Sources/APIs_Sources/Tasks.c:94:0: style: The function 'Schedule' is never used. [unusedFunction]
+Sources/APIs_Sources/Tasks.c:93:0: style: The function 'Schedule' is never used. [unusedFunction]
 
 ^
 Sources/APIs_Sources/Events.c:14:0: style: The function 'SetEvent' is never used. [unusedFunction]
 
 ^
-Sources/APIs_Sources/Tasks.c:35:0: style: The function 'TerminateTask' is never used. [unusedFunction]
+Sources/APIs_Sources/OSExecutionControl.c:22:0: style: The function 'ShutDownOS' is never used. [unusedFunction]
+
+^
+Sources/APIs_Sources/OSExecutionControl.c:9:0: style: The function 'StartOS' is never used. [unusedFunction]
+
+^
+GeneratedFiles/OsGenerated.c:4:0: style: The function 'TasksInit' is never used. [unusedFunction]
+
+^
+Sources/APIs_Sources/Tasks.c:34:0: style: The function 'TerminateTask' is never used. [unusedFunction]
 
 ^
 Sources/APIs_Sources/Events.c:42:0: style: The function 'WaitEvent' is never used. [unusedFunction]
 
 ^
-nofile:0:0: information: Cppcheck cannot find all the include files (use --check-config for details) [missingIncludeSystem]
+nofile:0:0: information: Cppcheck cannot find all the include files (use --check-config for details) [missingInclude]
 
