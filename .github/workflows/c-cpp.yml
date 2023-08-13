@@ -162,3 +162,13 @@ jobs:
       run: |
             cd Tests/Resources
             ./GetResource
+
+
+    - name: Build ReleaseResource
+      run: |
+            cd Tests/Resources
+            gcc ReleaseResource.c -o ReleaseResource
+    - name: Run ReleaseResource
+      run: |
+            cd Tests/Resources
+            ./ReleaseResource

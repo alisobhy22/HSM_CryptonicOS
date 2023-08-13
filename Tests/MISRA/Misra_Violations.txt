@@ -136,15 +136,30 @@ Sources/APIs_Sources/OSExecutionControl.c:14:11: style: misra violation (use --r
 Sources/APIs_Sources/OSExecutionControl.c:16:17: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
     ActivateTask(IDLE_TASK);
                 ^
+Sources/APIs_Sources/Resources.c:86:57: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-7.2]
+                OsResourcesPCB[ResID]->Resource_Owner = INVALID_TASK;
+                                                        ^
+Sources/APIs_Sources/Resources.c:18:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
+    if (ResID >= INVALID_RESOURCE)
+              ^
+Sources/APIs_Sources/Resources.c:24:51: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
+        if (OsResourcesPCB[ResID]->Resource_Owner != INVALID_TASK ||
+                                                  ^
+Sources/APIs_Sources/Resources.c:50:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
+    if (ResID >= INVALID_RESOURCE)
+              ^
+Sources/APIs_Sources/Resources.c:56:51: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
+        if (OsResourcesPCB[ResID]->Resource_Owner == INVALID_TASK
+                                                  ^
 Sources/APIs_Sources/Resources.c:58:77: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
                 && OsTasksPCB[OsResourcesPCB[ResID]->Resource_Owner]->State == RUNNING))
                                                                             ^
+Sources/APIs_Sources/Resources.c:75:58: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
+                if (OsResourcesPCB[ResID]->Prev_Resource != INVALID_RESOURCE)
+                                                         ^
 Sources/APIs_Sources/Resources.c:88:56: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
                 if (OsTasksPCB[RunningTaskID]->F_PREEM == TASK_FULL)
                                                        ^
-Sources/APIs_Sources/Resources.c:24:67: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.1]
-        if (OsResourcesPCB[ResID]->Resource_Owner != INVALID_TASK ||
-                                                                  ^
 Sources/APIs_Sources/Resources.c:57:13: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.1]
             || (OsTasksPCB[RunningTaskID]->Last_Running_Resource != ResID
             ^
