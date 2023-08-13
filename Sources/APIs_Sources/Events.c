@@ -82,7 +82,7 @@ StatusType GetEvent(TaskType TaskID, EventMaskRefType Event)
         return E_OS_STATE;
     }
 
-    Event = OsTasksPCB[TaskID]->EventMask.Event_State;
+    *Event = OsTasksPCB[TaskID]->EventMask.Event_State;
 
     return E_OK;
 }
