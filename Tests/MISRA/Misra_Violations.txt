@@ -40,9 +40,6 @@ GeneratedFiles/OsGenerated.c:1:0: style: misra violation (use --rule-texts=<file
 GeneratedFiles/template.c:6:8: error: syntax error [syntaxError]
     {% for r in res %}
        ^
-OsGenerated.c:10:27: error: Syntax Error: AST broken, binary operator '=' doesn't have two operands. [internalAstError]
-    R0->Resrouce_Property = ;
-                          ^
 Sources/APIs_Sources/Events.c:55:64: style:inconclusive: Boolean expression 'EventMask!=0' is used in bitwise operation. Did you mean '&&'? [bitwiseOnBoolean]
     if (OsTasksPCB[RunningTaskID]->EventMask.Configured_Events & EventMask != 0)
                                                                ^
