@@ -11,7 +11,7 @@ void TasksInit(void)
     R0->Resource_Owner = INVALID_TASK;
     R0->Prev_Resource = INVALID_RESOURCE;
 
-    OsResourcesPCB[0] = &R0;
+    OsResourcesPCB[0] = R0;
     
     struct Resource *R1 = malloc(sizeof(struct Resource));
     R1->Ceiling_Priority = 5;
@@ -20,7 +20,7 @@ void TasksInit(void)
     R1->Resource_Owner = INVALID_TASK;
     R1->Prev_Resource = INVALID_RESOURCE;
 
-    OsResourcesPCB[1] = &R1;
+    OsResourcesPCB[1] = R1;
     
 
 
@@ -43,7 +43,7 @@ void TasksInit(void)
     Task1->EventMask.Event_State = 0;
     Task1->Needed_Resources = &(struct Resource[]){R0,R1};
     OsTasksPCB[0] = Task1;
-
+    
 
     struct Task *Task2 = malloc(sizeof(struct Task));
     Task2->address = 0;

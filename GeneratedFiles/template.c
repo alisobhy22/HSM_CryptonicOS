@@ -11,7 +11,7 @@ void TasksInit(void)
     {{r.name}}->Resource_Owner = INVALID_TASK;
     {{r.name}}->Prev_Resource = INVALID_RESOURCE;
 
-    OsResourcesPCB[{{loop.index-1}}] = &{{r.name}};
+    OsResourcesPCB[{{loop.index-1}}] = {{r.name}};
     {% endfor %}
 
 

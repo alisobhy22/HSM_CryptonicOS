@@ -25,9 +25,9 @@ int main()
     GetTaskID(&test);
     printf("%d\n", test);
 
-    st = GetResource(0);
+    st = GetResource(1);
     printf("%d\n", st);
 
-    st = GetResource(1);
+    st = GetResource(0);
     printf("%d\n", st);
 }
