@@ -2,9 +2,11 @@
 #define Headers_APIs_Headers_Tasks_H
 
 
-#include "OsTasks.h"
-#include "../../Sources/APIs_Sources/OsTasks.c"
+// #include "OsTasks.h"
+// #include "../../Sources/APIs_Sources/OsTasks.c"
 
+#include "Libraries.h"
+#include "Globels.h"
 
 
 StatusType ActivateTask(TaskType TaskID);

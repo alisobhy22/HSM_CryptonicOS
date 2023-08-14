@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "events.h": "c",
+        "string.h": "c"
+    }
+}

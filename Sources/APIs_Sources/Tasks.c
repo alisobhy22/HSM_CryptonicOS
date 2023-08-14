@@ -1,4 +1,5 @@
 #include "../../Headers/APIs_Headers/Tasks.h"
+#include"OsTasks.c"
 
 extern struct Task* OsTasksPCB[MAX_TASKS];
 extern TaskType RunningTaskID;
