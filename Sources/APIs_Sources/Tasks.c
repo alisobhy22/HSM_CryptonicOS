@@ -3,7 +3,7 @@
 
 extern struct Task* OsTasksPCB[MAX_TASKS];
 extern TaskType RunningTaskID;
-extern struct Ready_List Ready_Queue = {0,NULL,NULL};
+struct Ready_List Ready_Queue = {0,NULL,NULL};
 
 extern struct Ready_Entry Ready_Entries[MAX_TASKS];
 
