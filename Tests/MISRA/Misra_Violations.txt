@@ -226,6 +226,9 @@ Sources/APIs_Sources/Tasks.c:85:4: style: misra violation (use --rule-texts=<fil
 Sources/APIs_Sources/Tasks.c:89:3: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
   return StatusMsg;
   ^
+Sources/APIs_Sources/Tasks.c:3:0: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-21.6]
+#include <stdio.h>
+^
 Sources/APIs_Sources/Tasks.c:54:0: style: The function 'ChainTask' is never used. [unusedFunction]
 
 ^
