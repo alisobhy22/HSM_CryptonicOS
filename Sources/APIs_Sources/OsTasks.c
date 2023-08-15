@@ -1,4 +1,6 @@
 #include "../../Headers/APIs_Headers/OsTasks.h"
+#include "../../Headers/APIs_Headers/Globels.h"
+#include "../../Configurations/TaskConfig.h"
 extern struct Task* OsTasksPCB[MAX_TASKS];
 extern TaskType RunningTaskID;
 extern uint8_t Queue_Size;

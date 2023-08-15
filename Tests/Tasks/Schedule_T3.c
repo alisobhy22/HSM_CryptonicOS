@@ -1,7 +1,7 @@
 #include "../../Headers/APIs_Headers/Tasks.h"
 #include "../../Sources/APIs_Sources/Tasks.c"
 #include "../../Headers/APIs_Headers/Globels.h"
-
+#include "../../Sources/APIs_Sources/OsTasks.c"
 struct Task IDLE = {0, 0, IDLE_TASK, SUSPENDED, 0, 0, TASK_FULL, 0, 0, 200, 0};
 struct Task T1 = {10, 0, 0, SUSPENDED, 5, 5, TASK_NON, 0, 0, 1, 0};
 struct Task T2 = {20, 0, 1, SUSPENDED, 5, 5, TASK_NON, 0, 0, 1, 0};

@@ -5,9 +5,7 @@
 
 // #include "OsTasks.h"
 // #include "../../Sources/APIs_Sources/OsTasks.c"
-
-#include "Libraries.h"
-#include "Globels.h"
+#include "OS.h"
 
 
 StatusType GetResource(ResourceType ResID); 

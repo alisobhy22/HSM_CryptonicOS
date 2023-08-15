@@ -1,6 +1,7 @@
 #include "../../Headers/APIs_Headers/Tasks.h"
 #include "../../Sources/APIs_Sources/Tasks.c"
 #include "../../Headers/APIs_Headers/Globels.h"
+#include "../../Sources/APIs_Sources/OsTasks.c"
 #include <stdlib.h>
 
 struct Task IDLE = { 0,0,IDLE_TASK,SUSPENDED,0,0,TASK_FULL,0,0,200,0 };
