@@ -2,7 +2,7 @@
 #include "../../Sources/APIs_Sources/Resources.c"
 #include "../../Sources/APIs_Sources/OsTasks.c"
 #include <stdlib.h>
-
+#include <stdio.h>
 
 
 int main()
