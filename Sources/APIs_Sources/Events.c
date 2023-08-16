@@ -52,10 +52,10 @@ StatusType WaitEvent(EventMaskType EventMask)
     }
 
     // E_OS_CALLEVEL
-    if (OsTasksPCB[RunningTaskID]->EventMask.Configured_Events & EventMask != 0)
+    if (OsTasksPCB[RunningTaskID]->EventMask.Event_State & EventMask != 0)
     {
         OsTasksPCB[RunningTaskID]->State = WAITING;                                                                                                                                     // set to waititng state
-        OsTasksPCB[RunningTaskID]->EventMask.Event_Waiting = (OsTasksPCB[RunningTaskID]->EventMask.Configured_Events & EventMask) | OsTasksPCB[RunningTaskID]->EventMask.Event_Waiting; // set waiting events
+        OsTasksPCB[RunningTaskID]->EventMask.Event_Waiting = (OsTasksPCB[RunningTaskID]->EventMask.Event_State & EventMask) | OsTasksPCB[RunningTaskID]->EventMask.Event_Waiting; // set waiting events
     }
     OS_Delete(RunningTaskID); // delete from ready queue
     OS_Schedule();            // schedule next task
