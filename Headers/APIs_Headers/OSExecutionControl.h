@@ -2,8 +2,7 @@
 #define Headers_APIs_Headers_OSExecutionControl_H
 
 
-#include "Globels.h"
-
+#include "OS.h"
 
 
 AppModeType GetActiveApplicationMode(void);

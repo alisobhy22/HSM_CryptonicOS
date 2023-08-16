@@ -1,6 +1,6 @@
 #include "../../Headers/APIs_Headers/Events.h"
-// #include "../../Headers/APIs_Headers/OsTasks.h"
-#include "OsTasks.c"
+#include "../../Headers/APIs_Headers/OsTasks.h"
+
 // #include "../../Headers/APIs_Headers/Globels.h"
 // #include "../../Headers/APIs_Headers/Libraries.h"
 #include <string.h>
@@ -52,10 +52,10 @@ StatusType WaitEvent(EventMaskType EventMask)
     }
 
     // E_OS_CALLEVEL
-    if (OsTasksPCB[RunningTaskID]->EventMask.Configured_Events & EventMask != 0)
+    if (OsTasksPCB[RunningTaskID]->EventMask.Event_State & EventMask != 0)
     {
         OsTasksPCB[RunningTaskID]->State = WAITING;                                                                                                                                     // set to waititng state
-        OsTasksPCB[RunningTaskID]->EventMask.Event_Waiting = (OsTasksPCB[RunningTaskID]->EventMask.Configured_Events & EventMask) | OsTasksPCB[RunningTaskID]->EventMask.Event_Waiting; // set waiting events
+        OsTasksPCB[RunningTaskID]->EventMask.Event_Waiting = (OsTasksPCB[RunningTaskID]->EventMask.Event_State & EventMask) | OsTasksPCB[RunningTaskID]->EventMask.Event_Waiting; // set waiting events
     }
     OS_Delete(RunningTaskID); // delete from ready queue
     OS_Schedule();            // schedule next task

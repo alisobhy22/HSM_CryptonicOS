@@ -1,7 +1,9 @@
 #include "../../Headers/APIs_Headers/Tasks.h"
 #include "../../Sources/APIs_Sources/Tasks.c"
 #include "../../Headers/APIs_Headers/Globels.h"
+#include "../../Sources/APIs_Sources/OsTasks.c"
 #include <stdlib.h>
+#include <stdio.h>
 int main()
 {
     

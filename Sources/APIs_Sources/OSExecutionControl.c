@@ -1,7 +1,7 @@
 #include "../../Headers/APIs_Headers/OSExecutionControl.h"
-// #include "../../Headers/APIs_Headers/Tasks.h"
+#include "../../Headers/APIs_Headers/Tasks.h"
 // #include "../../Headers/APIs_Headers/Globels.h"
-#include "Tasks.c"
+// #include "Tasks.c"
 AppModeType GetActiveApplicationMode(void)
 {
   return ActiveAppMode;

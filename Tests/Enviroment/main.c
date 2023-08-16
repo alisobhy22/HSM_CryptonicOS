@@ -1,7 +1,8 @@
-#include "../../GeneratedFiles/OSGenerated.c"
-#include "../../Sources/APIs_Sources/OsExecutionControl.c"
-#include "../../Sources/APIs_Sources/Resources.c"
-
+// #include "../../GeneratedFiles/OSGenerated.c"
+// #include "../../Sources/APIs_Sources/OsExecutionControl.c"
+// #include "../../Sources/APIs_Sources/Resources.c"
+#include "../../Headers/APIs_Headers/OS.h"
+#include <stdio.h>
 void Task0();
 void Task1();
 

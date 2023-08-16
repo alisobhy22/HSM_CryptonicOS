@@ -2,7 +2,7 @@
 #include "../../Sources/APIs_Sources/OsTasks.c"
 #include "../../Sources/APIs_Sources/Resources.c"
 #include <stdlib.h>
-
+#include <stdio.h>
 int main()
 {
     // EventMaskType EventMask[MAX_EVENTS] = {0,1,0,1,0};
