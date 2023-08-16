@@ -40,12 +40,12 @@ GeneratedFiles/OsGenerated.c:1:0: style: misra violation (use --rule-texts=<file
 GeneratedFiles/template.c:6:8: error: syntax error [syntaxError]
     {% for r in res %}
        ^
-Sources/APIs_Sources/Events.c:55:64: style:inconclusive: Boolean expression 'EventMask!=0' is used in bitwise operation. Did you mean '&&'? [bitwiseOnBoolean]
-    if (OsTasksPCB[RunningTaskID]->EventMask.Configured_Events & EventMask != 0)
-                                                               ^
-Sources/APIs_Sources/Events.c:55:64: style: Boolean result is used in bitwise operation. Clarify expression with parentheses. [clarifyCondition]
-    if (OsTasksPCB[RunningTaskID]->EventMask.Configured_Events & EventMask != 0)
-                                                               ^
+Sources/APIs_Sources/Events.c:55:58: style:inconclusive: Boolean expression 'EventMask!=0' is used in bitwise operation. Did you mean '&&'? [bitwiseOnBoolean]
+    if (OsTasksPCB[RunningTaskID]->EventMask.Event_State & EventMask != 0)
+                                                         ^
+Sources/APIs_Sources/Events.c:55:58: style: Boolean result is used in bitwise operation. Clarify expression with parentheses. [clarifyCondition]
+    if (OsTasksPCB[RunningTaskID]->EventMask.Event_State & EventMask != 0)
+                                                         ^
 Sources/APIs_Sources/Events.c:16:16: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
     if (TaskID >= MAX_TASKS) // Invalid task ID
                ^
@@ -64,9 +64,9 @@ Sources/APIs_Sources/Events.c:44:45: style: misra violation (use --rule-texts=<f
 Sources/APIs_Sources/Events.c:49:56: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
     if (OsTasksPCB[RunningTaskID]->Reasourses_Occupied > 0)
                                                        ^
-Sources/APIs_Sources/Events.c:55:76: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
-    if (OsTasksPCB[RunningTaskID]->EventMask.Configured_Events & EventMask != 0)
-                                                                           ^
+Sources/APIs_Sources/Events.c:55:70: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
+    if (OsTasksPCB[RunningTaskID]->EventMask.Event_State & EventMask != 0)
+                                                                     ^
 Sources/APIs_Sources/Events.c:68:16: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
     if (TaskID >= MAX_TASKS) // max number of active tasks
                ^
