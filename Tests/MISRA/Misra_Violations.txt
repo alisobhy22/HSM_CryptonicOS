@@ -1,37 +1,37 @@
-GeneratedFiles/OsGenerated.c:11:26: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-7.2]
+GeneratedFiles/OsGenerated.c:13:26: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-7.2]
     R0->Resource_Owner = INVALID_TASK;
                          ^
-GeneratedFiles/OsGenerated.c:20:26: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-7.2]
+GeneratedFiles/OsGenerated.c:22:26: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-7.2]
     R1->Resource_Owner = INVALID_TASK;
                          ^
-GeneratedFiles/OsGenerated.c:73:16: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-7.2]
+GeneratedFiles/OsGenerated.c:75:16: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-7.2]
     IDLE->ID = IDLE_TASK;
                ^
-GeneratedFiles/OsGenerated.c:79:32: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-7.2]
+GeneratedFiles/OsGenerated.c:81:32: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-7.2]
     IDLE->Activation_Request = 200;
                                ^
-GeneratedFiles/OsGenerated.c:88:21: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-7.2]
+GeneratedFiles/OsGenerated.c:90:21: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-7.2]
     RunningTaskID = INVALID_TASK;
                     ^
-GeneratedFiles/OsGenerated.c:7:25: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-11.5]
+GeneratedFiles/OsGenerated.c:9:25: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-11.5]
     struct Resource *R0 = malloc(sizeof(struct Resource));
                         ^
-GeneratedFiles/OsGenerated.c:16:25: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-11.5]
+GeneratedFiles/OsGenerated.c:18:25: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-11.5]
     struct Resource *R1 = malloc(sizeof(struct Resource));
                         ^
-GeneratedFiles/OsGenerated.c:29:24: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-11.5]
+GeneratedFiles/OsGenerated.c:31:24: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-11.5]
     struct Task *Task1 = malloc(sizeof(struct Task));
                        ^
-GeneratedFiles/OsGenerated.c:48:24: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-11.5]
+GeneratedFiles/OsGenerated.c:50:24: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-11.5]
     struct Task *Task2 = malloc(sizeof(struct Task));
                        ^
-GeneratedFiles/OsGenerated.c:70:23: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-11.5]
+GeneratedFiles/OsGenerated.c:72:23: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-11.5]
     struct Task *IDLE = malloc(sizeof(struct Task));
                       ^
-GeneratedFiles/OsGenerated.c:9:25: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-11.9]
+GeneratedFiles/OsGenerated.c:11:25: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-11.9]
     R0->Linked_Resource = 0;
                         ^
-GeneratedFiles/OsGenerated.c:18:25: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-11.9]
+GeneratedFiles/OsGenerated.c:20:25: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-11.9]
     R1->Linked_Resource = 0;
                         ^
 GeneratedFiles/OsGenerated.c:1:0: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-21.6]
@@ -145,7 +145,7 @@ Sources/APIs_Sources/OsTasks.c:71:2: style: misra violation (use --rule-texts=<f
 Sources/APIs_Sources/OsTasks.c:4:0: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-21.6]
 #include <stdio.h>
 ^
-Sources/APIs_Sources/Resources.c:86:57: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-7.2]
+Sources/APIs_Sources/Resources.c:89:57: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-7.2]
                 OsResourcesPCB[ResID]->Resource_Owner = INVALID_TASK;
                                                         ^
 Sources/APIs_Sources/Resources.c:18:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
@@ -157,19 +157,19 @@ Sources/APIs_Sources/Resources.c:24:51: style: misra violation (use --rule-texts
 Sources/APIs_Sources/Resources.c:50:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
     if (ResID >= INVALID_RESOURCE)
               ^
-Sources/APIs_Sources/Resources.c:56:51: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
+Sources/APIs_Sources/Resources.c:59:51: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
         if (OsResourcesPCB[ResID]->Resource_Owner == INVALID_TASK
                                                   ^
-Sources/APIs_Sources/Resources.c:58:77: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
+Sources/APIs_Sources/Resources.c:61:77: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
                 && OsTasksPCB[OsResourcesPCB[ResID]->Resource_Owner]->State == RUNNING))
                                                                             ^
-Sources/APIs_Sources/Resources.c:75:58: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
+Sources/APIs_Sources/Resources.c:78:58: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
                 if (OsResourcesPCB[ResID]->Prev_Resource != INVALID_RESOURCE)
                                                          ^
-Sources/APIs_Sources/Resources.c:88:56: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
+Sources/APIs_Sources/Resources.c:91:56: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
                 if (OsTasksPCB[RunningTaskID]->F_PREEM == TASK_FULL)
                                                        ^
-Sources/APIs_Sources/Resources.c:57:13: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.1]
+Sources/APIs_Sources/Resources.c:60:13: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.1]
             || (OsTasksPCB[RunningTaskID]->Last_Running_Resource != ResID
             ^
 Sources/APIs_Sources/Tasks.c:150:13: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-7.2]
@@ -268,7 +268,7 @@ Sources/APIs_Sources/OSExecutionControl.c:23:0: style: The function 'ShutDownOS'
 Sources/APIs_Sources/OSExecutionControl.c:10:0: style: The function 'StartOS' is never used. [unusedFunction]
 
 ^
-GeneratedFiles/OsGenerated.c:4:0: style: The function 'TasksInit' is never used. [unusedFunction]
+GeneratedFiles/OsGenerated.c:6:0: style: The function 'TasksInit' is never used. [unusedFunction]
 
 ^
 Sources/APIs_Sources/Tasks.c:35:0: style: The function 'TerminateTask' is never used. [unusedFunction]
