@@ -8,7 +8,7 @@ int main()
     // EventMaskType EventMask[MAX_EVENTS] = {0,1,0,1,0};
     // EventMaskType ActivatedEvents[MAX_EVENTS] = {0,0,0,0,0};
 
-    struct Resource R0 = {0, 8, NULL, RESOURCE_STANDARD, INVALID_TASK, INVALID_RESOURCE};
+    struct Resource R0 = {0, 7, NULL, RESOURCE_STANDARD, INVALID_TASK, INVALID_RESOURCE};
     struct Resource R1 = {1, 9, NULL, RESOURCE_STANDARD, INVALID_TASK, INVALID_RESOURCE};
     struct Resource R2 = {2, 5, NULL, RESOURCE_STANDARD, INVALID_TASK, INVALID_RESOURCE};
     struct Resource R3 = {3, 4, NULL, RESOURCE_STANDARD, INVALID_TASK, INVALID_RESOURCE};
@@ -20,7 +20,7 @@ int main()
 
     struct Task IDLE = {0, 0, IDLE_TASK, SUSPENDED, 0, 0, TASK_FULL, 0, 0, 200, 0};
     struct Task T0 = {0, 0, 0, WAITING, 5, 5, TASK_FULL, 0, 0, 1, 1, 0, {0,0,0}, INVALID_RESOURCE, &(struct Resource[]){R0, R1, R2, R3}};
-    struct Task T1 = {0, 0, 1, WAITING, 9, 9, TASK_NON, 0, 0, 1, 0, 0, {0,0,0}, INVALID_RESOURCE, &(struct Resource[]){R0, R1, R3}};
+    struct Task T1 = {0, 0, 1, WAITING, 8, 8, TASK_NON, 0, 0, 1, 0, 0, {0,0,0}, INVALID_RESOURCE, &(struct Resource[]){R0, R1, R3}};
     struct Task T2 = {0, 0, 2, SUSPENDED, 5, 5, TASK_NON, 0, 0, 1, 1, 0, {0,0,0}, INVALID_RESOURCE, &(struct Resource[]){R0, R1, R2, R3}};
     struct Task T3 = {0, 0, MAX_TASKS, SUSPENDED, 5, 5, TASK_NON, 0, 0, 0, 0, 0, {0,0,0}, INVALID_RESOURCE, &(struct Resource[]){R0, R1, R2, R3}};
     struct Task T4 = {0, 0, 4, WAITING, 5, 5, TASK_NON, 0, 0, 1, 1, 0, {0,0,0}, INVALID_RESOURCE, &(struct Resource[]){R0, R1, R2, R3}};
@@ -90,11 +90,14 @@ int main()
         printf("Error Occured in E_OS_ID EX1\n\n");
         exit(1);
     }
+    GetResource(R0.Res_ID);
     OS_ActivateTask(T1.ID);
-    st = ReleaseResource(R0.Res_ID);                       
+    st = ReleaseResource(R0.Res_ID);
+
+
     if (st != E_OS_ACCESS)
     {
-        printf("Error Occured in E_OS_ID EX1\n\n");
+        printf("Error Occured in E_OS_ACCESS EX1\n\n");
         exit(1);
     }
     OS_TerminateTask();

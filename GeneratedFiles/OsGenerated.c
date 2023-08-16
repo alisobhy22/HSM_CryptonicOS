@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "OsGenerated.h"
 #include "../Headers/APIs_Headers/Globels.h"
+
+// dont make it funtion make it a ready array without executable
 void TasksInit(void)
 {
     

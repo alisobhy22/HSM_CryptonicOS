@@ -119,7 +119,7 @@ AppModeType ActiveAppMode;
 
 
 
-
+// name resource ?
 struct Resource
 {
 	ResourceType Res_ID;

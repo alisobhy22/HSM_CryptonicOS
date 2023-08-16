@@ -53,17 +53,20 @@ StatusType ReleaseResource(ResourceType ResID)
     }
     else
     {
+
+
+        // t1(5) , T2(3)>> prioity 3
         if (OsResourcesPCB[ResID]->Resource_Owner == INVALID_TASK 
             || (OsTasksPCB[RunningTaskID]->Last_Running_Resource != ResID
                 && OsTasksPCB[OsResourcesPCB[ResID]->Resource_Owner]->State == RUNNING))
-        {
+        { // get taks get a resource and then another taks
             StatusMsg = E_OS_NOFUNC;
         }
-        // T1(5) R0 8  > T1(8)    T2(9)>
+        // cieling priority alwayas takes hgihtes fromm all resource <<! configuration
         else
         {
             if (OsResourcesPCB[ResID]->Ceiling_Priority < OsTasksPCB[RunningTaskID]->Priority)
-            {
+            { //
                 StatusMsg = E_OS_ACCESS;
             }
             else
