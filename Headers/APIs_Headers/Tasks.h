@@ -4,7 +4,7 @@
 
 // #include "OsTasks.h"
 // #include "../../Sources/APIs_Sources/OsTasks.c"
-#include "OS.h"
+#include "Defines.h"
 
 
 StatusType ActivateTask(TaskType TaskID);

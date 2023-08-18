@@ -2,7 +2,7 @@
 #define Headers_APIs_Headers_OSExecutionControl_H
 
 
-#include "OS.h"
+#include "Defines.h"
 
 
 AppModeType GetActiveApplicationMode(void);

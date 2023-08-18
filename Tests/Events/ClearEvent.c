@@ -1,6 +1,8 @@
 // #include "../../Headers/APIs_Headers/Events.h"
-#include "../../Sources/APIs_Sources/Events.c"
-#include "../../Sources/APIs_Sources/OsTasks.c"
+// #include "../../Sources/APIs_Sources/Events.c"
+// #include "../../Sources/APIs_Sources/OsTasks.c"
+#include "../../Headers/APIs_Headers/OS.h"
+#include "../../Headers/APIs_Headers/Externs.h"
 #include <stdlib.h>
 #include <stdio.h>
 int main()

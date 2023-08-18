@@ -1,8 +1,17 @@
 #include <stdio.h>
 #include "OsGenerated.h"
-#include "../Headers/APIs_Headers/Globels.h"
+#include "../Headers/APIs_Headers/Externs.h"
 
-// dont make it funtion make it a ready array without executable
+struct Task* OsTasksPCB[MAX_TASKS];
+TaskType RunningTaskID;
+uint8_t Queue_Size;
+struct Ready_List Ready_Queue;
+struct Ready_Entry Ready_Entries[MAX_TASKS];
+
+AppModeType ActiveAppMode;
+
+struct Resource *OsResourcesPCB[MAX_RESOURCES];
+
 void TasksInit(void)
 {
     

@@ -1,17 +1,11 @@
+#ifndef Headers_APIs_Headers_Defines_H
+#define Headers_APIs_Headers_Defines_H
 
-#ifndef Headers_APIs_Headers_Globels_H
-#define Headers_APIs_Headers_Globels_H
 
+#include "stdint.h"
 #include "../../Configurations/TaskConfig.h"
 #include "../../Configurations/OSExecutionControlConfig.h"
-#include "stdint.h"
-//Tasks Things
 #include "../../Configurations/ResourceConfig.h"
-
-
-
-
-// Tasks Things
 
 #define INVALID_TASK MAX_TASKS
 
@@ -33,14 +27,27 @@
 #define E_OS_STATE 7
 #define E_OS_VALUE 8
 
+
+#define INVALID_RESOURCE MAX_RESOURCES
+
+
+
+#define OSDEFAULTAPPMODE 0
+#define INVALID_APPMODE 255
+
+
 typedef uint8_t StatusType;
 typedef uint8_t TaskType;
 typedef uint8_t *TaskRefType;
 typedef uint8_t TaskStateType;
 typedef uint8_t *TaskStateRefType;
 
- typedef uint64_t EventMaskType;
- typedef uint64_t *EventMaskRefType;
+typedef uint64_t EventMaskType;
+typedef uint64_t *EventMaskRefType;
+
+typedef uint8_t ResourceType;
+
+typedef uint8_t AppModeType;
 
 struct Event
 {
@@ -49,34 +56,18 @@ struct Event
 	uint64_t Event_State; // 64 bit event state
 
 };
+struct Resource
+{
+	ResourceType Res_ID;
+	uint8_t Ceiling_Priority;
 
-struct Task* OsTasksPCB[MAX_TASKS];
-TaskType RunningTaskID;
+	ResourceType *Linked_Resource ;
+	ResourceType Resource_Property;
 
+	TaskType Resource_Owner;
+	ResourceType Prev_Resource;
 
-uint8_t Queue_Size;
-
-struct Ready_Entry
-{ // Is for an array holding all entries of the ready list
-	struct Task *task;
-	struct Ready_Entry *Prev;
-	struct Ready_Entry *Next;
 };
-
-struct Ready_List
-{ // Is for size and head/tail pointers to navigate the ready entries
-	uint8_t Queue_Size;
-	struct Ready_Entry *Head;
-	struct Ready_Entry *Tail;
-};
-
-struct Ready_List Ready_Queue;
-
-struct Ready_Entry Ready_Entries[MAX_TASKS];
-
-
-typedef uint8_t ResourceType;
-
 struct Task
 {
 	int address; //address of the task in memory
@@ -102,45 +93,20 @@ struct Task
 	// BAAAD WARNING FROM HERE here 
 
 };
-
-//OS Execution Control Things
-
-#define INVALID_APPMODE 255
-
-typedef uint8_t AppModeType;
-AppModeType ActiveAppMode;
-#define OSDEFAULTAPPMODE 0
-
-
-// Resource Things
-
-#define INVALID_RESOURCE MAX_RESOURCES
-
-
-
-
-// name resource ?
-struct Resource
-{
-	ResourceType Res_ID;
-	uint8_t Ceiling_Priority;
-
-	ResourceType *Linked_Resource ;
-	ResourceType Resource_Property;
-
-	TaskType Resource_Owner;
-	ResourceType Prev_Resource;
-
+struct Ready_Entry
+{ // Is for an array holding all entries of the ready list
+	struct Task *task;
+	struct Ready_Entry *Prev;
+	struct Ready_Entry *Next;
 };
 
-struct Resource *OsResourcesPCB[MAX_RESOURCES];
+struct Ready_List
+{ // Is for size and head/tail pointers to navigate the ready entries
+	uint8_t Queue_Size;
+	struct Ready_Entry *Head;
+	struct Ready_Entry *Tail;
+};
 
 
 
-
-
-
-
-
-
-#endif
+ #endif

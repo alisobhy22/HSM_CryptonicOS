@@ -1,15 +1,16 @@
 #include "../../Headers/APIs_Headers/Events.h"
+#include "../../Headers/APIs_Headers/Externs.h"
 #include "../../Headers/APIs_Headers/OsTasks.h"
 
 // #include "../../Headers/APIs_Headers/Globels.h"
 // #include "../../Headers/APIs_Headers/Libraries.h"
 #include <string.h>
 
-extern struct Task *OsTasksPCB[MAX_TASKS];
-extern TaskType RunningTaskID;
-extern uint8_t Queue_Size;
-extern struct Ready_List Ready_Queue;
-extern struct Ready_Entry Ready_Entries[MAX_TASKS];
+// extern struct Task *OsTasksPCB[MAX_TASKS];
+// extern TaskType RunningTaskID;
+// extern uint8_t Queue_Size;
+// extern struct Ready_List Ready_Queue;
+// extern struct Ready_Entry Ready_Entries[MAX_TASKS];
 
 StatusType SetEvent(TaskType TaskID, EventMaskType ActivatedEvents)
 {
@@ -52,7 +53,7 @@ StatusType WaitEvent(EventMaskType EventMask)
     }
 
     // E_OS_CALLEVEL
-    if (OsTasksPCB[RunningTaskID]->EventMask.Event_State & EventMask != 0)
+    if ((OsTasksPCB[RunningTaskID]->EventMask.Event_State & EventMask) != 0)
     {
         OsTasksPCB[RunningTaskID]->State = WAITING;                                                                                                                                     // set to waititng state
         OsTasksPCB[RunningTaskID]->EventMask.Event_Waiting = (OsTasksPCB[RunningTaskID]->EventMask.Event_State & EventMask) | OsTasksPCB[RunningTaskID]->EventMask.Event_Waiting; // set waiting events

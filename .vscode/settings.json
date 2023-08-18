@@ -1,6 +1,13 @@
 {
     "files.associations": {
         "events.h": "c",
-        "string.h": "c"
+        "string.h": "c",
+        "externs.h": "c",
+        "osexecutioncontrol.h": "c",
+        "resources.h": "c",
+        "defines.h": "c",
+        "stdint.h": "c",
+        "osexecutioncontrolconfig.h": "c",
+        "osgenerated.h": "c"
     }
 }

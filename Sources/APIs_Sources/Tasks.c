@@ -1,11 +1,12 @@
 #include "../../Headers/APIs_Headers/Tasks.h"
+#include "../../Headers/APIs_Headers/Externs.h"
 #include "../../Headers/APIs_Headers/OsTasks.h"
 #include <stdio.h>
-extern struct Task* OsTasksPCB[MAX_TASKS];
-extern TaskType RunningTaskID;
-extern struct Ready_List Ready_Queue = {0,NULL,NULL};
+// extern struct Task* OsTasksPCB[MAX_TASKS];
+// extern TaskType RunningTaskID;
+// extern struct Ready_List Ready_Queue = {0,NULL,NULL};
 
-extern struct Ready_Entry Ready_Entries[MAX_TASKS];
+// extern struct Ready_Entry Ready_Entries[MAX_TASKS];
 
 
 

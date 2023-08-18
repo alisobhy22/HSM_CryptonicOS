@@ -1,13 +1,12 @@
 #include "../../Headers/APIs_Headers/OsTasks.h"
-#include "../../Headers/APIs_Headers/Globels.h"
-#include "../../Configurations/TaskConfig.h"
+#include "../../Headers/APIs_Headers/Externs.h"
 #include <stdio.h>
-extern struct Task* OsTasksPCB[MAX_TASKS];
-extern TaskType RunningTaskID;
-extern uint8_t Queue_Size;
-extern struct Ready_List Ready_Queue;
-// need to be modified
-extern struct Ready_Entry Ready_Entries[MAX_TASKS];
+// extern struct Task* OsTasksPCB[MAX_TASKS];
+// extern TaskType RunningTaskID;
+// extern uint8_t Queue_Size;
+// extern struct Ready_List Ready_Queue;
+// // need to be modified
+// extern struct Ready_Entry Ready_Entries[MAX_TASKS];
 
 void OS_ActivateTask(TaskType TaskID)
 {

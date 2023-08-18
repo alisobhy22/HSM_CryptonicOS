@@ -1,13 +1,13 @@
 #include "../../Headers/APIs_Headers/Resources.h"
+#include "../../Headers/APIs_Headers/Externs.h"
+// struct Task *OsTasksPCB[MAX_TASKS];
+// TaskType RunningTaskID;
+// uint8_t Queue_Size;
+// struct Ready_List Ready_Queue;
+// struct Ready_Entry Ready_Entries[MAX_TASKS];
 
-struct Task *OsTasksPCB[MAX_TASKS];
-TaskType RunningTaskID;
-uint8_t Queue_Size;
-struct Ready_List Ready_Queue;
-struct Ready_Entry Ready_Entries[MAX_TASKS];
-
-struct Task *OsTasksPCB[MAX_TASKS];
-struct Resource *OsResourcesPCB[MAX_RESOURCES];
+// struct Task *OsTasksPCB[MAX_TASKS];
+// struct Resource *OsResourcesPCB[MAX_RESOURCES];
 
 StatusType GetResource(ResourceType ResID)
 {
