@@ -1,13 +1,8 @@
 {
    "Events": [
-    {
-        "OSEventName": "Event1",
-        "OSEventMask": "0000000001"
-    },
-    {
-        "OSEventName": "Event2",
-        "OSEventMask": "0000000010"
-    }
+    "Event1",
+    "Event2",
+    "Event3"
    ],
    "Resources": [
     {
