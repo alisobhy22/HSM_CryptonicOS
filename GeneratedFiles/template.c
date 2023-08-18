@@ -1,61 +1,31 @@
+#ifndef Generated
+#define Generated
+
 #include <stdio.h>
-#include "OsGenerated.h"
-#include "../Headers/APIs_Headers/Globels.h"
-void TasksInit(void)
-{
+#include "../Headers/APIs_Headers/Externs.h"
+
+TaskType RunningTaskID=INVALID_TASK;
+uint8_t Queue_Size;
+struct Ready_List Ready_Queue;
+struct Ready_Entry Ready_Entries[MAX_TASKS];
+
+AppModeType ActiveAppMode;
+
+struct Resource *OsResourcesPCB[MAX_RESOURCES]={
     {% for r in res %}
-    struct Resource *{{r.name}} = malloc(sizeof(struct Resource));
-    {{r.name}}->Ceiling_Priority = {{r.Ceiling_Priority}};
-    {{r.name}}->Linked_Resource = {{r.Linked_Resource}};
-    {{r.name}}->Resource_Property = {{r.Resource_Property}};
-    {{r.name}}->Resource_Owner = INVALID_TASK;
-    {{r.name}}->Prev_Resource = INVALID_RESOURCE;
-
-    OsResourcesPCB[{{loop.index-1}}] = {{r.name}};
+    { {{r.Ceiling_Priority}},{{r.Linked_Resource}},{{r.Resource_Property}},INVALID_TASK,INVALID_RESOURCE},
     {% endfor %}
-
-
+};
+struct Task* OsTasksPCB[MAX_TASKS]={
     {% for task in tasks %}
-
-    struct Task *{{task.name}} = malloc(sizeof(struct Task));
-    {{task.name}}->address = 0;
-    {{task.name}}->current_pc = 0;
-    {{task.name}}->ID = {{loop.index-1}};
-    {{task.name}}->State = SUSPENDED;
-    {{task.name}}->CONFIG_PRIORITY = {{task.Priority}};
-    {{task.name}}->Priority = {{task.Priority}};
-    {{task.name}}->F_PREEM = {{task.Premtive}};
-    {{task.name}}->Activation_Record = 0;
-    {{task.name}}->Activation_Request = {{task.Request}};
-    {{task.name}}->Reasourses_Occupied = 0;
-    {{task.name}}->Extended = {{task.Extended}};
-    {{task.name}}->EventMask.Configured_Events = 0b{{task.Events}};
-    {{task.name}}->EventMask.Event_Waiting = 0;
-    {{task.name}}->EventMask.Event_State = 0;
-    {{task.name}}->Needed_Resources = {{task.Needed_Resources}};
-    OsTasksPCB[{{loop.index-1}}] = {{task.name}};
+   
+        {0, 0, {{loop.index-1}}, SUSPENDED, {{task.Priority}}, {{task.Priority}}, {{task.Premtive}},
+         0, {{task.Request}}, 0, {{task.Extended}}, {0b{{task.Events}},0 , 0}, {{task.Needed_Resources}} },
     {% endfor %}
+    {% for n in range((198)-tasks|length)%}
+    NULL,
+    {%endfor%}
+    {0, 0, IDLE_TASK, SUSPENDED, 0, 0, TASK_FULL, 0, 200, 0,0,{0,0,0},INVALID_RESOURCE}
+};
 
-    // struct Task IDLE = {0,0,IDLE_TASK,SUSPENDED,0,0,TASK_FULL,0,0,200,0,0,NULL};
-    // OsTasksPCB[IDLE_TASK] = &IDLE;
-    
-    struct Task *IDLE = malloc(sizeof(struct Task));
-    IDLE->address = 0;
-    IDLE->current_pc = 0;
-    IDLE->ID = IDLE_TASK;
-    IDLE->State = SUSPENDED;
-    IDLE->CONFIG_PRIORITY = 0;
-    IDLE->Priority = 0;
-    IDLE->F_PREEM = TASK_FULL;
-    IDLE->Activation_Record = 0;
-    IDLE->Activation_Request = 200;
-    IDLE->Reasourses_Occupied = 0;
-    IDLE->Extended = 0;
-    IDLE->EventMask.Configured_Events = 0;
-    IDLE->EventMask.Event_Waiting = 0;
-    IDLE->EventMask.Event_State = 0;
-    IDLE->Needed_Resources = INVALID_RESOURCE;
-    OsTasksPCB[IDLE_TASK] = &IDLE;
-
-    RunningTaskID = INVALID_TASK;
-}
+#endif

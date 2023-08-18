@@ -1,13 +1,15 @@
-// #include "../../GeneratedFiles/OSGenerated.c"
-// #include "../../Sources/APIs_Sources/OsExecutionControl.c"
-// #include "../../Sources/APIs_Sources/Resources.c"
-// #include "../../Headers/APIs_Headers/OS.h"
-#include "../../Headers/APIs_Headers/OS.h"
+ #include "../../GeneratedFiles/OSGenerated.h"
+ #include "../../Sources/APIs_Sources/OsExecutionControl.c"
+ #include "../../Sources/APIs_Sources/Resources.c"
+  #include "../../Sources/APIs_Sources/Tasks.c"
+  #include "../../Sources/APIs_Sources/OsTasks.c"
+ //#include "../../Headers/APIs_Headers/OS.h"
+//#include "../../Headers/APIs_Headers/OS.h"
 int main()
 {
     uint8_t test;
     uint8_t st;
-    TasksInit();
+    // TasksInit();
     StartOS(OSDEFAULTAPPMODE);
 
     GetTaskID(&test);

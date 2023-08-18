@@ -41,7 +41,7 @@ rendered_template = template.render(res=res , tasks=tasks)
 # rendered_template = template.render()
 
 # Write the rendered template to a new file or do something with it
-with open("./GeneratedFiles/OsGenerated.c", "w") as file:
+with open("./GeneratedFiles/OsGenerated.h", "w") as file:
     file.write(rendered_template)
 
 

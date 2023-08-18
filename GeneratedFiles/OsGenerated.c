@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "OsGenerated.h"
-#include "../Headers/APIs_Headers/Externs.h"
+#include "../Headers/APIs_Headers/OS.h"
 
 struct Task* OsTasksPCB[MAX_TASKS];
 TaskType RunningTaskID;

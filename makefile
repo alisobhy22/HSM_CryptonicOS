@@ -2,7 +2,7 @@ CC = gcc
 CFLAGS = -Wall
 
 
-SRCS = ./GeneratedFiles/OsGenerated.c ./Sources/APIs_Sources/Events.c ./Sources/APIs_Sources/OSExecutionControl.c ./Sources/APIs_Sources/OsTasks.c ./Sources/APIs_Sources/Resources.c ./Sources/APIs_Sources/Tasks.c
+SRCS =  ./Sources/APIs_Sources/Events.c ./Sources/APIs_Sources/OSExecutionControl.c ./Sources/APIs_Sources/OsTasks.c ./Sources/APIs_Sources/Resources.c ./Sources/APIs_Sources/Tasks.c
 OBJS = $(SRCS:.c=.o)
 
 #Enviroment_Testing
@@ -23,7 +23,7 @@ INCLUDES = -IHeaders -IConfigurations
 
 LIBS =
 main: $(OBJS) $(OBJS_Main) $(OBJS_ClearEvents) $(OBJS_GetEvent) $(OBJS_SetEvent) $(OBJS_WaitEvent)
-	$(CC) $(CFLAGS) $(INCLUDES) -o main $(OBJS) $(OBJS_Main) $(LIBS)
+	$(CC) $(CFLAGS) $(INCLUDES) -o main  $(OBJS) $(OBJS_Main) $(LIBS)
 	$(CC) $(CFLAGS) $(INCLUDES) -o ClearEvent $(OBJS) $(OBJS_ClearEvents) $(LIBS)
 	$(CC) $(CFLAGS) $(INCLUDES) -o GetEvent $(OBJS) $(OBJS_GetEvent) $(LIBS)
 	$(CC) $(CFLAGS) $(INCLUDES) -o SetEvent $(OBJS) $(OBJS_SetEvent) $(LIBS)
@@ -42,7 +42,6 @@ clean:
 	del WaitEvent.exe
 	del .\Tests\Events\WaitEvent.o
 
-	del .\GeneratedFiles\OsGenerated.o
 	del .\Tests\Enviroment\main.o
 	del .\Sources\APIs_Sources\Events.o
 	del .\Sources\APIs_Sources\OSExecutionControl.o

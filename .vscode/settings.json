@@ -8,6 +8,9 @@
         "defines.h": "c",
         "stdint.h": "c",
         "osexecutioncontrolconfig.h": "c",
-        "osgenerated.h": "c"
-    }
+        "osgenerated.h": "c",
+        "stdio.h": "c",
+        "os.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }
