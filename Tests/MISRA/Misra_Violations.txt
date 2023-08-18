@@ -1,43 +1,7 @@
-GeneratedFiles/OsGenerated.c:22:26: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-7.2]
-    R0->Resource_Owner = INVALID_TASK;
-                         ^
-GeneratedFiles/OsGenerated.c:31:26: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-7.2]
-    R1->Resource_Owner = INVALID_TASK;
-                         ^
-GeneratedFiles/OsGenerated.c:84:16: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-7.2]
-    IDLE->ID = IDLE_TASK;
-               ^
-GeneratedFiles/OsGenerated.c:90:32: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-7.2]
-    IDLE->Activation_Request = 200;
-                               ^
-GeneratedFiles/OsGenerated.c:99:21: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-7.2]
-    RunningTaskID = INVALID_TASK;
-                    ^
-GeneratedFiles/OsGenerated.c:18:25: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-11.5]
-    struct Resource *R0 = malloc(sizeof(struct Resource));
-                        ^
-GeneratedFiles/OsGenerated.c:27:25: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-11.5]
-    struct Resource *R1 = malloc(sizeof(struct Resource));
-                        ^
-GeneratedFiles/OsGenerated.c:40:24: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-11.5]
-    struct Task *Task1 = malloc(sizeof(struct Task));
-                       ^
-GeneratedFiles/OsGenerated.c:59:24: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-11.5]
-    struct Task *Task2 = malloc(sizeof(struct Task));
-                       ^
-GeneratedFiles/OsGenerated.c:81:23: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-11.5]
-    struct Task *IDLE = malloc(sizeof(struct Task));
-                      ^
-GeneratedFiles/OsGenerated.c:20:25: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-11.9]
-    R0->Linked_Resource = 0;
-                        ^
-GeneratedFiles/OsGenerated.c:29:25: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-11.9]
-    R1->Linked_Resource = 0;
-                        ^
-GeneratedFiles/OsGenerated.c:1:0: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-21.6]
-#include <stdio.h>
+GeneratedFiles/OsGenerated.c:0:0: information: Bailing out from checking GeneratedFiles/OsGenerated.c since there was an internal error: Failed to execute 'python3 /etc/cppcheck/addons/misra.py --cli GeneratedFiles/OsGenerated.c.dump'. {"file": "GeneratedFiles/OsGenerated.h", "linenr": 7, "column": 24, "severity": "style", "message": "misra violation (use --rule-texts=<file> to get proper output)", "addon": "misra", "errorId": "c2012-7.2", "extra": "Undefined"} [internalError]
+
 ^
-GeneratedFiles/template.c:6:8: error: syntax error [syntaxError]
+GeneratedFiles/template.c:15:8: error: syntax error [syntaxError]
     {% for r in res %}
        ^
 Sources/APIs_Sources/Events.c:17:16: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
