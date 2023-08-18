@@ -1,0 +1,63 @@
+{
+   "Events": [
+    {
+        "OSEventName": "Event1",
+        "OSEventMask": "0000000001"
+    },
+    {
+        "OSEventName": "Event2",
+        "OSEventMask": "0000000010"
+    }
+   ],
+   "Resources": [
+    {
+        "OSResourceName": "Resource1",
+        "OSResourceProperty": "STANDARD"
+
+    },
+    {
+     
+     
+    }
+   ],
+   "Hooks": {
+    "OsErrorHook": true,
+    "OsPreTaskHook": true,
+    "OsPostTaskHook": true,
+    "OsStartupHook": true,
+    "OsShutdownHook": true
+   },
+   "Tasks" : [
+    {
+        "OSTaskName": "Task1",
+        "OsTaskActivation": 1,
+        "OsTaskPriority": 1,
+        "OsTaskSchedule": "FULL",
+        "OsTaskType": "EXTENDED",
+        "OsTaskEventRef": ["Event1", "Event2"],
+        "OsTaskResourceRef": ["Resource1", "Resource2"],
+        "OsTaskAutostart": true
+
+    },
+    {
+        "OSTaskName": "Task2",
+        "OsTaskActivation": 1,
+        "OsTaskPriority": 4,
+        "OsTaskSchedule": "NON",
+        "OsTaskType": "NORMAL",
+        "OsTaskEventRef": ["Event1", "Event2"],
+        "OsTaskResourceRef": ["Resource1", "Resource2"],
+        "OsTaskAutostart": true
+    },
+    {
+        "OSTaskName": "Task3",
+        "OsTaskActivation": 1,
+        "OsTaskPriority": 1,
+        "OsTaskSchedule": "FULL",
+        "OsTaskType": "EXTENDED",
+        "OsTaskEventRef": ["Event1", "Event2"],
+        "OsTaskResourceRef": ["Resource1", "Resource2"],
+        "OsTaskAutostart": true
+    }
+   ]
+}
