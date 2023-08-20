@@ -1,34 +1,50 @@
 from jinja2 import Environment, FileSystemLoader
 import json
-import os
 
-def replace_values(task):
-    if task['Extended']:
-        task['Extended'] = 1
-    else:
-        task['Extended'] = 0
-
-    if task['Premtive']:
-        task['Premtive'] = "TASK_FULL"
-    else:
-        task['Premtive'] = "TASK_NON"
-    task["Needed_Resources"] = "&(struct Resource[]){"+task["Needed_Resources"]+"}"
-    return task
-
-
-
-# file = open('F:\AUC\Thesis\HSM\HSM_CryptonicOS\GeneratedFiles\Config.json')
 file = open("./GeneratedFiles/Config.json")
 data = json.load(file)
-tasks = data['tasks']
+events_names = data['Events']
 
-res = data['resources']
+tasks = data['Tasks']
 
-tasks = [replace_values(task) for task in tasks]
-##if task has extended to be true replace with 1, and if it has Premtive to be true replace with TASK_FULL, if false it will be TASK_NON
+resources = data['Resources']
+
+hooks = data['Hooks']
+
+
+
+#takes a task and returns the event mask
+def FetchTaskEventMask(task,events):
+    taskeventmask = 0
+    for event in events:
+        if event['name'] in task['OsTaskEventRef']:
+            taskeventmask = taskeventmask | event['mask']
+    return taskeventmask
    
 
 
+#handles events
+events = []
+for index,event in enumerate(events_names):
+    mask = 1 << index
+    event_dic = {"name":event,"mask":mask}
+    events.append(event_dic)
+
+print(events)
+#handles tasks
+for task in tasks:
+    if task['OsTaskSchedule'] == "FULL":
+        task['OsTaskSchedule'] = "TASK_FULL"
+    else:
+        task['OsTaskSchedule'] = "TASK_NON"
+    if task['OsTaskType'] == "EXTENDED":
+        task['OsTaskType'] = 1
+    else:
+        task['OsTaskType'] = 0
+    task['OsTaskEventRef'] = FetchTaskEventMask(task,events)
+
+
+        
 
 # Create an env object for OsConfig.c
 env = Environment(loader=FileSystemLoader("."))
@@ -36,15 +52,10 @@ env = Environment(loader=FileSystemLoader("."))
 # Load the template file
 template = env.get_template("./GeneratedFiles/template.c")
 # Render the template with the desired value for 'tasks'
-rendered_template = template.render(res=res , tasks=tasks)
+rendered_template = template.render(events=events , tasks=tasks, resources=resources, hooks=hooks)
 
 # rendered_template = template.render()
 
 # Write the rendered template to a new file or do something with it
 with open("./GeneratedFiles/OsGenerated.h", "w") as file:
     file.write(rendered_template)
-
-
-
-
-

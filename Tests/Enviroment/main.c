@@ -15,19 +15,19 @@ int main()
     GetTaskID(&test);
     printf("%d\n", test);
 
-    ActivateTask(0);
+    ActivateTask(Task1);
 
     GetTaskID(&test);
     printf("%d\n", test);
 
-    ActivateTask(1);
+    ActivateTask(Task2);
 
     GetTaskID(&test);
     printf("%d\n", test);
 
-    st = GetResource(1);
+    st = GetResource(R1);
     printf("%d\n", st);
 
-    st = GetResource(0);
+    st = GetResource(R2);
     printf("%d\n", st);
 }

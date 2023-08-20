@@ -2,7 +2,7 @@
 #ifndef Headers_APIs_Headers_Globels_H
 #define Headers_APIs_Headers_Globels_H
 #include "Defines.h"
-
+#include "../../GeneratedFiles/OSGenerated.h"
 #include "stdint.h"
 //Tasks Things
 

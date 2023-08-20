@@ -1,42 +1,61 @@
 {
-    "tasks": [
-        {
-            "name": "Task1",
-            "Priority": 2,
-            "Request" : 1,
-            "AutoStart" : false,
-            "Premtive" : true,
-            "Extended" : true,
-            "Events" : "010111",
-            "Needed_Resources":"R0,R1"
-        },
-        {
-            "name": "Task2",
-            "Priority": 4,
-            "Request" : 2,
-            "AutoStart" : false,
-            "Premtive" : true,
-            "Extended" : true,
-            "Events" : "101000",
-            "Needed_Resources":"R0,R1"
-        }
-    ]
-    ,
-    "resources": [
+   "Events": [
+    "Event1",
+    "Event2",
+    "Event3"
+   ],
+   "Resources": [
+    {
+        "OSResourceName": "R1",
+        "OSResourceCeilingPriority": 7,
+        "OSResourceProperty": 0
 
-        {
-            "name":"R0",
-            "Res_ID":0,
-            "Ceiling_Priority":7,
-            "Linked_Resource":0,
-            "Resource_Property":0
-        },
-        {
-            "name":"R1",
-            "Res_ID":1,
-            "Ceiling_Priority":5,
-            "Linked_Resource":0,
-            "Resource_Property":0
-        }
-    ]
+    },
+    {
+        "OSResourceName": "R2",
+        "OSResourceCeilingPriority": 5,
+        "OSResourceProperty": 0
+     
+    }
+   ],
+   "Hooks": {
+    "OsErrorHook": true,
+    "OsPreTaskHook": true,
+    "OsPostTaskHook": true,
+    "OsStartupHook": true,
+    "OsShutdownHook": true
+   },
+   "Tasks" : [
+    {
+        "OSTaskName": "Task1",
+        "OsTaskActivation": 1,
+        "OsTaskPriority": 1,
+        "OsTaskSchedule": "FULL",
+        "OsTaskType": "EXTENDED",
+        "OsTaskEventRef": ["Event1", "Event2"],
+        "OsTaskResourceRef": ["R1", "R2"],
+        "OsTaskAutostart": true
+
+    },
+    {
+        "OSTaskName": "Task2",
+        "OsTaskActivation": 1,
+        "OsTaskPriority": 4,
+        "OsTaskSchedule": "NON",
+        "OsTaskType": "NORMAL",
+        "OsTaskEventRef": ["Event1", "Event2", "Event3"],
+        "OsTaskResourceRef": ["Resource1", "Resource2"],
+        "OsTaskAutostart": true
+    },
+    {
+        "OSTaskName": "Task3",
+        "OsTaskActivation": 1,
+        "OsTaskPriority": 1,
+        "OsTaskSchedule": "FULL",
+        "OsTaskType": "EXTENDED",
+        "OsTaskEventRef": ["Event3", "Event2"],
+        "OsTaskResourceRef": ["Resource1", "Resource2"],
+        "OsTaskAutostart": true
+    }
+   ]
 }
