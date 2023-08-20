@@ -44,7 +44,7 @@
         "OsTaskSchedule": "NON",
         "OsTaskType": "NORMAL",
         "OsTaskEventRef": ["Event1", "Event2", "Event3"],
-        "OsTaskResourceRef": ["Resource1", "Resource2"],
+        "OsTaskResourceRef": ["R1", "R2"],
         "OsTaskAutostart": true
     },
     {
@@ -54,7 +54,7 @@
         "OsTaskSchedule": "FULL",
         "OsTaskType": "EXTENDED",
         "OsTaskEventRef": ["Event3", "Event2"],
-        "OsTaskResourceRef": ["Resource1", "Resource2"],
+        "OsTaskResourceRef": ["R1", "R2"],
         "OsTaskAutostart": true
     }
    ]
