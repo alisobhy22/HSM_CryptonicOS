@@ -1,9 +1,9 @@
-GeneratedFiles/OsGenerated.c:0:0: information: Bailing out from checking GeneratedFiles/OsGenerated.c since there was an internal error: Failed to execute 'python3 /etc/cppcheck/addons/misra.py --cli GeneratedFiles/OsGenerated.c.dump'. {"file": "GeneratedFiles/OsGenerated.h", "linenr": 7, "column": 24, "severity": "style", "message": "misra violation (use --rule-texts=<file> to get proper output)", "addon": "misra", "errorId": "c2012-7.2", "extra": "Undefined"} [internalError]
-
+GeneratedFiles/OsGenerated.c:27:21: error: syntax error: 0 = [syntaxError]
+    struct Resource *R1 = malloc(sizeof(struct Resource));
+                    ^
+GeneratedFiles/template.c:20:0: error: Failed to parse #define [preprocessorErrorDirective]
+#define {{e.name}} {{e.mask}}
 ^
-GeneratedFiles/template.c:15:8: error: syntax error [syntaxError]
-    {% for r in res %}
-       ^
 Sources/APIs_Sources/Events.c:17:16: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
     if (TaskID >= MAX_TASKS) // Invalid task ID
                ^
@@ -224,9 +224,6 @@ Sources/APIs_Sources/OSExecutionControl.c:24:0: style: The function 'ShutDownOS'
 
 ^
 Sources/APIs_Sources/OSExecutionControl.c:11:0: style: The function 'StartOS' is never used. [unusedFunction]
-
-^
-GeneratedFiles/OsGenerated.c:15:0: style: The function 'TasksInit' is never used. [unusedFunction]
 
 ^
 Sources/APIs_Sources/Tasks.c:36:0: style: The function 'TerminateTask' is never used. [unusedFunction]
